@@ -1,0 +1,53 @@
+:host .layout-header {
+  ::ng-deep nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  width: auto;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    width: calc(16rem - 1.25rem);
+  }
+
+  .sidebar-toggle {
+    padding-right: 1.25rem;
+    text-decoration: none;
+    color: nb-theme(text-hint-color);
+
+    nb-icon {
+      font-size: 1.75rem;
+    }
+  }
+
+  .logo {
+    padding: 0 1.25rem;
+    font-size: 1.75rem;
+    border-left: 1px solid nb-theme(divider-color);
+    border-right: 1px solid nb-theme(divider-color);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  nb-action {
+    height: auto;
+    display: flex;
+    align-content: center;
+  }
+
+  nb-user {
+    cursor: pointer;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+}

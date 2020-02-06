@@ -1,0 +1,51 @@
+import { environment } from 'src/environments/environment';
+
+/**
+ * API ALL
+ */
+const API_VERSION = 'api';
+const SERVER_URL = environment.api;
+const URL = `${SERVER_URL}/${API_VERSION}`;
+
+export const API = {
+    // AUTH
+    VCODE: `${SERVER_URL}/auth/vCode`,
+    LOGIN: `${SERVER_URL}/auth/login`,
+    // API
+    LOGOUT: `${URL}/logout`,
+    CUSTOMER: `${URL}/customer`,
+    absentconfig: `${URL}/absentconfig`,
+    achievement: `${URL}/achievement`,
+    achievementcompliment: `${URL}/achievementcompliment`,
+    achievementsetup: `${URL}/achievementsetup`,
+    article: `${URL}/article`,
+    articlecomment: `${URL}/articlecomment`,
+    articlelike: `${URL}/articlelike`,
+    configleave: `${URL}/configleave`,
+    chatgroup: `${URL}/chatgroup`,
+    chatmessage: `${URL}/chatmessage`,
+    chatconversation: `${URL}/chatconversation`,
+    department: `${URL}/department`,
+    district: `${URL}/district`,
+    employees: `${URL}/employees`,
+    fileupload: `${URL}/fileupload`,
+    goalresultcomment: `${URL}/goalresultcomment`,
+    goals: `${URL}/goals`,
+    goalscomment: `${URL}/goalscomment`,
+    goalstatistic: `${URL}/goalstatistic`,
+    grouppermission: `${URL}/grouppermission`,
+    holiday: `${URL}/holiday`,
+    holidaydefault: `${URL}/holidaydefault`,
+    notification: `${URL}/notification`,
+    notificationhistory: `${URL}/notificationhistory`,
+    password: `${URL}/password`,
+    position: `${URL}/position`,
+    positionassign: `${URL}/positionassign`,
+    province: `${URL}/province`,
+    resetpassword: `${URL}/resetpassword`,
+    teammember: `${URL}/teammember`,
+    teams: `${URL}/teams`,
+    topachievement: `${URL}/topachievement`,
+    user: `${URL}/user`,
+    timekeeping: `${URL}/timekeeping`,
+};

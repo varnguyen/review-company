@@ -1,0 +1,40 @@
+<nb-layout container>
+
+    <nb-layout-header class="layout-header" fixed>
+        <div class="header-container">
+            <div class="logo-container">
+                <a (click)="toggleSidebar()" class="sidebar-toggle">
+                    <nb-icon icon="menu-2-outline"></nb-icon>
+                </a>
+                <a class="logo" (click)="navigateHome()">Application<span></span></a>
+            </div>
+            <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+                <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+            </nb-select>
+        </div>
+
+        <div class="header-container">
+            <nb-actions size="small">
+                <nb-action *ngIf="!isContected" class="control-item">Đăng nhập</nb-action>
+                <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12" badgeStatus="danger"></nb-action>
+                <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33" badgeStatus="warning"></nb-action>
+                <nb-action *ngIf="isContected" class="user-action">
+                    <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly"
+                        [name]="user ? user.name : 'Nguyen Minh'" [title]="user ? user.job : 'Developer'"
+                        [picture]="user ? user.picture : 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'">
+                    </nb-user>
+                </nb-action>
+            </nb-actions>
+        </div>
+    </nb-layout-header>
+
+    <nb-sidebar>
+        <nb-menu [items]="menu">
+        </nb-menu>
+    </nb-sidebar>
+
+    <nb-layout-column class="colored-column-basic">
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+</nb-layout>
