@@ -1,8 +1,8 @@
-# ng-admin-nebular 
+# review-company 
 
 Website built by Angular 8+ &amp; Nebular v4.6.0+
 
-# Admin Dashboard Nebular Application
+# Review Company Application
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
