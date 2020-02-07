@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { ECommerceComponent } from './e-commerce.component';
+import { CompanyDetailComponent } from './company-detail.component';
 
 @NgModule({
     imports: [
         FormsModule
     ],
     declarations: [
-        ECommerceComponent
+        CompanyDetailComponent
     ],
 })
-export class ECommerceModule { }
+export class CompanyDetailModule { }

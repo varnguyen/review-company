@@ -12,6 +12,10 @@ nb-tabset {
 
     ::ng-deep .tab-link {
       padding: 1.25rem 2rem;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 }
@@ -42,4 +46,17 @@ nb-tab {
   .company-title {
     cursor: pointer;
   }
+}
+
+
+app-company-placeholder {
+  width: 100%;
+}
+
+.pd-0 {
+  padding: 0;
+}
+
+.p-r-10 {
+  padding-right: 10px;
 }

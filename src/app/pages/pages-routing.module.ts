@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
-import { DashboardComponent, ProductComponent, CustomerComponent } from './components';
+import { DashboardComponent, ProfileComponent, CompanyDetailComponent, ChangePasswordComponent } from './components';
 import { NotFoundComponent } from './common';
 
 const routes: Routes = [{
@@ -9,12 +9,13 @@ const routes: Routes = [{
     component: PagesComponent,
     children: [
         { path: 'dashboard', component: DashboardComponent },
-        { path: 'product', component: ProductComponent },
-        { path: 'customer', component: CustomerComponent },
-        // {
-        //     path: 'layout',
-        //     loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
-        // }
+        { path: 'company/:company_id', component: CompanyDetailComponent },
+        { path: 'profile', component: ProfileComponent },
+        { path: 'change-password', component: ChangePasswordComponent },
+        {
+            path: 'chat',
+            loadChildren: () => import('./components/chat/chat.module').then(m => m.ChatModule)
+        },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         { path: '**', component: NotFoundComponent },
     ]

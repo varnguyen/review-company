@@ -3,6 +3,7 @@ import { NbSidebarService, NbThemeService, NbMenuService, NB_WINDOW } from '@neb
 import { MENU_ITEMS } from './pages-menu';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../_services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-pages',
@@ -20,7 +21,9 @@ export class PagesComponent implements OnInit {
         { value: 'default', name: 'Light' }
     ];
     userPictureOnly = false;
-    userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+    userMenu = [
+        { title: 'Profile', link: '/pages/profile', icon: 'person-outline', },
+        { title: 'Log out', icon: 'unlock-outline', }];
     user: any;
     isContected = false;
 
@@ -29,7 +32,8 @@ export class PagesComponent implements OnInit {
         private themeService: NbThemeService,
         private menuService: NbMenuService,
         @Inject(NB_WINDOW) private window,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
         this.currentUser = this.authService.currentUserValue;
     }
@@ -70,10 +74,11 @@ export class PagesComponent implements OnInit {
     }
 
     goProfile() {
-        console.log('Go to Profile');
+        // this.router.navigate(['./pages/profile/']);
     }
 
     goLogout() {
+        console.log('Go to Logout');
         this.authService.logout();
     }
 }

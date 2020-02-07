@@ -1,0 +1,33 @@
+.profile {
+  button {
+    margin-right: 10px;
+  }
+
+  .full-name-inputs,
+  .validation-checkboxes {
+    display: flex;
+    margin: 0 -0.5rem;
+
+    >* {
+      margin: 0 0.5rem;
+    }
+  }
+
+  .p-b-10 {
+    padding-bottom: 10px;
+  }
+
+  .p-r-10 {
+    padding-right: 10px;
+  }
+
+  .avatar {
+    img {
+      max-width: 250px;
+      max-height: 250px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<div class="profile">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-xl-4">
+            <nb-card>
+                <nb-card-header>Avatar</nb-card-header>
+                <nb-card-body>
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/250/4479e7/ffffff?Text=IMG" alt="avatar">
+                    </div>
+                </nb-card-body>
+                <nb-card-footer>
+                    <button nbButton hero status="warning">Upload</button>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+        <div class="col-sm-6 col-md-8 col-xl-8">
+            <nb-card>
+                <nb-card-header>Profile</nb-card-header>
+                <nb-card-body>
+                    <form>
+                        <div class="row">
+                            <div class="col-xl-6 p-b-10">
+                                <label>First Name</label>
+                                <input type="text" nbInput fullWidth placeholder="First Name">
+                            </div>
+                            <div class="col-xl-6 p-b-10">
+                                <label>Last Name</label>
+                                <input type="text" nbInput fullWidth placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 p-b-10">
+                                <label>Fake Name</label>
+                                <input type="text" nbInput fullWidth placeholder="Fake Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 p-b-10">
+                                <label class="p-r-10">Gender</label>
+                                <nb-select selected="1">
+                                    <nb-option value="1">Male</nb-option>
+                                    <nb-option value="2">Female</nb-option>
+                                </nb-select>
+                            </div>
+                            <div class="col-xl-6 p-b-10">
+                                <label class="p-r-10">Birthday</label>
+                                <input nbInput placeholder="Form Picker" [nbDatepicker]="formpicker">
+                                <nb-datepicker #formpicker></nb-datepicker>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 p-b-10">
+                                <label>Email</label>
+                                <input type="text" nbInput fullWidth placeholder="Email">
+                            </div>
+                            <div class="col-xl-6 p-b-10">
+                                <label>Phone</label>
+                                <input type="text" nbInput fullWidth placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 p-b-10">
+                                <label>Street</label>
+                                <input type="text" nbInput fullWidth placeholder="Street">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 p-b-10">
+                                <label>Description</label>
+                                <textarea rows="5" nbInput fullWidth placeholder="Text Area"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </nb-card-body>
+                <nb-card-footer>
+                    <button nbButton hero status="warning">Submit</button>
+                    <!-- <button nbButton hero status="primary">Back</button> -->
+                </nb-card-footer>
+            </nb-card>
+        </div>
+        <div class="col-xl-6">
+        </div>
+    </div>
+</div>

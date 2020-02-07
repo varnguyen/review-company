@@ -1,38 +1,96 @@
 <div class="row">
-    <div class="col-xl-9 col-xl-9">
+    <div class="col-xl-6">
+        <nb-card accent="danger">
+            <nb-card-header>Filter</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-xl-5">
+                        <label class="p-r-10">Country</label>
+                        <nb-select selected="1,408.9">
+                            <nb-option *ngFor="let country of countries;let idx = index;" [value]="country.area">
+                                {{country.name}}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-xl-7">
+                        <label class="p-r-10">Search</label>
+                        <input nbInput placeholder="Search">
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-xl-6">
+        <nb-flip-card>
+            <nb-card-front>
+                <nb-card accent="success" status="success">
+                    <nb-card-header>Front Card Header</nb-card-header>
+                    <nb-card-body>
+                        A nebula is an interstellar cloud of dust, hydrogen,
+                        helium and other ionized gases.
+                        Originally, nebula was a name for
+                        any diffuse astronomical object,
+                        including galaxies beyond the Milky Way.
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-front>
+            <nb-card-back>
+                <nb-card accent="warning" status="warning">
+                    <nb-card-header>Back Card Header</nb-card-header>
+                    <nb-card-body>
+                        A nebula is an interstellar cloud of dust, hydrogen,
+                        helium and other ionized gases.
+                        Originally, nebula was a name for
+                        any diffuse astronomical object,
+                        including galaxies beyond the Milky Way.
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-back>
+        </nb-flip-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-8">
         <nb-card>
             <nb-list nbInfiniteList listenWindowScroll [threshold]="500" (bottomThreshold)="loadNext()">
-                <nb-list-item class="company" *ngFor="let newsPost of news">
+                <nb-list-item class="company" *ngFor="let company of companys">
                     <nb-card-body>
-                        <h6 class="company-title">{{newsPost.title}}</h6>
-                        <nb-user shape="rectangle" size="giant" [name]="newsPost.name" title="Engineer"
-                            [picture]="newsPost.picture"></nb-user>
-                        <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon> -->
+                        <h6 class="company-title" (click)="goToCompayDetail(company)">{{company.name}}</h6>
+                        <nb-user shape="rectangle" size="giant" [name]="company.address"
+                            [title]="'Nhân sự : '+company.member_total" [picture]="company.picture"></nb-user>
+                        <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon>  -->
                     </nb-card-body>
+                </nb-list-item>
+                <nb-list-item *ngFor="let _ of placeholders">
+                    <app-company-placeholder></app-company-placeholder>
                 </nb-list-item>
             </nb-list>
         </nb-card>
     </div>
-    <div class="col-xl-3">
+    <div class="col-xl-4">
         <nb-card size="giant">
             <nb-tabset fullWidth>
 
-                <nb-tab tabTitle="Contacts">
+                <nb-tab class="pd-0" tabTitle="Top Review">
                     <nb-list>
-                        <nb-list-item class="contact" *ngFor="let c of contacts">
-                            <nb-user [picture]="c.user.picture" [name]="c.user.name" [title]="c.type" size="large">
+                        <nb-list-item class="contact" *ngFor="let top of topCompanyReviews;let idx = index;">
+                            <nb-badge [text]="idx+1" [status]="top.status" position="left"></nb-badge>
+                            <nb-user [picture]="top.picture" [name]="top.name" [title]="'Lượt :'+top.total"
+                                size="large">
                             </nb-user>
-                            <nb-icon icon="phone-outline" pack="eva"></nb-icon>
+                            <nb-icon icon="search-outline" pack="eva"></nb-icon>
                         </nb-list-item>
                     </nb-list>
                 </nb-tab>
 
-                <nb-tab tabTitle="Bình luận">
-                    <nb-list nbInfiniteList [threshold]="500">
-                        <nb-list-item class="contact" *ngFor="let c of recent">
-                            <nb-user [picture]="c.user.picture" [name]="c.user.name" [title]="c.type" size="large">
+                <nb-tab class="pd-0" tabTitle="Bình luận">
+                    <nb-list>
+                        <nb-list-item class="contact" *ngFor="let comment of comments">
+                            <nb-user [picture]="comment.user_name.picture" [name]="comment.user_name"
+                                [title]="'review về '+comment.company.short_name" size="large">
                             </nb-user>
-                            <span class="caption">{{ c.time | date: 'shortTime' }}</span>
+                            <span class="caption">{{ comment.time | date: 'shortTime' }}</span>
                         </nb-list-item>
                     </nb-list>
                 </nb-tab>

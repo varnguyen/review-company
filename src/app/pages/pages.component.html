@@ -16,11 +16,14 @@
         <div class="header-container">
             <nb-actions size="small">
                 <nb-action *ngIf="!isContected" class="control-item">Đăng nhập</nb-action>
-                <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12" badgeStatus="danger"></nb-action>
-                <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33" badgeStatus="warning"></nb-action>
+                <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12"
+                    badgeStatus="danger"></nb-action>
+                <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33"
+                    badgeStatus="warning"></nb-action>
                 <nb-action *ngIf="isContected" class="user-action">
-                    <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly"
-                        [name]="user ? user.name : 'Nguyen Minh'" [title]="user ? user.job : 'Developer'"
+                    <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="my-context-menu"
+                        [onlyPicture]="userPictureOnly" [name]="user ? user.name : 'Nguyen Minh'"
+                        [title]="user ? user.job : 'Developer'"
                         [picture]="user ? user.picture : 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'">
                     </nb-user>
                 </nb-action>

@@ -1,0 +1,18 @@
+<div class="chat">
+    <div class="row">
+        <div class="col-xl-5">
+            <nb-card size="tiny">
+                <nb-list>
+                    <nb-list-item class="chat-list" *ngFor="let user of users">
+                        <nb-user [picture]="user?.picture" [name]="user.name" [title]="user.title" size="large">
+                        </nb-user>
+                        <span class="caption">{{ user.time | date: 'shortTime' }}</span>
+                    </nb-list-item>
+                </nb-list>
+            </nb-card>
+        </div>
+        <div class="col-xl-7">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

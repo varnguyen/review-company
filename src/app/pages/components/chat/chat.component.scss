@@ -1,0 +1,21 @@
+.chat {
+  .chat-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+
+    .chat-list-title {
+      cursor: pointer;
+    }
+  }
+}
