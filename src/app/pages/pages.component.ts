@@ -81,4 +81,8 @@ export class PagesComponent implements OnInit {
         console.log('Go to Logout');
         this.authService.logout();
     }
+
+    goToLogin() {
+        this.router.navigate(['./auth/login']);
+    }
 }

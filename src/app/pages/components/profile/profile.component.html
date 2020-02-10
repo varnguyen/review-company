@@ -5,11 +5,15 @@
                 <nb-card-header>Avatar</nb-card-header>
                 <nb-card-body>
                     <div class="avatar">
-                        <img src="https://via.placeholder.com/250/4479e7/ffffff?Text=IMG" alt="avatar">
+                        <label for="fileToUpload">
+                            <img [attr.src]="avatarLocalSrc " alt="avatar">
+                        </label>
+                        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*"
+                            (change)="onFileSelected($event.target.files)" hidden>
                     </div>
                 </nb-card-body>
                 <nb-card-footer>
-                    <button nbButton hero status="warning">Upload</button>
+                    <button nbButton hero status="warning" [disabled]="disable" (click)="uploadAvatar()">Upload</button>
                 </nb-card-footer>
             </nb-card>
         </div>
@@ -17,21 +21,33 @@
             <nb-card>
                 <nb-card-header>Profile</nb-card-header>
                 <nb-card-body>
-                    <form>
+                    <form [formGroup]="profileForm">
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label>First Name</label>
-                                <input type="text" nbInput fullWidth placeholder="First Name">
+                                <input type="text" [status]="(submitted && f.firstName.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="First Name" formControlName="firstName">
+                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
+                                    First Name can not be empty!
+                                </span>
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label>Last Name</label>
-                                <input type="text" nbInput fullWidth placeholder="Last Name">
+                                <input type="text" [status]="(submitted && f.lastName.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="Last Name" formControlName="lastName">
+                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
+                                    Last Name can not be empty!
+                                </span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label>Fake Name</label>
-                                <input type="text" nbInput fullWidth placeholder="Fake Name">
+                                <input type="text" [status]="(submitted && f.fakeName.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="Fake Name" formControlName="fakeName">
+                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
+                                    Fake Name can not be empty!
+                                </span>
                             </div>
                         </div>
                         <div class="row">
@@ -44,36 +60,42 @@
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label class="p-r-10">Birthday</label>
-                                <input nbInput placeholder="Form Picker" [nbDatepicker]="formpicker">
+                                <input nbInput placeholder="Form Picker" [nbDatepicker]="formpicker"
+                                    formControlName="birthday">
                                 <nb-datepicker #formpicker></nb-datepicker>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label>Email</label>
-                                <input type="text" nbInput fullWidth placeholder="Email">
+                                <input type="text" [status]="(submitted && f.email.errors) ? 'danger' : 'basic'" nbInput
+                                    fullWidth placeholder="Email" formControlName="email">
+                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
+                                    Email can not be empty!
+                                </span>
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label>Phone</label>
-                                <input type="text" nbInput fullWidth placeholder="Phone">
+                                <input type="text" nbInput fullWidth placeholder="Phone" formControlName="phone">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-12 p-b-10">
                                 <label>Street</label>
-                                <input type="text" nbInput fullWidth placeholder="Street">
+                                <input type="text" nbInput fullWidth placeholder="Street" formControlName="street">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-12 p-b-10">
                                 <label>Description</label>
-                                <textarea rows="5" nbInput fullWidth placeholder="Text Area"></textarea>
+                                <textarea rows="5" nbInput fullWidth placeholder="Text Area"
+                                    formControlName="description"></textarea>
                             </div>
                         </div>
                     </form>
                 </nb-card-body>
                 <nb-card-footer>
-                    <button nbButton hero status="warning">Submit</button>
+                    <button nbButton hero status="warning" (click)="submit()">Submit</button>
                     <!-- <button nbButton hero status="primary">Back</button> -->
                 </nb-card-footer>
             </nb-card>

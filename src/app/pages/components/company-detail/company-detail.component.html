@@ -1,1 +1,49 @@
-<p>e-commerce works!{{userId}}</p>
+<div class="page-company-detail">
+    <div class="row">
+        <div class="col-xl-8">
+            <nb-card>
+                <nb-card-header>
+                    Infomation
+                </nb-card-header>
+                <nb-card-body>
+                    <h4 class="p-b-1r">{{company.name}} {{userId}}</h4>
+                    <div class="company-inf">
+                        <div class="row">
+                            <div class="col-xl-2 text-center">
+                                <img src="https://via.placeholder.com/150/4479e7/ffffff?Text=IMG" alt="img">
+                            </div>
+                            <div class="col-xl-8">
+                                <p>
+                                    <nb-icon nbTooltip="Address" nbTooltipPlacement="top" icon="pin-outline" pack="eva">
+                                    </nb-icon> : 8391 Studebaker Drive
+                                    Lutherville Timonium, MD 21093
+                                </p>
+                                <p>
+                                    <nb-icon nbTooltip="Phone" nbTooltipPlacement="top" icon="phone-outline" pack="eva">
+                                    </nb-icon> : 0123456789
+
+                                </p>
+                                <p>
+                                    <nb-icon nbTooltip="People" nbTooltipPlacement="top" icon="people-outline"
+                                        pack="eva">
+                                    </nb-icon> : 300
+                                </p>
+                                <p>
+                                    <nb-icon nbTooltip="Email" nbTooltipPlacement="top" icon="email-outline" pack="eva">
+                                    </nb-icon> : google@gmail.com
+                                </p>
+                            </div>
+                            <div class="col-xl-2 text-right">
+                                <button nbButton hero status="warning">Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-xl-4">
+            <nb-card size="giant">
+            </nb-card>
+        </div>
+    </div>
+</div>

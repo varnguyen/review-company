@@ -32,6 +32,10 @@ nb-tab {
   &:first-child {
     border-top: none;
   }
+
+  .icon-search {
+    cursor: pointer;
+  }
 }
 
 .company {

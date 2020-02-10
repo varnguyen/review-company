@@ -18,7 +18,6 @@ import { NotFoundModule } from './common/not-found/not-found.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { CommonModule } from '@angular/common';
 import { CompanyDetailModule } from './components/company-detail/company-detail.module';
-import { ProductModule } from './components/product/product.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { ChatModule } from './components/chat/chat.module';
 import { ChangePasswordModule } from './components/change-password/change-password.modue';
@@ -42,7 +41,6 @@ const NB_MODULE = [
         CommonModule,
         DashboardModule,
         CompanyDetailModule,
-        ProductModule,
         ProfileModule,
         ChatModule,
         ChangePasswordModule,

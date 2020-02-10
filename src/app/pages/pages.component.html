@@ -15,7 +15,7 @@
 
         <div class="header-container">
             <nb-actions size="small">
-                <nb-action *ngIf="!isContected" class="control-item">Đăng nhập</nb-action>
+                <nb-action *ngIf="!isContected" class="control-item" (click)="goToLogin()">Đăng nhập</nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12"
                     badgeStatus="danger"></nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33"
