@@ -10,4 +10,32 @@
   .p-b-1r {
     padding-bottom: 1rem;
   }
+
+  label {
+    width: 30%;
+  }
+
+  nb-select {
+    width: 70%;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    .icon-search {
+      cursor: pointer;
+    }
+  }
+
+  .form-input-comment {
+    flex: 1;
+    margin-right: 1rem;
+  }
+
 }

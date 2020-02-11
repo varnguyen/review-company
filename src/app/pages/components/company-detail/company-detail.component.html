@@ -1,49 +1,186 @@
 <div class="page-company-detail">
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-4 order-1 order-sm-1 order-xl-12">
             <nb-card>
                 <nb-card-header>
-                    Infomation
+                    Danh gia
                 </nb-card-header>
                 <nb-card-body>
-                    <h4 class="p-b-1r">{{company.name}} {{userId}}</h4>
-                    <div class="company-inf">
-                        <div class="row">
-                            <div class="col-xl-2 text-center">
-                                <img src="https://via.placeholder.com/150/4479e7/ffffff?Text=IMG" alt="img">
-                            </div>
-                            <div class="col-xl-8">
-                                <p>
-                                    <nb-icon nbTooltip="Address" nbTooltipPlacement="top" icon="pin-outline" pack="eva">
-                                    </nb-icon> : 8391 Studebaker Drive
-                                    Lutherville Timonium, MD 21093
-                                </p>
-                                <p>
-                                    <nb-icon nbTooltip="Phone" nbTooltipPlacement="top" icon="phone-outline" pack="eva">
-                                    </nb-icon> : 0123456789
-
-                                </p>
-                                <p>
-                                    <nb-icon nbTooltip="People" nbTooltipPlacement="top" icon="people-outline"
-                                        pack="eva">
-                                    </nb-icon> : 300
-                                </p>
-                                <p>
-                                    <nb-icon nbTooltip="Email" nbTooltipPlacement="top" icon="email-outline" pack="eva">
-                                    </nb-icon> : google@gmail.com
-                                </p>
-                            </div>
-                            <div class="col-xl-2 text-right">
-                                <button nbButton hero status="warning">Review</button>
-                            </div>
-                        </div>
-                    </div>
+                    <nb-alert status="warning">
+                        <strong>
+                            <nb-icon nbTooltip="Price" nbTooltipPlacement="left" icon="pricetags-outline"></nb-icon>
+                        </strong>
+                        This alert needs your attention, but it's not super important.
+                    </nb-alert>
+                    <nb-alert status="success">
+                        <strong>
+                            <nb-icon nbTooltip="Type" nbTooltipPlacement="left" icon="settings-2-outline"></nb-icon>
+                        </strong>
+                        This alert needs your attention, but it's not super important.
+                    </nb-alert>
+                    <nb-alert status="info">
+                        <strong>
+                            <nb-icon nbTooltip="Star" nbTooltipPlacement="left" icon="star"></nb-icon>
+                        </strong>
+                        This alert needs your attention, but it's not super important.
+                    </nb-alert>
                 </nb-card-body>
+                <nb-card-footer>
+                    <div class="p-b-1r">
+                        <label for="">Price</label>
+                        <nb-select selected="1">
+                            <nb-option value="1">Option 1</nb-option>
+                            <nb-option value="2">Option 2</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="p-b-1r">
+                        <label for="">Check</label>
+                        <nb-select selected="1">
+                            <nb-option value="1">Option 1</nb-option>
+                            <nb-option value="2">Option 2</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="p-b-1r">
+                        <label for="">Select</label>
+                        <nb-select selected="1">
+                            <nb-option value="1">Option 1</nb-option>
+                            <nb-option value="2">Option 2</nb-option>
+                        </nb-select>
+                    </div>
+                    <button nbButton hero status="warning">Post</button>
+                </nb-card-footer>
             </nb-card>
         </div>
-        <div class="col-xl-4">
-            <nb-card size="giant">
-            </nb-card>
+        <div class="col-xl-8 order-2 order-sm-2 order-xl-1">
+            <div class="row">
+                <div class="col-xl-12">
+                    <nb-card>
+                        <nb-card-header>
+                            Infomation
+                        </nb-card-header>
+                        <nb-card-body>
+                            <h4 class="p-b-1r">{{company.name}} {{userId}}</h4>
+                            <div class="company-inf">
+                                <div class="row">
+                                    <div class="col-xl-2 text-center">
+                                        <img src="https://via.placeholder.com/150/4479e7/ffffff?Text=IMG" alt="img">
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <p>
+                                            <nb-icon nbTooltip="Address" nbTooltipPlacement="top" icon="pin-outline"
+                                                pack="eva">
+                                            </nb-icon> : 8391 Studebaker Drive
+                                            Lutherville Timonium, MD 21093
+                                        </p>
+                                        <p>
+                                            <nb-icon nbTooltip="Phone" nbTooltipPlacement="top" icon="phone-outline"
+                                                pack="eva">
+                                            </nb-icon> : 0123456789
+
+                                        </p>
+                                        <p>
+                                            <nb-icon nbTooltip="People" nbTooltipPlacement="top" icon="people-outline"
+                                                pack="eva">
+                                            </nb-icon> : 300
+                                        </p>
+                                        <p>
+                                            <nb-icon nbTooltip="Email" nbTooltipPlacement="top" icon="email-outline"
+                                                pack="eva">
+                                            </nb-icon> : google@gmail.com
+                                        </p>
+                                    </div>
+                                    <div class="col-xl-2 text-right">
+                                        <button nbButton hero status="warning"
+                                            (click)="openReviewForm()">Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+                <div class="col-xl-12">
+
+                    <nb-card accent="info">
+                        <nb-card-header>
+                            <div class="review-header">
+                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
+                                </nb-user>
+                                <span class="caption">9:12 PM</span>
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
+                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
+                            you probably know it’s more then true with Angular. The current rendering engine is being
+                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
+                            tracked here.
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <form class="form-inline">
+                                <input class="form-input-comment" type="text" status="primary" nbInput fullWidth placeholder="Comment">
+                                <button type="submit" nbButton status="primary">Submit</button>
+                            </form>
+                        </nb-card-footer>
+                    </nb-card>
+
+                    <nb-card accent="info">
+                        <nb-card-header>
+                            <div class="review-header">
+                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
+                                </nb-user>
+                                <span class="caption">9:12 PM</span>
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
+                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
+                            you probably know it’s more then true with Angular. The current rendering engine is being
+                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
+                            tracked here.
+                        </nb-card-body>
+                        <nb-card-footer>
+
+                        </nb-card-footer>
+                    </nb-card>
+
+                    <nb-card accent="info">
+                        <nb-card-header>
+                            <div class="review-header">
+                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
+                                </nb-user>
+                                <span class="caption">9:12 PM</span>
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
+                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
+                            you probably know it’s more then true with Angular. The current rendering engine is being
+                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
+                            tracked here.
+                        </nb-card-body>
+                        <nb-card-footer>
+                        </nb-card-footer>
+                    </nb-card>
+                    <nb-card accent="info">
+                        <nb-card-header>
+                            <div class="review-header">
+                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
+                                </nb-user>
+                                <span class="caption">9:12 PM</span>
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
+                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
+                            you probably know it’s more then true with Angular. The current rendering engine is being
+                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
+                            tracked here.
+                        </nb-card-body>
+                        <nb-card-footer>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+            </div>
         </div>
     </div>
 </div>

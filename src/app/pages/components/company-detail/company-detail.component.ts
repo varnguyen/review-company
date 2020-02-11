@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-company-detail',
     templateUrl: './company-detail.component.html',
-    styleUrls: ['./company-detail.component.scss']
+    styleUrls: ['./company-detail.component.scss'],
+
 })
 export class CompanyDetailComponent implements OnInit {
 
@@ -16,6 +17,8 @@ export class CompanyDetailComponent implements OnInit {
         member_total: '100',
         picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
     };
+    names: string[] = [];
+    displayReviewForm = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -25,6 +28,10 @@ export class CompanyDetailComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    openReviewForm() {
+        this.displayReviewForm = true;
     }
 
 }

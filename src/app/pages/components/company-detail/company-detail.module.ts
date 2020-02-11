@@ -2,7 +2,17 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { CompanyDetailComponent } from './company-detail.component';
-import { NbCardModule, NbIconModule, NbTooltipModule, NbButtonModule } from '@nebular/theme';
+import {
+    NbCardModule,
+    NbIconModule,
+    NbTooltipModule,
+    NbButtonModule,
+    NbSelectModule,
+    NbAlertModule,
+    NbUserModule,
+    NbInputModule,
+
+} from '@nebular/theme';
 
 @NgModule({
     imports: [
@@ -10,10 +20,14 @@ import { NbCardModule, NbIconModule, NbTooltipModule, NbButtonModule } from '@ne
         NbCardModule,
         NbIconModule,
         NbTooltipModule,
-        NbButtonModule
+        NbButtonModule,
+        NbSelectModule,
+        NbAlertModule,
+        NbUserModule,
+        NbInputModule
     ],
     declarations: [
-        CompanyDetailComponent
+        CompanyDetailComponent,
     ],
 })
 export class CompanyDetailModule { }
