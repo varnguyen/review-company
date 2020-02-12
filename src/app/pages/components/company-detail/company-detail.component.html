@@ -1,5 +1,6 @@
 <div class="page-company-detail">
     <div class="row">
+        <!-- Danh Gia -->
         <div class="col-xl-4 order-1 order-sm-1 order-xl-12">
             <nb-card>
                 <nb-card-header>
@@ -51,8 +52,11 @@
                 </nb-card-footer>
             </nb-card>
         </div>
+        <!-- /Danh Gia -->
+        <!-- Thong Tin Cong Ty && Binh Luan -->
         <div class="col-xl-8 order-2 order-sm-2 order-xl-1">
             <div class="row">
+                <!-- Thong Tin Cong Ty -->
                 <div class="col-xl-12">
                     <nb-card>
                         <nb-card-header>
@@ -98,8 +102,9 @@
                         </nb-card-body>
                     </nb-card>
                 </div>
+                <!-- /Thong Tin Cong Ty -->
+                <!-- Binh Luan -->
                 <div class="col-xl-12">
-
                     <nb-card accent="info">
                         <nb-card-header>
                             <div class="review-header">
@@ -116,9 +121,24 @@
                             tracked here.
                         </nb-card-body>
                         <nb-card-footer>
+                            <div class="review-list">
+                                <div class="colors">
+                                    <div class="review-item" *ngFor="let item of comments">
+                                        <div class="avatar bg-body"></div>
+                                        <div class="content ">
+                                            <h6 class="">{{item.fake_name}}</h6>
+                                            {{item.cmt}}
+                                        </div>
+                                        <div class="date caption text-right">{{item.created | date: 'shortTime'}}</div>
+                                    </div>
+                                    <a class="text-link link-loadmore">Load more</a>
+                                </div>
+                            </div>
                             <form class="form-inline">
-                                <input class="form-input-comment" type="text" status="primary" nbInput fullWidth placeholder="Comment">
-                                <button type="submit" nbButton status="primary">Submit</button>
+                                <input class="form-input-comment" type="text" status="primary" nbInput fullWidth
+                                    placeholder="Comment">
+                                <button type="submit" nbButton status="primary"
+                                    (click)="onSubmitComment()">Submit</button>
                             </form>
                         </nb-card-footer>
                     </nb-card>
@@ -180,7 +200,9 @@
                         </nb-card-footer>
                     </nb-card>
                 </div>
+                <!-- /Binh Luan -->
             </div>
         </div>
+        <!-- /Thong Tin Cong Ty -->
     </div>
 </div>

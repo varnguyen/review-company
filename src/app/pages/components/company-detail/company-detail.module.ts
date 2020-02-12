@@ -13,10 +13,12 @@ import {
     NbInputModule,
 
 } from '@nebular/theme';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
         FormsModule,
+        CommonModule,
         NbCardModule,
         NbIconModule,
         NbTooltipModule,
