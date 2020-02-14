@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NbSidebarService, NbThemeService, NbMenuService, NB_WINDOW } from '@nebular/theme';
+import { NbSidebarService, NbThemeService, NbMenuService, NB_WINDOW, NbPosition } from '@nebular/theme';
 import { MENU_ITEMS } from './pages-menu';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../_services/auth/auth.service';
@@ -26,6 +26,7 @@ export class PagesComponent implements OnInit {
         { title: 'Log out', icon: 'unlock-outline', }];
     user: any;
     isContected = false;
+    position = 'bottom';
 
     constructor(
         private sidebarService: NbSidebarService,

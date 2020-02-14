@@ -8,7 +8,10 @@ import {
     NbIconModule,
     NbActionsModule,
     NbUserModule,
-    NbContextMenuModule
+    NbContextMenuModule,
+    NbListModule,
+    NbCardModule,
+    NbPopoverModule
 } from '@nebular/theme';
 
 import { PagesComponent } from './pages.component';
@@ -33,6 +36,9 @@ const NB_MODULE = [
     NbActionsModule,
     NbUserModule,
     NbContextMenuModule,
+    NbCardModule,
+    NbListModule,
+    NbPopoverModule
 ];
 
 @NgModule({

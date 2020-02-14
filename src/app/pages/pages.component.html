@@ -17,9 +17,9 @@
             <nb-actions size="small">
                 <nb-action *ngIf="!isContected" class="control-item" (click)="goToLogin()">Đăng nhập</nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12"
-                    badgeStatus="danger"></nb-action>
+                    badgeStatus="danger" [nbPopover]="message" [nbPopoverPlacement]="position"></nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33"
-                    badgeStatus="warning"></nb-action>
+                    badgeStatus="warning" [nbPopover]="notification" [nbPopoverPlacement]="position"></nb-action>
                 <nb-action *ngIf="isContected" class="user-action">
                     <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="my-context-menu"
                         [onlyPicture]="userPictureOnly" [name]="user ? user.name : 'Nguyen Minh'"
@@ -29,6 +29,46 @@
                 </nb-action>
             </nb-actions>
         </div>
+        <!-- Popover Message List -->
+        <ng-template #message>
+            <nb-card class="margin-bottom-0" size="medium">
+                <nb-card-header>Message list</nb-card-header>
+                <nb-list>
+                    <nb-list-item>Message 1</nb-list-item>
+                    <nb-list-item>Message 2</nb-list-item>
+                    <nb-list-item>Message 3</nb-list-item>
+                    <nb-list-item>Message 4</nb-list-item>
+                    <nb-list-item>Message 5</nb-list-item>
+                    <nb-list-item>Message 6</nb-list-item>
+                    <nb-list-item>Message 7</nb-list-item>
+                    <nb-list-item>Message 8</nb-list-item>
+                    <nb-list-item>Message 9</nb-list-item>
+                    <nb-list-item>Message 10</nb-list-item>
+                </nb-list>
+                <nb-card-footer>See all</nb-card-footer>
+            </nb-card>
+        </ng-template>
+        <!-- /Popover Message List -->
+        <!-- Popover Notification List -->
+        <ng-template #notification>
+            <nb-card class="margin-bottom-0" size="medium">
+                <nb-card-header>Notification list</nb-card-header>
+                <nb-list>
+                    <nb-list-item>Notification Msg 1</nb-list-item>
+                    <nb-list-item>Notification Msg 2</nb-list-item>
+                    <nb-list-item>Notification Msg 3</nb-list-item>
+                    <nb-list-item>Notification Msg 4</nb-list-item>
+                    <nb-list-item>Notification Msg 5</nb-list-item>
+                    <nb-list-item>Notification Msg 6</nb-list-item>
+                    <nb-list-item>Notification Msg 7</nb-list-item>
+                    <nb-list-item>Notification Msg 8</nb-list-item>
+                    <nb-list-item>Notification Msg 9</nb-list-item>
+                    <nb-list-item>Notification Msg 10</nb-list-item>
+                </nb-list>
+                <nb-card-footer>See all</nb-card-footer>
+            </nb-card>
+        </ng-template>
+        <!-- /Popover Notification List -->
     </nb-layout-header>
 
     <nb-sidebar>
