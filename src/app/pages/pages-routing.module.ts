@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent, ProfileComponent, CompanyDetailComponent, ChangePasswordComponent } from './components';
 import { NotFoundComponent } from './common';
+import { AuthGuard } from '../_helpers/auth.guard';
 
 const routes: Routes = [{
     path: '',
@@ -10,8 +11,8 @@ const routes: Routes = [{
     children: [
         { path: 'dashboard', component: DashboardComponent },
         { path: 'company/:company_id', component: CompanyDetailComponent },
-        { path: 'profile', component: ProfileComponent },
-        { path: 'change-password', component: ChangePasswordComponent },
+        { path: 'profile', component: ProfileComponent, },
+        { path: 'change-password', component: ChangePasswordComponent, },
         {
             path: 'chat',
             loadChildren: () => import('./components/chat/chat.module').then(m => m.ChatModule)

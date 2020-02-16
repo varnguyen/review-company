@@ -6,7 +6,7 @@
                 <a (click)="toggleSidebar()" class="sidebar-toggle">
                     <nb-icon icon="menu-2-outline"></nb-icon>
                 </a>
-                <a class="logo" (click)="navigateHome()">Application<span></span></a>
+                <a class="logo" (click)="navigateHome()">App<span></span></a>
             </div>
             <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
                 <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
@@ -72,11 +72,17 @@
     </nb-layout-header>
 
     <nb-sidebar>
-        <nb-menu [items]="menu">
+        <nb-menu [items]="sidebarMenu">
         </nb-menu>
     </nb-sidebar>
 
     <nb-layout-column class="colored-column-basic">
+        <div class="loading text-center" *ngIf="loading">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <router-outlet></router-outlet>
     </nb-layout-column>
 

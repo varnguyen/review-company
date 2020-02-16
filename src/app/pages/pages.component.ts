@@ -3,7 +3,7 @@ import { NbSidebarService, NbThemeService, NbMenuService, NB_WINDOW, NbPosition 
 import { MENU_ITEMS } from './pages-menu';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../_services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 @Component({
     selector: 'app-pages',
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class PagesComponent implements OnInit {
 
     currentUser: any;
-    menu = MENU_ITEMS;
+    sidebarMenu = MENU_ITEMS;
     currentTheme = 'dark';
     themes = [
         { value: 'dark', name: 'Dark' },
@@ -27,6 +27,7 @@ export class PagesComponent implements OnInit {
     user: any;
     isContected = false;
     position = 'bottom';
+    loading = true;
 
     constructor(
         private sidebarService: NbSidebarService,
@@ -37,12 +38,36 @@ export class PagesComponent implements OnInit {
         private router: Router
     ) {
         this.currentUser = this.authService.currentUserValue;
+        this.router.events.subscribe((e: RouterEvent) => {
+            this.navigationInterceptor(e);
+        })
     }
 
     ngOnInit() {
         this.isContected = this.currentUser ? true : false;
         this.currentTheme = this.themeService.currentTheme;
         this.initMenu();
+        // console.log(this.sidebarMenu);
+        // const childMenuLogout = { title: 'Logout', icon: 'unlock-outline' };
+
+    }
+
+    // Shows and hides the loading spinner during RouterEvent changes
+    navigationInterceptor(event: RouterEvent): void {
+        if (event instanceof NavigationStart) {
+            this.loading = true;
+        }
+        if (event instanceof NavigationEnd) {
+            this.loading = false;
+        }
+
+        // Set loading state to false in both of the below events to hide the spinner in case a request fails
+        if (event instanceof NavigationCancel) {
+            this.loading = false;
+        }
+        if (event instanceof NavigationError) {
+            this.loading = false;
+        }
     }
 
     initMenu() {

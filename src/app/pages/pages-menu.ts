@@ -11,7 +11,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         children: [
             { title: 'Profile', icon: 'person-outline', link: '/pages/profile' },
             { title: 'Change Password', icon: 'lock-outline', link: '/pages/change-password' },
-            { title: 'Logout', icon: 'unlock-outline', },
+            // { title: 'Logout', icon: 'unlock-outline', },
         ],
     },
     // { title: 'FEATURES', group: true },

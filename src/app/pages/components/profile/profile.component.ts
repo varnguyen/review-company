@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit {
             description: 'Description',
         });
         this.submitted = false;
+        this.handleStatus(0);
     }
 
     uploadAvatar() {

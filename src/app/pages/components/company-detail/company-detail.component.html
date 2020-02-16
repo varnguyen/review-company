@@ -66,10 +66,10 @@
                             <h4 class="p-b-1r">{{company.name}} {{userId}}</h4>
                             <div class="company-inf">
                                 <div class="row">
-                                    <div class="col-xl-2 text-center">
+                                    <div class="col-xl-2 mr-auto text-center">
                                         <img src="https://via.placeholder.com/150/4479e7/ffffff?Text=IMG" alt="img">
                                     </div>
-                                    <div class="col-xl-8">
+                                    <div class="col-xl-8 mr-auto">
                                         <p>
                                             <nb-icon nbTooltip="Address" nbTooltipPlacement="top" icon="pin-outline"
                                                 pack="eva">
@@ -88,12 +88,17 @@
                                             </nb-icon> : 300
                                         </p>
                                         <p>
+                                            <nb-icon nbTooltip="People" nbTooltipPlacement="top" icon="settings-outline"
+                                                pack="eva">
+                                            </nb-icon> : IT Software
+                                        </p>
+                                        <p>
                                             <nb-icon nbTooltip="Email" nbTooltipPlacement="top" icon="email-outline"
                                                 pack="eva">
                                             </nb-icon> : google@gmail.com
                                         </p>
                                     </div>
-                                    <div class="col-xl-2 text-right">
+                                    <div class="col-xl-2 mr-auto text-right">
                                         <button nbButton hero status="warning"
                                             (click)="openReviewForm()">Review</button>
                                     </div>
@@ -105,31 +110,29 @@
                 <!-- /Thong Tin Cong Ty -->
                 <!-- Binh Luan -->
                 <div class="col-xl-12">
-                    <nb-card accent="info">
+                    <nb-card accent="info" *ngFor="let review of reviews_list">
                         <nb-card-header>
                             <div class="review-header">
-                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
+                                <nb-user size="large" [name]="review.fake_name" [title]="review.position"
+                                    color="#cccccc">
                                 </nb-user>
-                                <span class="caption">9:12 PM</span>
+                                <span class="caption">{{review.created}}</span>
                             </div>
                         </nb-card-header>
                         <nb-card-body>
-                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
-                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
-                            you probably know it’s more then true with Angular. The current rendering engine is being
-                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
-                            tracked here.
+                            {{review.cmt}}
                         </nb-card-body>
                         <nb-card-footer>
                             <div class="review-list">
                                 <div class="colors">
-                                    <div class="review-item" *ngFor="let item of comments">
+                                    <div class="review-item" *ngFor="let replyReview of review.reply_reviews">
                                         <div class="avatar bg-body"></div>
                                         <div class="content ">
-                                            <h6 class="">{{item.fake_name}}</h6>
-                                            {{item.cmt}}
+                                            <h6 class="">{{replyReview.fake_name}}</h6>
+                                            {{replyReview.cmt}}
                                         </div>
-                                        <div class="date caption text-right">{{item.created | date: 'shortTime'}}</div>
+                                        <div class="date caption text-right">{{replyReview.created}}
+                                        </div>
                                     </div>
                                     <a class="text-link link-loadmore">Load more</a>
                                 </div>
@@ -138,65 +141,8 @@
                                 <input class="form-input-comment" type="text" status="primary" nbInput fullWidth
                                     placeholder="Comment">
                                 <button type="submit" nbButton status="primary"
-                                    (click)="onSubmitComment()">Submit</button>
+                                    (click)="onSubmitComment(review.review_id)">Submit</button>
                             </form>
-                        </nb-card-footer>
-                    </nb-card>
-
-                    <nb-card accent="info">
-                        <nb-card-header>
-                            <div class="review-header">
-                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
-                                </nb-user>
-                                <span class="caption">9:12 PM</span>
-                            </div>
-                        </nb-card-header>
-                        <nb-card-body>
-                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
-                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
-                            you probably know it’s more then true with Angular. The current rendering engine is being
-                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
-                            tracked here.
-                        </nb-card-body>
-                        <nb-card-footer>
-
-                        </nb-card-footer>
-                    </nb-card>
-
-                    <nb-card accent="info">
-                        <nb-card-header>
-                            <div class="review-header">
-                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
-                                </nb-user>
-                                <span class="caption">9:12 PM</span>
-                            </div>
-                        </nb-card-header>
-                        <nb-card-body>
-                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
-                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
-                            you probably know it’s more then true with Angular. The current rendering engine is being
-                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
-                            tracked here.
-                        </nb-card-body>
-                        <nb-card-footer>
-                        </nb-card-footer>
-                    </nb-card>
-                    <nb-card accent="info">
-                        <nb-card-header>
-                            <div class="review-header">
-                                <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
-                                </nb-user>
-                                <span class="caption">9:12 PM</span>
-                            </div>
-                        </nb-card-header>
-                        <nb-card-body>
-                            Ivy engine in Angular: first in-depth look at compilation, runtime and change detection
-                            I usually finish my talks with the philosophical phrase that nothing stays the same. And as
-                            you probably know it’s more then true with Angular. The current rendering engine is being
-                            rewritten with the new much enhanced version called Ivy. The current status of Ivy can be
-                            tracked here.
-                        </nb-card-body>
-                        <nb-card-footer>
                         </nb-card-footer>
                     </nb-card>
                 </div>

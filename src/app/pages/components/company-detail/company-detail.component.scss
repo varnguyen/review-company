@@ -1,9 +1,18 @@
 .page-company-detail {
+  .mr-auto {
+    margin: auto;
+  }
+
   .company-inf {
     img {
       width: 150px;
       height: 150px;
       object-fit: cover;
+    }
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
