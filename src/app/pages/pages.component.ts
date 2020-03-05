@@ -17,13 +17,13 @@ export class PagesComponent implements OnInit {
     sidebarMenu = MENU_ITEMS;
     currentTheme = 'dark';
     themes = [
-        { value: 'dark', name: 'Dark' },
-        { value: 'default', name: 'Light' }
+        { value: 'dark', name: 'Tối' },
+        { value: 'default', name: 'Sáng' }
     ];
     userPictureOnly = false;
     userMenu = [
-        { title: 'Profile', link: '/pages/profile', icon: 'person-outline', },
-        { title: 'Log out', icon: 'unlock-outline', }];
+        { title: 'Thông tin cá nhân', link: '/pages/profile', icon: 'person-outline', },
+        { title: 'Đăng xuất', icon: 'unlock-outline', }];
     user: any;
     isContected = false;
     position = 'bottom';
@@ -75,7 +75,7 @@ export class PagesComponent implements OnInit {
             .pipe(filter(({ tag }) => tag === 'my-context-menu'), map(({ item: { title } }) => title),
             ).subscribe(title => {
                 switch (title) {
-                    case 'Profile':
+                    case 'Thông tin cá nhân':
                         this.goProfile();
                         break;
                     default:

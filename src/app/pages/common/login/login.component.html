@@ -1,45 +1,30 @@
 <section class="login-page">
-    <h1 class="title" id="title">Login</h1>
-    <p class="sub-title">Hello! Log in with your email.</p>
+    <h1 class="title" id="title">Đăng nhập</h1>
+    <p class="sub-title">Xin chào! Đăng nhập với email của bạn</p>
     <form [formGroup]="loginForm" aria-labelledby="title" novalidate="" class="ng-pristine ng-invalid ng-touched">
         <div class="form-control-group">
-            <label class="label" for="input-email">Email address:</label>
+            <label class="label" for="input-email">Email:</label>
             <input type="text" id="input-email" name="username" nbInput class="input-full-width" fullWidth tabindex="1"
-                formControlName="username" fieldsize="large" status="primary" placeholder="Username" required>
+                formControlName="username" fieldsize="large" status="primary" placeholder="Email" required>
             <p *ngIf="submitted && f.username.errors" class="caption status-danger"> Account can not be
                 empty!
             </p>
         </div>
         <div class="form-control-group">
             <span class="label-with-link">
-                <label class="label" for="input-password">Password:</label>
-                <a class="forgot-password caption-2" routerlink="../request-password"
-                    href="/auth/request-password">Forgot
-                    Password?</a>
+                <label class="label" for="input-password">Mật khẩu:</label>
+                <a class="forgot-password caption-2" routerlink="../request-password" href="/auth/request-password">Quên
+                    mật khẩu?</a>
             </span>
             <input type="password" id="input-password" name="password" nbInput class="input-full-width" fullWidth
-                formControlName="password" tabindex="2" fieldsize="large" status="primary" placeholder="Password"
+                formControlName="password" tabindex="2" fieldsize="large" status="primary" placeholder="Mật khẩu"
                 minlength="4" maxlength="50" required>
             <p *ngIf="submitted && f.password.errors" class="caption status-danger"> Password can not
                 be blank! </p>
         </div>
-        <div class="form-control-group">
-            <span class="label-with-link">
-                <label class="label" for="input-verification-code">Verification code:</label>
-                <a class="forgot-password caption-2" (click)="getVerificationCode()">Refresh</a>
-            </span>
-            <div class="gird-vcode">
-                <input type="text" id="input-verification-code" name="verification-code" nbInput tabindex="3"
-                    formControlName="verification_code" class="half-part-width" fieldsize="large" status="primary"
-                    placeholder="Verification code" minlength="4" maxlength="10" required>
-                <img [src]="src" class="img-vcode" data-loading="lazy" alt="code" loading="lazy">
-            </div>
-            <p *ngIf="submitted && f.verification_code.errors" class="caption status-danger">
-                Verification code must be filled! </p>
-        </div>
         <button [disabled]="loading" fullwidth nbbutton size="large" status="primary"
             class="appearance-filled full-width size-large status-primary shape-rectangle btn-disabled transitions"
-            tabindex="4" (click)="onSubmit()"> Log In </button>
+            tabindex="4" (click)="onSubmit()">Đăng nhập</button>
     </form>
     <section aria-label="Social sign in" class="links">
         or enter with:
@@ -56,7 +41,7 @@
         </div>
     </section>
     <section aria-label="Register" class="another-action">
-        Don't have an account? <a class="text-link" routerlink="../register" ng-reflect-router-link="../register"
-            href="/auth/register">Register</a>
+        Chưa có tài khoản? <a class="text-link" routerlink="../register" ng-reflect-router-link="../register"
+            href="/auth/register">Đăng ký</a>
     </section>
 </section>
