@@ -34,7 +34,9 @@ import { LoginModule } from './pages/common/login/login.module';
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        NbThemeModule.forRoot({ name: 'dark' }),
+        LoginModule,
+        // Nebular Module
+        NbThemeModule.forRoot({ name: 'dark' }), // dark - default
         NbMenuModule.forRoot(),
         NbToastrModule.forRoot(),
         NbLayoutModule,
@@ -67,8 +69,6 @@ import { LoginModule } from './pages/common/login/login.module';
             ],
             forms: {},
         }),
-
-        LoginModule
     ],
     bootstrap: [AppComponent],
     providers: [
