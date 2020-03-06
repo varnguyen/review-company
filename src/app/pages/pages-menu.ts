@@ -1,16 +1,16 @@
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
-    { title: 'Home', icon: 'home-outline', link: '/pages/dashboard', home: true },
-    { title: 'News', icon: 'book-outline', link: '/pages/news' },
+    { title: 'Trang chủ', icon: 'home-outline', link: '/pages/dashboard', home: true },
+    { title: 'Tin tức', icon: 'book-outline', link: '/pages/news' },
     { title: 'Chat', icon: 'message-square-outline', link: '/pages/chat/converstation', pathMatch: 'prefix' },
     {
-        title: 'User',
+        title: 'Người dùng',
         icon: 'person-outline',
         expanded: false,
         children: [
-            { title: 'Profile', icon: 'person-outline', link: '/pages/profile' },
-            { title: 'Change Password', icon: 'lock-outline', link: '/pages/change-password' },
+            { title: 'Thông tin cá nhân', icon: 'person-outline', link: '/pages/profile' },
+            { title: 'Đổi mật khẩu', icon: 'lock-outline', link: '/pages/change-password' },
             // { title: 'Logout', icon: 'unlock-outline', },
         ],
     },

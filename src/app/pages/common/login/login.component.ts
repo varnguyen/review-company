@@ -14,8 +14,6 @@ export class LoginComponent implements OnInit {
 
     model: any = {};
     isCheckName = true;
-    vCode: any;
-    src: string;
     returnUrl: string;
     loginForm: FormGroup;
     submitted = false;
@@ -28,7 +26,6 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private toastrService: NbToastrService,
     ) {
-        this.getVerificationCode();
         this.createForm();
     }
 
@@ -36,7 +33,6 @@ export class LoginComponent implements OnInit {
         this.loginForm = new FormGroup({
             username: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required]),
-            verification_code: new FormControl('', [Validators.required]),
         });
     }
 
@@ -49,15 +45,6 @@ export class LoginComponent implements OnInit {
 
     get f() { return this.loginForm.controls; }
 
-    getVerificationCode() {
-        this.authService.getVerificationCode().subscribe(
-            vcode => {
-                this.vCode = vcode;
-                this.src = `data:image/png;base64,${this.vCode.img}`;
-            }
-        );
-    }
-
     onSubmit() {
         this.submitted = true;
 
@@ -68,14 +55,11 @@ export class LoginComponent implements OnInit {
         this.login();
     }
 
-
     login() {
         this.loading = true;
         const params = {
-            code: this.f.verification_code.value,
             password: this.f.password.value,
             username: this.f.username.value,
-            uuid: this.vCode.uuid
         };
         this.authService.login(params)
             .subscribe(
@@ -85,7 +69,6 @@ export class LoginComponent implements OnInit {
                 error => {
                     console.log(error);
                     this.showToast(error.error, 'danger');
-                    this.getVerificationCode();
                     this.loading = false;
                 }
             );
