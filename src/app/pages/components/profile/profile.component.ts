@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NbToastrService, NbComponentStatus, NbIconConfig } from '@nebular/theme';
+import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { UserService, AuthService } from 'src/app/_services';
+import { emailRegex } from '../../../_data';
 
 @Component({
     selector: 'app-profile',
@@ -29,15 +30,32 @@ export class ProfileComponent implements OnInit {
 
     initProfileForm() {
         this.profileForm = new FormGroup({
-            first_name: new FormControl('', [Validators.required]),
-            last_name: new FormControl('', [Validators.required]),
-            nick_name: new FormControl('', [Validators.required]),
+            first_name: new FormControl('', [
+                Validators.required,
+                Validators.maxLength(20)
+            ]),
+            last_name: new FormControl('', [
+                Validators.required,
+                Validators.maxLength(8)
+            ]),
+            nick_name: new FormControl('', [
+                Validators.required,
+                Validators.minLength(5),
+                Validators.maxLength(50)
+            ]),
             gender: new FormControl('1', []),
             birthday: new FormControl('', []),
-            email: new FormControl('', [Validators.required]),
+            email: new FormControl('', [
+                Validators.required,
+                Validators.pattern(emailRegex)
+            ]),
             phone: new FormControl('', []),
-            address: new FormControl('', []),
-            description: new FormControl('', []),
+            address: new FormControl('', [
+                Validators.maxLength(256)
+            ]),
+            description: new FormControl('', [
+                Validators.maxLength(500)
+            ]),
         });
     }
 

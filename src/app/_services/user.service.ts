@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { Params } from 'src/app/_models';
 import { catchError } from 'rxjs/operators';
-import { API } from 'src/app/@config';
+import { API } from 'src/app/_api_config';
 
 @Injectable({ providedIn: 'root' })
 

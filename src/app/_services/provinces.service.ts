@@ -5,7 +5,7 @@ import { ApiService } from './api.service';
 import { Params } from 'src/app/_models';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
-import { API } from 'src/app/@config';
+import { API } from 'src/app/_api_config';
 
 @Injectable({ providedIn: 'root' })
 

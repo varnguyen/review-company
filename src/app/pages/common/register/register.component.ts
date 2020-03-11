@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { emailRegex } from 'src/app/_data';
 
 @Component({
     selector: 'app-register',
@@ -23,11 +24,14 @@ export class RegisterComponent implements OnInit {
         this.registerForm = new FormGroup({
             nick_name: new FormControl('', [
                 Validators.required,
+                Validators.minLength(5),
+                Validators.maxLength(50)
             ]),
             email: new FormControl('', [
                 Validators.required,
-                Validators.maxLength(10)
+                Validators.pattern(emailRegex)
             ]),
+            // gender: new FormControl('', []),
             password: new FormControl('', [
                 Validators.required,
                 Validators.minLength(6),
@@ -49,8 +53,8 @@ export class RegisterComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        console.log(this.f);
-        if (this.registerForm.invalid) {
+        console.log(this.registerForm);
+        if (this.registerForm.status === 'INVALID') {
             return;
         }
 
@@ -59,6 +63,7 @@ export class RegisterComponent implements OnInit {
 
     register() {
         console.log('register');
+        console.log(this.registerForm.value);
     }
 
 }

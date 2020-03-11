@@ -28,17 +28,27 @@
                                 <label>Họ</label>
                                 <input type="text" [status]="(submitted && f.first_name.errors) ? 'danger' : 'basic'"
                                     nbInput fullWidth placeholder="Họ" formControlName="first_name">
-                                <span *ngIf="submitted && f.first_name.errors" class="text-danger">
-                                    Họ không thể để trống.
-                                </span>
+                                <ng-container *ngIf="f.first_name.invalid && submitted">
+                                    <p class="caption status-danger" *ngIf="f.first_name.errors?.required">
+                                        Họ không thể để trống.
+                                    </p>
+                                    <p class="caption status-danger" *ngIf="f.first_name.errors?.maxlength">
+                                        Họ tối đa 20 ký tự
+                                    </p>
+                                </ng-container>
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label>Tên</label>
                                 <input type="text" [status]="(submitted && f.last_name.errors) ? 'danger' : 'basic'"
                                     nbInput fullWidth placeholder="Tên" formControlName="last_name">
-                                <span *ngIf="submitted && f.last_name.errors" class="text-danger">
-                                    Tên không thể để trống.
-                                </span>
+                                <ng-container *ngIf="f.last_name.invalid && submitted">
+                                    <p class="caption status-danger" *ngIf="f.last_name.errors?.required">
+                                        Tên không thể để trống.
+                                    </p>
+                                    <p class="caption status-danger" *ngIf="f.last_name.errors?.maxlength">
+                                        Tên tối đa 8 ký tự
+                                    </p>
+                                </ng-container>
                             </div>
                         </div>
                         <div class="row">
@@ -46,9 +56,15 @@
                                 <label>Biệt danh</label>
                                 <input type="text" [status]="(submitted && f.nick_name.errors) ? 'danger' : 'basic'"
                                     nbInput fullWidth placeholder="Biệt danh" formControlName="nick_name">
-                                <span *ngIf="submitted && f.nick_name.errors" class="text-danger">
-                                    Biệt danh không thể để trống.
-                                </span>
+                                <ng-container *ngIf="f.nick_name.invalid  && submitted">
+                                    <p class="caption status-danger" *ngIf="f.nick_name.errors?.required">
+                                        Biệt danh không thể để trống.
+                                    </p>
+                                    <p class="caption status-danger"
+                                        *ngIf="f.nick_name.errors?.minlength || f.nick_name.errors?.maxlength">
+                                        Biệt danh từ 5 - 50 ký tự
+                                    </p>
+                                </ng-container>
                             </div>
                         </div>
                         <div class="row">
@@ -71,9 +87,14 @@
                                 <label>Email</label>
                                 <input type="text" [status]="(submitted && f.email.errors) ? 'danger' : 'basic'" nbInput
                                     fullWidth placeholder="Email" formControlName="email">
-                                <span *ngIf="submitted && f.email.errors" class="text-danger">
-                                    Email không thể để trống.
-                                </span>
+                                <ng-container *ngIf="f.email.invalid  && submitted">
+                                    <p class="caption status-danger" *ngIf="f.email.errors?.required">
+                                        Email không thể để trống.
+                                    </p>
+                                    <p class="caption status-danger" *ngIf="f.email.errors?.pattern">
+                                        Email phải đúng định dạng
+                                    </p>
+                                </ng-container>
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label>Điện thoại</label>
@@ -83,7 +104,13 @@
                         <div class="row">
                             <div class="col-xl-12 p-b-10">
                                 <label>Địa chỉ</label>
-                                <input type="text" nbInput fullWidth placeholder="Địa chỉ" formControlName="address">
+                                <input type="text" [status]="(submitted && f.address.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="Địa chỉ" formControlName="address">
+                                <ng-container *ngIf="f.address.invalid  && submitted">
+                                    <p class="caption status-danger" *ngIf="f.address.errors?.maxlength">
+                                        Biệt danh từ 256 ký tự
+                                    </p>
+                                </ng-container>
                             </div>
                         </div>
                         <div class="row">
@@ -91,6 +118,11 @@
                                 <label>Mô tả</label>
                                 <textarea rows="5" nbInput fullWidth placeholder="Mô tả"
                                     formControlName="description"></textarea>
+                                <ng-container *ngIf="f.description.invalid  && submitted">
+                                    <p class="caption status-danger" *ngIf="f.description.errors?.maxlength">
+                                        Biệt danh từ 500 ký tự
+                                    </p>
+                                </ng-container>
                             </div>
                         </div>
                     </form>

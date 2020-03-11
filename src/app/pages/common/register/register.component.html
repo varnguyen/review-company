@@ -1,33 +1,19 @@
 <section class="register-page">
-    <h1 id="title" class="title">Register</h1>
-
-    <!-- <nb-alert *ngIf="!submitted" outline="danger" role="alert">
-        <p class="alert-title"><b>Oh snap!</b></p>
-        <ul class="alert-message-list">
-            <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
-        </ul>
-    </nb-alert>
-
-    <nb-alert *ngIf="!submitted" outline="success" role="alert">
-        <p class="alert-title"><b>Hooray!</b></p>
-        <ul class="alert-message-list">
-            <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
-        </ul>
-    </nb-alert> -->
+    <h1 id="title" class="title">Đăng ký</h1>
 
     <form [formGroup]="registerForm" aria-labelledby="title" novalidate>
 
         <div class="form-control-group">
             <label class="label" for="input-nick_name">Biệt danh:</label>
             <input type="text" id="input-nick_name" name="nick_name" nbInput class="input-full-width" fullWidth
-                tabindex="1" formControlName="nick_name" fieldsize="large" status="primary" placeholder="Biệt danh"
-                required>
+                tabindex="1" formControlName="nick_name" fieldsize="large" placeholder="Biệt danh" required
+                [status]="(submitted && f.nick_name.errors) ? 'danger' : 'primary'">
             <ng-container *ngIf="f.nick_name.invalid  && submitted">
                 <p class="caption status-danger" *ngIf="f.nick_name.errors?.required">
                     Biệt danh không thể để trống.
                 </p>
-                <p class="caption status-danger" *ngIf="f.nick_name.errors?.maxlength">
-                    Biệt danh should contains characters
+                <p class="caption status-danger" *ngIf="f.nick_name.errors?.minlength || f.nick_name.errors?.maxlength">
+                    Biệt danh từ 5 - 50 ký tự
                 </p>
             </ng-container>
         </div>
@@ -35,13 +21,14 @@
         <div class="form-control-group">
             <label class="label" for="input-email">Email:</label>
             <input type="text" id="input-email" name="email" nbInput class="input-full-width" fullWidth tabindex="1"
-                formControlName="email" fieldsize="large" status="primary" placeholder="Email" required>
+                formControlName="email" fieldsize="large" placeholder="Email" required
+                [status]="(submitted && f.email.errors) ? 'danger' : 'primary'">
             <ng-container *ngIf="f.email.invalid  && submitted">
                 <p class="caption status-danger" *ngIf="f.email.errors?.required">
                     Email không thể để trống.
                 </p>
-                <p class="caption status-danger" *ngIf="f.email.errors?.minlength || f.email.errors?.maxlength">
-                    minlength - maxlength
+                <p class="caption status-danger" *ngIf="f.email.errors?.pattern">
+                    Email phải đúng định dạng
                 </p>
             </ng-container>
         </div>
@@ -49,14 +36,14 @@
         <div class="form-control-group">
             <label class="label" for="input-password">Mật khẩu:</label>
             <input type="password" id="input-password" name="password" nbInput class="input-full-width" fullWidth
-                formControlName="password" tabindex="2" fieldsize="large" status="primary" placeholder="Mật khẩu"
-                minlength="6" maxlength="12" required>
+                formControlName="password" tabindex="2" fieldsize="large" placeholder="Mật khẩu" required
+                [status]="(submitted && f.password.errors) ? 'danger' : 'primary'">
             <ng-container *ngIf="f.password.invalid  && submitted">
                 <p class="caption status-danger" *ngIf="f.password.errors?.required">
                     Mật khẩu không thể để trống.
                 </p>
                 <p class="caption status-danger" *ngIf="f.password.errors?.minlength || f.password.errors?.maxlength">
-                    Mật khẩu minlength - maxlength
+                    Mật khẩu từ 6 - 12 ký tự
                 </p>
             </ng-container>
         </div>
@@ -64,15 +51,15 @@
         <div class="form-control-group">
             <label class="label" for="input-rep-password">Xác nhận mật khẩu:</label>
             <input type="password" id="input-rep-password" name="rep_password" nbInput class="input-full-width"
-                fullWidth formControlName="rep_password" tabindex="2" fieldsize="large" status="primary"
-                placeholder="Mật khẩu" minlength="6" maxlength="12" required>
+                fullWidth formControlName="rep_password" tabindex="2" fieldsize="large" placeholder="Xác nhận mật khẩu"
+                required [status]="(submitted && f.rep_password.errors) ? 'danger' : 'primary'">
             <ng-container *ngIf="f.rep_password.invalid  && submitted">
                 <p class="caption status-danger" *ngIf="f.rep_password.errors?.required">
                     Xác nhận mật khẩu không thể để trống.
                 </p>
                 <p class="caption status-danger"
                     *ngIf="f.rep_password.errors?.minlength || f.rep_password.errors?.maxlength">
-                    Xác nhận mật khẩu minlength - maxlength
+                    Xác nhận mật khẩu từ 6 - 12 ký tự
                 </p>
                 <p class="caption status-danger"
                     *ngIf="f.password.value !== f.rep_password.value && !f.rep_password.errors?.required">
@@ -82,19 +69,11 @@
         </div>
 
         <!-- <div class="form-control-group">
-            <label class="label" for="input-re-password">Repeat password:</label>
-            <input nbInput [(ngModel)]="user.confirmPassword" #rePass="ngModel" type="password" id="input-re-password"
-                name="rePass" placeholder="Confirm Password" fullWidth fieldSize="large"
-                [status]="rePass.dirty ? (rePass.invalid || password.value != rePass.value  ? 'danger' : 'success') : 'basic'"
-                [required]="" [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null">
-            <ng-container *ngIf="rePass.invalid && rePass.touched">
-                <p class="caption status-danger" *ngIf="rePass.errors?.required">
-                    Password confirmation is required!
-                </p>
-                <p class="caption status-danger" *ngIf="password.value != rePass.value && !rePass.errors?.required">
-                    Password does not match the confirm password.
-                </p>
-            </ng-container>
+            <label class="label" for="input-gender">Giới tính</label>
+            <nb-select id="input-gender" type="email" formControlName="gender" fullWidth selected="1">
+                <nb-option value="1">Nam</nb-option>
+                <nb-option value="0">Nữ</nb-option>
+            </nb-select>
         </div> -->
 
         <!-- <div class="form-control-group accept-group">
@@ -103,10 +82,9 @@
             </nb-checkbox>
         </div> -->
 
-
         <button [disabled]="loading" fullwidth nbbutton size="large" status="primary"
             class="appearance-filled full-width size-large status-primary shape-rectangle btn-disabled transitions"
-            tabindex="4" (click)="onSubmit()">Register</button>
+            tabindex="4" (click)="onSubmit()">Đăng ký</button>
     </form>
 
     <!-- <section *ngIf="socialLinks && socialLinks.length > 0" class="links" aria-label="Social sign in">
@@ -128,6 +106,6 @@
     </section> -->
 
     <section class="another-action" aria-label="Sign in">
-        Already have an account? <a class="text-link" routerLink="../login">Log in</a>
+        Đã có tài khoản? <a class="text-link" routerLink="../login">Đăng nhập</a>
     </section>
 </section>

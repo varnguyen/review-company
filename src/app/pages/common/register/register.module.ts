@@ -5,7 +5,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NbCheckboxModule, NbIconModule, NbInputModule, NbButtonModule, NbAlertModule } from '@nebular/theme';
+import { NbCheckboxModule, NbIconModule, NbInputModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
 // import { AuthGuard } from 'src/app/_helpers/auth.guard';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { NbCheckboxModule, NbIconModule, NbInputModule, NbButtonModule, NbAlertM
         NbIconModule,
         NbInputModule,
         NbButtonModule,
-        NbAlertModule
+        NbSelectModule
     ],
     declarations: [RegisterComponent],
     providers: [

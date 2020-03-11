@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { API } from 'src/app/@config';
+import { API } from 'src/app/_api_config';
 import { tap, mapTo, catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NbThemeService } from '@nebular/theme';

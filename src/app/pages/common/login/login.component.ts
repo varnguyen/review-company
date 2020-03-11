@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
+import { emailRegex } from 'src/app/_data';
 
 @Component({
     selector: 'app-login',
@@ -31,8 +32,15 @@ export class LoginComponent implements OnInit {
 
     createForm() {
         this.loginForm = new FormGroup({
-            email: new FormControl('', [Validators.required]),
-            password: new FormControl('', [Validators.required]),
+            email: new FormControl('', [
+                Validators.required,
+                Validators.pattern(emailRegex),
+            ]),
+            password: new FormControl('', [
+                Validators.required,
+                Validators.minLength(6),
+                Validators.maxLength(12),
+            ]),
         });
     }
 
@@ -41,6 +49,7 @@ export class LoginComponent implements OnInit {
         //     this.router.navigate(['/pages']);
         // }
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+        console.log( this.route.snapshot)
     }
 
     get f() { return this.loginForm.controls; }
