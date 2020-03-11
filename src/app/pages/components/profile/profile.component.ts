@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbToastrService, NbComponentStatus, NbIconConfig } from '@nebular/theme';
+import { UserService, AuthService } from 'src/app/_services';
 
 @Component({
     selector: 'app-profile',
@@ -14,28 +15,34 @@ export class ProfileComponent implements OnInit {
     toast: any = {};
     avatarLocalSrc: any = 'https://via.placeholder.com/250/4479e7/ffffff?Text=IMG';
     disable = true;
+    user: any;
 
     constructor(
         private toastrService: NbToastrService,
+        private authService: AuthService,
+        private userSerice: UserService,
     ) {
+        // const token = this.authService.getJwtToken();
+        // if(token) { }
         this.initProfileForm();
     }
 
     initProfileForm() {
         this.profileForm = new FormGroup({
-            firstName: new FormControl('', [Validators.required]),
-            lastName: new FormControl('', [Validators.required]),
-            fakeName: new FormControl('', [Validators.required]),
-            gender: new FormControl('', []),
+            first_name: new FormControl('', [Validators.required]),
+            last_name: new FormControl('', [Validators.required]),
+            nick_name: new FormControl('', [Validators.required]),
+            gender: new FormControl('1', []),
             birthday: new FormControl('', []),
             email: new FormControl('', [Validators.required]),
             phone: new FormControl('', []),
-            street: new FormControl('', []),
+            address: new FormControl('', []),
             description: new FormControl('', []),
         });
     }
 
     ngOnInit() {
+        this.getUserInfo();
     }
 
     get f() { return this.profileForm.controls; }
@@ -44,25 +51,9 @@ export class ProfileComponent implements OnInit {
         this.submitted = true;
         console.log(this.profileForm);
 
-        setTimeout(() => {
-            this.updateProfile();
-        }, 3000);
-    }
-
-    updateProfile() {
-        this.profileForm.patchValue({
-            firstName: 'Nguyen',
-            lastName: 'Minh',
-            fakeName: 'My Fake Name',
-            gender: '',
-            birthday: '',
-            email: 'enqminh@gmail.com',
-            phone: '',
-            street: 'Hà Nội',
-            description: 'Description',
-        });
-        this.submitted = false;
-        this.handleStatus(0);
+        if (this.profileForm.status === 'VALID') {
+            this.updateUserInfo();
+        }
     }
 
     uploadAvatar() {
@@ -111,6 +102,34 @@ export class ProfileComponent implements OnInit {
             };
             reader.readAsDataURL(file);
         }
+    }
+
+    getUserInfo() {
+        this.userSerice.getUserInfo().subscribe(
+            res => {
+                console.log(res);
+                if (res.code === 0) {
+                    this.user = res.data;
+                    this.profileForm.patchValue(this.user);
+                }
+            },
+            errors => { console.log(errors); }
+        );
+    }
+
+    updateUserInfo() {
+
+        const user = this.profileForm.value;
+        user.user_id = this.user.user_id;
+        return;
+        this.userSerice.updateUserInfo(user).subscribe(
+            res => {
+                console.log(res);
+                return;
+                this.submitted = false;
+                this.handleStatus(0);
+            }
+        );
     }
 
 }

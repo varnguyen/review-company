@@ -4,19 +4,23 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { API } from 'src/app/@config';
 import { tap, mapTo, catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NbThemeService } from '@nebular/theme';
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
 
-    private readonly TOKEN = 'token';
     private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
     private loggedUser: string;
 
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
 
-    constructor(private httpClient: HttpClient, private router: Router) {
+    constructor(
+        private httpClient: HttpClient,
+        private router: Router,
+        private themeService: NbThemeService,
+    ) {
         this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -34,30 +38,36 @@ export class AuthService {
         return false;
     }
 
-    getVerificationCode() {
-        return this.httpClient.get<any>(API.VCODE).pipe(catchError(this.handleErrorPromise));
-    }
-
     login(params) {
         return this.httpClient.post<any>(API.LOGIN, params)
-            .pipe(map(res => { // res:{token:'',user:{}}
-                this.setStoreTokens(res);
-                this.currentUserSubject.next(res.user);
-                return res.user;
+            .pipe(map(res => {
+                return res;
             }));
     }
 
-    // set data in local storage
-    private setStoreTokens(res: any) {
-        localStorage.setItem('currentUser', JSON.stringify(res.user));
-        localStorage.setItem(this.TOKEN, res.token);
+    // set theme default
+    setTheme(theme = 'default') {
+        this.themeService.changeTheme(theme);
+        localStorage.setItem('theme', theme);
     }
 
+    // get theme default
+    getTheme() {
+        return localStorage.getItem('theme');
+    }
+
+    // set data in local storage
+    setStoreTokens(res: any) {
+        localStorage.setItem('token', res.data.token);
+    }
+
+    getJwtToken() {
+        return localStorage.getItem('token');
+    }
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        localStorage.removeItem('token');
         this.router.navigate(['/auth/login']);
     }
 

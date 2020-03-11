@@ -63,7 +63,7 @@
                             Thông tin
                         </nb-card-header>
                         <nb-card-body>
-                            <h4 class="p-b-1r">{{company.name}}</h4>
+                            <h4 class="p-b-1r">{{company.full_name}}</h4>
                             <div class="company-inf">
                                 <div class="row">
                                     <div class="col-xl-2 mr-auto text-center">
@@ -73,29 +73,27 @@
                                         <p>
                                             <nb-icon nbTooltip="Địa chỉ" nbTooltipPlacement="top" icon="pin-outline"
                                                 pack="eva">
-                                            </nb-icon> : 8391 Studebaker Drive
-                                            Lutherville Timonium, MD 21093
+                                            </nb-icon> : {{company.address ? company.address : 'Chưa có'}}
                                         </p>
                                         <p>
-                                            <nb-icon nbTooltip="Số điện thoại" nbTooltipPlacement="top" icon="phone-outline"
-                                                pack="eva">
-                                            </nb-icon> : 0123456789
-
+                                            <nb-icon nbTooltip="Số điện thoại" nbTooltipPlacement="top"
+                                                icon="phone-outline" pack="eva">
+                                            </nb-icon> : {{company.phone}}
                                         </p>
                                         <p>
-                                            <nb-icon nbTooltip="Số nhân sự" nbTooltipPlacement="top" icon="people-outline"
-                                                pack="eva">
-                                            </nb-icon> : 300
+                                            <nb-icon nbTooltip="Số nhân sự" nbTooltipPlacement="top"
+                                                icon="people-outline" pack="eva">
+                                            </nb-icon> : {{company.member_total ? company.member_total : 0}}
                                         </p>
                                         <p>
-                                            <nb-icon nbTooltip="Lĩnh vực" nbTooltipPlacement="top" icon="settings-outline"
-                                                pack="eva">
-                                            </nb-icon> : IT Software
+                                            <nb-icon nbTooltip="Lĩnh vực" nbTooltipPlacement="top"
+                                                icon="settings-outline" pack="eva">
+                                            </nb-icon> : {{company.job_id ? company.job_id : 'Chưa xác định'}}
                                         </p>
                                         <p>
                                             <nb-icon nbTooltip="Email" nbTooltipPlacement="top" icon="email-outline"
                                                 pack="eva">
-                                            </nb-icon> : google@gmail.com
+                                            </nb-icon> : {{company.email ? company.email : 'Chưa có'}}
                                         </p>
                                     </div>
                                     <div class="col-xl-2 mr-auto text-right">

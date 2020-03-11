@@ -23,8 +23,8 @@ const routes: Routes = [
         children: [
             { path: '', component: LoginComponent },
             { path: 'login', component: LoginComponent },
-            { path: 'register-1', component: RegisterComponent },
-            { path: 'register', component: NbRegisterComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: 'register-1', component: NbRegisterComponent },
             { path: 'logout', component: NbLogoutComponent },
             { path: 'request-password', component: NbRequestPasswordComponent },
             { path: 'reset-password', component: NbResetPasswordComponent },

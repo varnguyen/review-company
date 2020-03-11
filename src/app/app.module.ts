@@ -18,14 +18,14 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-import { LoginComponent } from './pages/common/login/login.component';
 
 // add header token for all request
-// import { AuthInterceptor } from './_services/auth/auth.interceptor';
+import { AuthInterceptor } from './_services/auth/auth.interceptor';
 import { AuthGuard } from './_helpers/auth.guard';
-// import { AuthService } from './_services/auth/auth.service';
+import { AuthService } from './_services/auth/auth.service';
 
 import { LoginModule } from './pages/common/login/login.module';
+import { RegisterModule } from './pages/common/register/register.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -35,6 +35,7 @@ import { LoginModule } from './pages/common/login/login.module';
         BrowserAnimationsModule,
         HttpClientModule,
         LoginModule,
+        RegisterModule,
         // Nebular Module
         NbThemeModule.forRoot({ name: 'dark' }), // dark - default
         NbMenuModule.forRoot(),
@@ -73,12 +74,12 @@ import { LoginModule } from './pages/common/login/login.module';
     bootstrap: [AppComponent],
     providers: [
         AuthGuard,
-        // AuthService,
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: AuthInterceptor,
-        //     multi: true
-        // }
+        AuthService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
     ]
 })
 export class AppModule { }

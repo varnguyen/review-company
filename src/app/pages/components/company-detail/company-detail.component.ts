@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { REVIEWS_LIST } from './data-review';
+import { CompanyService } from 'src/app/_services';
 
 @Component({
     selector: 'app-company-detail',
@@ -10,23 +11,25 @@ import { REVIEWS_LIST } from './data-review';
 })
 export class CompanyDetailComponent implements OnInit {
 
-    userId = 0;
-    company = {
-        name: 'Boosting performance of Angular applications with manual change detection',
-        company_id: 1,
-        address: 'Nick Jones',
-        member_total: '100',
-        picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-    };
+    companyId = 0;
+    company: any = {};
+    // company = {
+    //     name: 'Boosting performance of Angular applications with manual change detection',
+    //     company_id: 1,
+    //     address: 'Nick Jones',
+    //     member_total: '100',
+    //     picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+    // };
     private time: Date = new Date();
     displayReviewForm = false;
     reviews_list = REVIEWS_LIST;
 
     constructor(
         private route: ActivatedRoute,
+        private companyService: CompanyService
     ) {
-        this.userId = this.route.snapshot.params.company_id;
-        console.log(this.userId);
+        this.companyId = this.route.snapshot.params.company_id;
+        this.getCompanyDetail(this.companyId);
     }
 
     ngOnInit() {
@@ -47,6 +50,17 @@ export class CompanyDetailComponent implements OnInit {
         //     created: this.time.setHours(15, 29),
         // };
         // this.comments.push(newComment);
+    }
+
+    getCompanyDetail(companyId) {
+        this.companyService.getCompanyById(companyId).subscribe(
+            res => {
+                if (res.code === 0) {
+                    console.log(res);
+                    this.company = res.data;
+                }
+            }
+        );
     }
 
 }

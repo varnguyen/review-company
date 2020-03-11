@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbListItemComponent } from '@nebular/theme';
-import { countries } from 'src/app/_data/countries';
+import { ProvincesService, JobTypeService, CompanyService } from 'src/app/_services';
 
 @Component({
     selector: 'app-dashboard',
@@ -9,6 +9,7 @@ import { countries } from 'src/app/_data/countries';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
     private time: Date = new Date();
     users = {
         nick: { name: 'Nick Jones', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
@@ -106,135 +107,6 @@ export class DashboardComponent implements OnInit {
         },
     ];
 
-    companys = [
-        {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        },
-        {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 2,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 3,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 4,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        }, {
-            name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-            address: 'Nick Jones',
-            member_total: '100',
-            picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-        },
-    ];
 
     // infinity list
     placeholders = [];
@@ -244,14 +116,24 @@ export class DashboardComponent implements OnInit {
 
     @ViewChildren(NbListItemComponent, { read: ElementRef }) listItems: QueryList<ElementRef<Element>>;
 
-    countries: any;
+    provinces: any;
+    provinceSelected: number;
+    jobs: any;
+    jobSelected: number;
+    companys: any;
 
-    constructor(private router: Router
+    constructor(
+        private router: Router,
+        private provincesService: ProvincesService,
+        private jobTypeService: JobTypeService,
+        private companyService: CompanyService,
     ) {
-        this.countries = countries;
     }
 
     ngOnInit() {
+        this.getJobTypeLists();
+        this.getProvinceLists();
+        this.getCompanyLists();
     }
 
     loadNext() {
@@ -261,68 +143,101 @@ export class DashboardComponent implements OnInit {
         this.placeholders = new Array(this.pageSize);
         const newsData = [
             {
-                name: 'Boosting performance of Angular applications with manual change detection 1',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 1',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 2',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 2',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 3',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 3',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 1',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 1',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 2',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 2',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 3',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 3',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }, {
-                name: 'Boosting performance of Angular applications with manual change detection 1',
-                company_id: 1,
-                address: 'Nick Jones 1',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 2',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 2',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
             {
-                name: 'Boosting performance of Angular applications with manual change detection 3',
+                address: '200 Cầu Giấy, Nghĩa Đô, Hoàng Quốc Việt, Hà Nội',
                 company_id: 1,
-                address: 'Nick Jones 3',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
+                full_name: 'Công ty Cổ phẩn công nghệ GVN Technology',
+                member_total: 100,
+                date_add: '2020-03-06T03:36:41.000Z',
+                date_upd: '2020-03-06T03:36:41.000Z',
+                job_id: null,
+                province_id: null,
+                short_name: 'xxx',
+                active: 1
             },
-
         ];
         setTimeout(() => {
             this.placeholders = [];
@@ -343,6 +258,42 @@ export class DashboardComponent implements OnInit {
 
     goToCompayDetail(company) {
         this.router.navigate([`./pages/company/${company.company_id}`]);
+    }
+
+    getProvinceLists() {
+        this.provincesService.getProvinceLists().subscribe(
+            res => {
+                console.log(res);
+                if (res.code === 0) {
+                    this.provinces = res.data;
+                    this.provinceSelected = this.provinces[0].province_id;
+                }
+
+            }
+        );
+    }
+
+    getJobTypeLists() {
+        this.jobTypeService.getJobTypeLists().subscribe(
+            res => {
+                console.log(res);
+                if (res.code === 0) {
+                    this.jobs = res.data;
+                    this.jobSelected = this.jobs[0].job_id;
+                }
+            }
+        );
+    }
+
+    getCompanyLists() {
+        this.companyService.getCompanyLists().subscribe(
+            res => {
+                console.log(res);
+                if (res.code === 0) {
+                    this.companys = res.data;
+                }
+            }
+        );
     }
 
 }

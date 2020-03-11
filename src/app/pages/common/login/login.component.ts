@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
     createForm() {
         this.loginForm = new FormGroup({
-            username: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required]),
         });
     }
@@ -59,25 +59,34 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         const params = {
             password: this.f.password.value,
-            username: this.f.username.value,
+            email: this.f.email.value,
         };
         this.authService.login(params)
             .subscribe(
-                res => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    console.log(error);
-                    this.showToast(error.error, 'danger');
-                    this.loading = false;
-                }
+                res => { console.log(res); this.handleCode(res); },
+                error => { console.log(error); }
             );
     }
 
-    showToast(error: any, status: NbComponentStatus) {
+    handleCode(res) {
+        switch (res.code) {
+            case 0:
+                this.authService.setStoreTokens(res);
+                this.router.navigate([this.returnUrl]);
+                break;
+            case 401:
+                this.showToast(res, 'danger');
+                this.loading = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    showToast(res: any, status: NbComponentStatus) {
         this.toastrService.show(
-            `${error.message}`,
-            `Status: ${error.status}`
+            `${res.message}`,
+            `Status: ${res.code}`
             , { status });
     }
 }

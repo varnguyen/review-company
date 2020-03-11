@@ -4,17 +4,26 @@
             <nb-card-header>Lọc</nb-card-header>
             <nb-card-body>
                 <div class="row">
+                    <div class="col-xl-12">
+                        <label class="p-r-10">Tên công ty</label>
+                        <input nbInput placeholder="Search">
+                    </div>
                     <div class="col-xl-6">
                         <label class="p-r-10">Tỉnh/Thành phố</label>
-                        <nb-select selected="1,408.9">
-                            <nb-option *ngFor="let country of countries;let idx = index;" [value]="country.area">
-                                {{country.name}}
+                        <nb-select [selected]="provinceSelected">
+                            <nb-option *ngFor="let province of provinces;let idx = index;"
+                                [value]="province.province_id">
+                                {{province.province_name}}
                             </nb-option>
                         </nb-select>
                     </div>
                     <div class="col-xl-6">
-                        <label class="p-r-10">Tên công ty</label>
-                        <input nbInput placeholder="Search">
+                        <label class="p-r-10">Loại</label>
+                        <nb-select [selected]="jobSelected">
+                            <nb-option *ngFor="let job of jobs;let idx = index;" [value]="job.job_id">
+                                {{job.job_name}}
+                            </nb-option>
+                        </nb-select>
                     </div>
                 </div>
             </nb-card-body>
@@ -56,7 +65,7 @@
             <nb-list nbInfiniteList listenWindowScroll [threshold]="500" (bottomThreshold)="loadNext()">
                 <nb-list-item class="company" *ngFor="let company of companys">
                     <nb-card-body>
-                        <h6 class="company-title" (click)="goToCompayDetail(company)">{{company.name}}</h6>
+                        <h6 class="company-title" (click)="goToCompayDetail(company)">{{company.full_name}}</h6>
                         <nb-user shape="rectangle" size="giant" [name]="company.address"
                             [title]="'Nhân sự : '+company.member_total" [picture]="company.picture"></nb-user>
                         <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon>  -->

@@ -47,9 +47,16 @@ nb-tab {
     border-top: none;
   }
 
-  .company-title {
+  ::ng-deep .company-title {
     cursor: pointer;
     display: inline-block;
+
+    &:hover {
+      background: -webkit-gradient(linear, left top, right top, from(#ffc94d), to(#ffaa00));
+      background: linear-gradient(to right, #ffc94d, #ffaa00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 }
 

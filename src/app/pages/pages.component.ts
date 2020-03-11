@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NbSidebarService, NbThemeService, NbMenuService, NB_WINDOW, NbPosition } from '@nebular/theme';
+import { NbSidebarService, NbMenuService, NB_WINDOW } from '@nebular/theme';
 import { MENU_ITEMS } from './pages-menu';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../_services/auth/auth.service';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { CustomersService } from '../_services';
+import { themes } from '../_data';
 
 @Component({
     selector: 'app-pages',
@@ -13,13 +15,10 @@ import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, 
 
 export class PagesComponent implements OnInit {
 
-    currentUser: any;
+    token: string;
     sidebarMenu = MENU_ITEMS;
-    currentTheme = 'dark';
-    themes = [
-        { value: 'dark', name: 'Tối' },
-        { value: 'default', name: 'Sáng' }
-    ];
+    themes = themes;
+    currentTheme: string;
     userPictureOnly = false;
     userMenu = [
         { title: 'Thông tin cá nhân', link: '/pages/profile', icon: 'person-outline', },
@@ -31,25 +30,48 @@ export class PagesComponent implements OnInit {
 
     constructor(
         private sidebarService: NbSidebarService,
-        private themeService: NbThemeService,
         private menuService: NbMenuService,
         @Inject(NB_WINDOW) private window,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private customersService: CustomersService,
     ) {
-        this.currentUser = this.authService.currentUserValue;
+        // Get current theme
+        this.currentTheme = this.authService.getTheme();
+
+        this.token = this.authService.getJwtToken();
         this.router.events.subscribe((e: RouterEvent) => {
             this.navigationInterceptor(e);
-        })
+        });
+
     }
 
     ngOnInit() {
-        this.isContected = this.currentUser ? true : false;
-        this.currentTheme = this.themeService.currentTheme;
+        this.token ? this.getUserInfo() : this.isContected = false;
+        // if (this.token) {
+        //     this.getUserInfo();
+        // } else {
+        //     this.isContected = false;
+        // }
+
         this.initMenu();
         // console.log(this.sidebarMenu);
         // const childMenuLogout = { title: 'Logout', icon: 'unlock-outline' };
 
+    }
+
+    getUserInfo() {
+        this.customersService.getUserInfo().subscribe(
+            res => {
+                console.log(res);
+                if (res.code === 0) {
+                    this.user = res.data;
+                    console.log(this.user);
+                    this.isContected = true;
+                }
+
+            }
+        );
     }
 
     // Shows and hides the loading spinner during RouterEvent changes
@@ -91,7 +113,7 @@ export class PagesComponent implements OnInit {
     }
 
     changeTheme(themeName: string) {
-        this.themeService.changeTheme(themeName);
+        this.authService.setTheme(themeName);
     }
 
     navigateHome() {

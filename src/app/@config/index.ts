@@ -7,11 +7,18 @@ const API_VERSION = 'api';
 const SERVER_URL = environment.api;
 const URL = `${SERVER_URL}/${API_VERSION}`;
 
+
 export const API = {
     // AUTH
-    VCODE: `${SERVER_URL}/auth/vCode`,
-    LOGIN: `${SERVER_URL}/auth/login`,
+    LOGIN: `${URL}/auth/login`,
     // API
+    USER_INFO: `${URL}/me/profile`,
+    UPDATE_USER_INFO: `${URL}/me/update`,
+    PROVINCE: `${URL}/province`,
+    COMPANY: `${URL}/company`,
+    JOB_TYPE: `${URL}/job-type`,
+
+
     LOGOUT: `${URL}/logout`,
     CUSTOMER: `${URL}/customer`,
     absentconfig: `${URL}/absentconfig`,

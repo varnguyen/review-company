@@ -26,37 +26,37 @@
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label>Họ</label>
-                                <input type="text" [status]="(submitted && f.firstName.errors) ? 'danger' : 'basic'"
-                                    nbInput fullWidth placeholder="Họ" formControlName="firstName">
-                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
-                                    First Name can not be empty!
+                                <input type="text" [status]="(submitted && f.first_name.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="Họ" formControlName="first_name">
+                                <span *ngIf="submitted && f.first_name.errors" class="text-danger">
+                                    Họ không thể để trống.
                                 </span>
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label>Tên</label>
-                                <input type="text" [status]="(submitted && f.lastName.errors) ? 'danger' : 'basic'"
-                                    nbInput fullWidth placeholder="Tên" formControlName="lastName">
-                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
-                                    Last Name can not be empty!
+                                <input type="text" [status]="(submitted && f.last_name.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="Tên" formControlName="last_name">
+                                <span *ngIf="submitted && f.last_name.errors" class="text-danger">
+                                    Tên không thể để trống.
                                 </span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label>Biệt danh</label>
-                                <input type="text" [status]="(submitted && f.fakeName.errors) ? 'danger' : 'basic'"
-                                    nbInput fullWidth placeholder="Biệt danh" formControlName="fakeName">
-                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
-                                    Fake Name can not be empty!
+                                <input type="text" [status]="(submitted && f.nick_name.errors) ? 'danger' : 'basic'"
+                                    nbInput fullWidth placeholder="Biệt danh" formControlName="nick_name">
+                                <span *ngIf="submitted && f.nick_name.errors" class="text-danger">
+                                    Biệt danh không thể để trống.
                                 </span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label class="p-r-10">Giới tính</label>
-                                <nb-select selected="1">
+                                <nb-select formControlName="gender" selected="{{user ? user.gender : '1'}}">
                                     <nb-option value="1">Nam</nb-option>
-                                    <nb-option value="2">Nữ</nb-option>
+                                    <nb-option value="0">Nữ</nb-option>
                                 </nb-select>
                             </div>
                             <div class="col-xl-6 p-b-10">
@@ -71,8 +71,8 @@
                                 <label>Email</label>
                                 <input type="text" [status]="(submitted && f.email.errors) ? 'danger' : 'basic'" nbInput
                                     fullWidth placeholder="Email" formControlName="email">
-                                <span *ngIf="submitted && f.firstName.errors" class="text-danger">
-                                    Email can not be empty!
+                                <span *ngIf="submitted && f.email.errors" class="text-danger">
+                                    Email không thể để trống.
                                 </span>
                             </div>
                             <div class="col-xl-6 p-b-10">
@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col-xl-12 p-b-10">
                                 <label>Địa chỉ</label>
-                                <input type="text" nbInput fullWidth placeholder="Địa chỉ" formControlName="street">
+                                <input type="text" nbInput fullWidth placeholder="Địa chỉ" formControlName="address">
                             </div>
                         </div>
                         <div class="row">

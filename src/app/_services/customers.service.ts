@@ -447,12 +447,15 @@ export class CustomersService extends ApiService {
         return this.httpClient.get<any[]>(url).pipe(catchError(this.handleErrorPromise));
     }
 
+    getUserInfo(): Observable<any> {
+        const url = API.USER_INFO;
+        return this.httpClient.get<any>(url).pipe(catchError(this.handleErrorPromise));
+    }
+
     private handleErrorPromise(error: Response | any) {
         console.error(error.message || error);
         return Promise.reject(error.message || error);
     }
-
-
 
     getData() {
         return this.data;
