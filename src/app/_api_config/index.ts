@@ -9,9 +9,8 @@ const URL = `${SERVER_URL}/${API_VERSION}`;
 
 
 export const API = {
-    // AUTH
     LOGIN: `${URL}/auth/login`,
-    // API
+    REGISTER_USER: `${URL}/auth/register`,
     USER_INFO: `${URL}/me/profile`,
     UPDATE_USER_INFO: `${URL}/me/update`,
     PROVINCE: `${URL}/province`,

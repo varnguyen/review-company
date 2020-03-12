@@ -1,5 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+
+import { AuthGuard } from './_helpers/auth.guard';
+import {
+    RegisterComponent,
+    LoginComponent,
+    RequestPasswordComponent
+} from './pages/common';
+
 import {
     NbAuthComponent,
     NbLoginComponent,
@@ -8,8 +16,6 @@ import {
     NbRequestPasswordComponent,
     NbResetPasswordComponent,
 } from '@nebular/auth';
-import { AuthGuard } from './_helpers/auth.guard';
-import { RegisterComponent, LoginComponent } from './pages/common';
 
 const routes: Routes = [
     {
@@ -24,9 +30,13 @@ const routes: Routes = [
             { path: '', component: LoginComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
+            { path: 'request-password', component: RequestPasswordComponent },
+
+            // Nebular
+            { path: 'login-1', component: NbLoginComponent },
             { path: 'register-1', component: NbRegisterComponent },
             { path: 'logout', component: NbLogoutComponent },
-            { path: 'request-password', component: NbRequestPasswordComponent },
+            { path: 'request-password-1', component: NbRequestPasswordComponent },
             { path: 'reset-password', component: NbResetPasswordComponent },
         ],
     },

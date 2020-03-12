@@ -4,6 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// Add header token for all request
+import { AuthInterceptor } from './_services/auth/auth.interceptor';
+import { AuthGuard } from './_helpers/auth.guard';
+import { AuthService } from './_services/auth/auth.service';
+
+import { LoginModule } from './pages/common/login/login.module';
+import { RegisterModule } from './pages/common/register/register.module';
+import { RequestPasswordModule } from './pages/common/request-password/request-password.module';
+
 import {
     NbThemeModule,
     NbLayoutModule,
@@ -16,16 +28,7 @@ import {
     NbDialogModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-
-// add header token for all request
-import { AuthInterceptor } from './_services/auth/auth.interceptor';
-import { AuthGuard } from './_helpers/auth.guard';
-import { AuthService } from './_services/auth/auth.service';
-
-import { LoginModule } from './pages/common/login/login.module';
-import { RegisterModule } from './pages/common/register/register.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -36,6 +39,8 @@ import { RegisterModule } from './pages/common/register/register.module';
         HttpClientModule,
         LoginModule,
         RegisterModule,
+        RequestPasswordModule,
+
         // Nebular Module
         NbThemeModule.forRoot({ name: 'dark' }), // dark - default
         NbMenuModule.forRoot(),

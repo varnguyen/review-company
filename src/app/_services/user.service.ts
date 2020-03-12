@@ -10,6 +10,11 @@ import { API } from 'src/app/_api_config';
 
 export class UserService extends ApiService {
 
+    registerUser(user): Observable<any> {
+        const url = API.REGISTER_USER;
+        return this.httpClient.post<any>(url, user).pipe(catchError(this.handleErrorPromise));
+    }
+
     getUserInfo(): Observable<any> {
         const url = API.USER_INFO;
         return this.httpClient.get<any>(url).pipe(catchError(this.handleErrorPromise));

@@ -51,10 +51,11 @@ const NB_MODULE = [
         ChatModule,
         ChangePasswordModule,
 
+        // Nebular Module
         NB_MODULE
     ],
     declarations: [
-        PagesComponent,
+        PagesComponent
     ],
     providers: [NbSidebarService]
 })

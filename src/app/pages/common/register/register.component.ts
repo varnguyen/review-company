@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { emailRegex } from 'src/app/_data';
+import { UserService, AuthService } from 'src/app/_services';
+import { Router } from '@angular/router';
+
+import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 
     submitted = false;
@@ -16,7 +21,12 @@ export class RegisterComponent implements OnInit {
     user: any = {};
     registerForm: FormGroup;
 
-    constructor() {
+    constructor(
+        private router: Router,
+        private userService: UserService,
+        private authService: AuthService,
+        private toastrService: NbToastrService,
+    ) {
         this.createForm();
     }
 
@@ -31,7 +41,7 @@ export class RegisterComponent implements OnInit {
                 Validators.required,
                 Validators.pattern(emailRegex)
             ]),
-            // gender: new FormControl('', []),
+            gender: new FormControl('1', []),
             password: new FormControl('', [
                 Validators.required,
                 Validators.minLength(6),
@@ -61,9 +71,39 @@ export class RegisterComponent implements OnInit {
         this.register();
     }
 
+    handleCode(res) {
+        switch (res.code) {
+            case 0:
+                this.router.navigate(['/']);
+                break;
+            case 2:
+                this.showToast(res, 'danger');
+                this.loading = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    showToast(res: any, status: NbComponentStatus) {
+        this.toastrService.show(
+            `${res.message}`,
+            `Status: ${res.code}`
+            , { status });
+    }
+
     register() {
         console.log('register');
         console.log(this.registerForm.value);
+        //  const formData: FormData = new FormData();
+        // formData.append('title', this.formAchievement.value.title);
+        // formData.append('description', this.formAchievement.value.description);
+        this.userService.registerUser(this.registerForm.value).subscribe(
+            res => {
+                console.log(res);
+                this.handleCode(res);
+            }
+        );
     }
 
 }
