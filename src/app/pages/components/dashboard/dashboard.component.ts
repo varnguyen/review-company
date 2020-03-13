@@ -239,14 +239,14 @@ export class DashboardComponent implements OnInit {
                 active: 1
             },
         ];
-        setTimeout(() => {
-            this.placeholders = [];
-            this.companys.push(...newsData);
+        // setTimeout(() => {
+        //     this.placeholders = [];
+        //     this.companys.push(...newsData);
 
-            this.loading = false;
-            this.pageToLoadNext++;
-            console.log(this.companys);
-        }, 2000);
+        //     this.loading = false;
+        //     this.pageToLoadNext++;
+        //     console.log(this.companys);
+        // }, 2000);
         // this.newsService.load(this.pageToLoadNext, this.pageSize)
         //     .subscribe(news => {
         //         this.placeholders = [];
@@ -291,6 +291,7 @@ export class DashboardComponent implements OnInit {
                 console.log(res);
                 if (res.code === 0) {
                     this.companys = res.data;
+                    this.loading = false;
                 }
             }
         );

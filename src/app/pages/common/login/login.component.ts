@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         //     this.router.navigate(['/pages']);
         // }
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-        console.log( this.route.snapshot)
+        console.log(this.route.snapshot)
     }
 
     get f() { return this.loginForm.controls; }
@@ -80,10 +80,14 @@ export class LoginComponent implements OnInit {
     handleCode(res) {
         switch (res.code) {
             case 0:
-                this.authService.setStoreTokens(res);
+                this.authService.setStoreTokens(res.data.token);
                 this.router.navigate([this.returnUrl]);
                 break;
-            case 401:
+            case 3:
+                this.showToast(res, 'danger');
+                this.loading = false;
+                break;
+            case 4:
                 this.showToast(res, 'danger');
                 this.loading = false;
                 break;

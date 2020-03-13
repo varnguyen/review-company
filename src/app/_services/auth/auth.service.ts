@@ -57,8 +57,8 @@ export class AuthService {
     }
 
     // set data in local storage
-    setStoreTokens(res: any) {
-        localStorage.setItem('token', res.data.token);
+    setStoreTokens(token: string) {
+        localStorage.setItem('token', token);
     }
 
     getJwtToken() {
