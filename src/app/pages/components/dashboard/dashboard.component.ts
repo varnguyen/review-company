@@ -136,6 +136,10 @@ export class DashboardComponent implements OnInit {
         this.getCompanyLists();
     }
 
+    onChangeSearch(provinceId, jobId) {
+        this.getCompanyLists(provinceId, jobId);
+    }
+
     loadNext() {
         if (this.loading) { return; }
 
@@ -285,8 +289,8 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    getCompanyLists() {
-        this.companyService.getCompanyLists().subscribe(
+    getCompanyLists(jobId = null, provinceId = null) {
+        this.companyService.getCompanyLists(jobId, provinceId).subscribe(
             res => {
                 console.log(res);
                 if (res.code === 0) {

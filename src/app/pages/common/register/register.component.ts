@@ -74,6 +74,7 @@ export class RegisterComponent implements OnInit {
     handleCode(res) {
         switch (res.code) {
             case 0:
+                this.authService.setCurrentUser(res.data);
                 this.router.navigate(['/']);
                 break;
             case 2:
@@ -93,11 +94,6 @@ export class RegisterComponent implements OnInit {
     }
 
     register() {
-        console.log('register');
-        console.log(this.registerForm.value);
-        //  const formData: FormData = new FormData();
-        // formData.append('title', this.formAchievement.value.title);
-        // formData.append('description', this.formAchievement.value.description);
         this.userService.registerUser(this.registerForm.value).subscribe(
             res => {
                 console.log(res);

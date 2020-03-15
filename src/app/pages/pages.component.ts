@@ -16,6 +16,7 @@ import { themes } from '../_data';
 export class PagesComponent implements OnInit {
 
     token: string;
+    currentUser: any;
     sidebarMenu = MENU_ITEMS;
     themes = themes;
     currentTheme: string;
@@ -38,8 +39,9 @@ export class PagesComponent implements OnInit {
     ) {
         // Get current theme
         this.currentTheme = this.authService.getTheme();
-
         this.token = this.authService.getJwtToken();
+        this.currentUser = this.authService.getCurrentUser();
+
         this.router.events.subscribe((e: RouterEvent) => {
             this.navigationInterceptor(e);
         });
@@ -47,9 +49,23 @@ export class PagesComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.currentUser);
+        this.token = this.authService.getJwtToken();
+        console.log(this.token);
         this.token ? this.getUserInfo() : this.isContected = false;
+
         // if (this.token) {
         //     this.getUserInfo();
+        // } else {
+        //     this.isContected = false;
+        // }
+
+        // if (this.currentUser) {
+        //     this.user = this.currentUser;
+        //     this.isContected = true;
+        //     if (this.token) {
+        //         this.getUserInfo();
+        //     }
         // } else {
         //     this.isContected = false;
         // }

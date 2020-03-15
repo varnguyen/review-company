@@ -13,7 +13,6 @@ export class AuthService {
     private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
     private loggedUser: string;
 
-    private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
 
     constructor(
@@ -21,23 +20,10 @@ export class AuthService {
         private router: Router,
         private themeService: NbThemeService,
     ) {
-        this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+        this.currentUser = this.getCurrentUser()
     }
 
-    public get currentUserValue(): any {
-        return this.currentUserSubject.value;
-    }
-
-    public isAuthenticated(): boolean {
-
-        if (this.currentUserValue !== null && this.currentUserValue !== undefined && this.currentUserValue !== '') {
-            return true;
-        }
-
-        return false;
-    }
-
+    // Login
     login(params) {
         return this.httpClient.post<any>(API.LOGIN, params)
             .pipe(map(res => {
@@ -56,9 +42,24 @@ export class AuthService {
         return localStorage.getItem('theme');
     }
 
-    // set data in local storage
+    // Set token in local storage
     setStoreTokens(token: string) {
         localStorage.setItem('token', token);
+    }
+
+    // Get user info from localStorage
+    getCurrentUser() {
+        const user = localStorage.getItem('currentUser');
+        if (user !== null && user !== '' && user !== undefined) {
+            return JSON.parse(localStorage.getItem('currentUser'));
+        } else {
+            return null;
+        }
+    }
+
+    // Set user info in local storage
+    setCurrentUser(user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
     }
 
     getJwtToken() {
@@ -67,8 +68,17 @@ export class AuthService {
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('token');
+        this.removeCurrentUser();
+        this.removeToken();
         this.router.navigate(['/auth/login']);
+    }
+
+    removeCurrentUser() {
+        localStorage.removeItem('currentUser');
+    }
+
+    removeToken() {
+        localStorage.removeItem('token');
     }
 
     // login(user: { username: string, password: string }): Observable<boolean> {

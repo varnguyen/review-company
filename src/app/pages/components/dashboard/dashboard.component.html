@@ -11,8 +11,8 @@
                     <div class="col-xl-6">
                         <label class="p-r-10">Tỉnh/Thành phố</label>
                         <nb-select [selected]="provinceSelected">
-                            <nb-option *ngFor="let province of provinces;let idx = index;"
-                                [value]="province.province_id">
+                            <nb-option *ngFor="let province of provinces;" [value]="province.province_id"
+                                (click)="onChangeSearch()">
                                 {{province.province_name}}
                             </nb-option>
                         </nb-select>
@@ -20,7 +20,7 @@
                     <div class="col-xl-6">
                         <label class="p-r-10">Loại</label>
                         <nb-select [selected]="jobSelected">
-                            <nb-option *ngFor="let job of jobs;let idx = index;" [value]="job.job_id">
+                            <nb-option *ngFor="let job of jobs;" [value]="job.job_id" (click)="onChangeSearch()">
                                 {{job.job_name}}
                             </nb-option>
                         </nb-select>

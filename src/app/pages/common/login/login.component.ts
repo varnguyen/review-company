@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private toastrService: NbToastrService,
     ) {
+        if (this.authService.currentUser) {
+            this.router.navigate(['/pages']);
+        }
         this.createForm();
     }
 
@@ -45,11 +48,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        // if (this.authService.currentUserValue) {
-        //     this.router.navigate(['/pages']);
-        // }
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-        console.log(this.route.snapshot)
     }
 
     get f() { return this.loginForm.controls; }
@@ -81,13 +80,14 @@ export class LoginComponent implements OnInit {
         switch (res.code) {
             case 0:
                 this.authService.setStoreTokens(res.data.token);
+                this.authService.setCurrentUser(res.data);
                 this.router.navigate([this.returnUrl]);
                 break;
             case 3:
                 this.showToast(res, 'danger');
                 this.loading = false;
                 break;
-            case 4:
+            case 5:
                 this.showToast(res, 'danger');
                 this.loading = false;
                 break;
