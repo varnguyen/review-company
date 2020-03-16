@@ -6,21 +6,22 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <label class="p-r-10">Tên công ty</label>
-                        <input nbInput placeholder="Search">
+                        <input nbInput placeholder="Search" (keyup)="findCompanyByName($event)">
                     </div>
                     <div class="col-xl-6">
                         <label class="p-r-10">Tỉnh/Thành phố</label>
-                        <nb-select [selected]="provinceSelected">
+                        <nb-select [selected]="provinceId">
                             <nb-option *ngFor="let province of provinces;" [value]="province.province_id"
-                                (click)="onChangeSearch()">
+                                (click)="onChangeFilter('',province.province_id)">
                                 {{province.province_name}}
                             </nb-option>
                         </nb-select>
                     </div>
                     <div class="col-xl-6">
                         <label class="p-r-10">Loại</label>
-                        <nb-select [selected]="jobSelected">
-                            <nb-option *ngFor="let job of jobs;" [value]="job.job_id" (click)="onChangeSearch()">
+                        <nb-select [selected]="jobId">
+                            <nb-option *ngFor="let job of jobs;" [value]="job.job_id"
+                                (click)="onChangeFilter(job.job_id,'')">
                                 {{job.job_name}}
                             </nb-option>
                         </nb-select>

@@ -13,12 +13,14 @@ export class CompanyService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getCompanyLists(jobId = null, provinceId = null): Observable<any> {
+    getCompanyLists(data, pagination): Observable<any> {
         let params = new HttpParams();
-        params = params.append('page', '1');
-        params = params.append('row', '10');
-        if (jobId) { params = params.append('job_id', jobId); }
-        if (provinceId) { params = params.append('province_id', provinceId); }
+        params = params.append('page', pagination.page);
+        params = params.append('row', pagination.row);
+        if (data.jobId) { params = params.append('job_id', data.jobId.toString()); }
+        if (data.provinceId) { params = params.append('province_id', data.provinceId.toString()); }
+        if (data.companyName) { params = params.append('company_name', data.companyName); }
+        console.log(data)
         const url = API.COMPANY;
         return this.httpClient.get<any>(url, { params }).pipe(catchError(this.handleErrorPromise));
     }

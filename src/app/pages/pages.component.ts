@@ -51,7 +51,7 @@ export class PagesComponent implements OnInit {
     ngOnInit() {
         console.log(this.currentUser);
         this.token = this.authService.getJwtToken();
-        console.log(this.token);
+        console.log('TOKEN => ', this.token);
         this.token ? this.getUserInfo() : this.isContected = false;
 
         // if (this.token) {

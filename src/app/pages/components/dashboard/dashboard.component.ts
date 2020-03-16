@@ -117,10 +117,13 @@ export class DashboardComponent implements OnInit {
     @ViewChildren(NbListItemComponent, { read: ElementRef }) listItems: QueryList<ElementRef<Element>>;
 
     provinces: any;
-    provinceSelected: number;
     jobs: any;
-    jobSelected: number;
     companys: any;
+    provinceId = 0;
+    jobId = 0;
+    companyName = '';
+    page = 1;
+    row = 10;
 
     constructor(
         private router: Router,
@@ -128,22 +131,32 @@ export class DashboardComponent implements OnInit {
         private jobTypeService: JobTypeService,
         private companyService: CompanyService,
     ) {
+        this.getProvinceLists();
     }
 
     ngOnInit() {
-        this.getJobTypeLists();
-        this.getProvinceLists();
+    }
+
+    onChangeFilter(jobId: any, provinceId: any) {
+        if (jobId) { this.jobId = jobId; }
+        if (provinceId) { this.provinceId = provinceId; }
         this.getCompanyLists();
     }
 
-    onChangeSearch(provinceId, jobId) {
-        this.getCompanyLists(provinceId, jobId);
+    findCompanyByName(event) {
+        console.log(event.target.value)
+        this.companyName = event.target.value;
+        this.getCompanyLists();
     }
 
     loadNext() {
         if (this.loading) { return; }
 
+
         this.loading = true;
+        console.log('Loading ... ');
+        console.log(this.companys);
+
         this.placeholders = new Array(this.pageSize);
         const newsData = [
             {
@@ -267,12 +280,12 @@ export class DashboardComponent implements OnInit {
     getProvinceLists() {
         this.provincesService.getProvinceLists().subscribe(
             res => {
-                console.log(res);
+                console.log('Provinces :', res);
                 if (res.code === 0) {
                     this.provinces = res.data;
-                    this.provinceSelected = this.provinces[0].province_id;
+                    this.provinceId = this.provinces[0].province_id;
+                    this.getJobTypeLists();
                 }
-
             }
         );
     }
@@ -280,21 +293,33 @@ export class DashboardComponent implements OnInit {
     getJobTypeLists() {
         this.jobTypeService.getJobTypeLists().subscribe(
             res => {
-                console.log(res);
+                console.log('Jobs :', res);
                 if (res.code === 0) {
                     this.jobs = res.data;
-                    this.jobSelected = this.jobs[0].job_id;
+                    this.jobId = this.jobs[0].job_id;
+                    this.getCompanyLists();
                 }
             }
         );
     }
 
-    getCompanyLists(jobId = null, provinceId = null) {
-        this.companyService.getCompanyLists(jobId, provinceId).subscribe(
+    getCompanyLists() {
+        this.placeholders = new Array(10);
+        const data = {
+            jobId: this.jobId,
+            provinceId: this.provinceId,
+            companyName: this.companyName
+        }
+        const pagination = {
+            page: this.page,
+            row: this.row
+        }
+        this.companyService.getCompanyLists(data, pagination).subscribe(
             res => {
-                console.log(res);
+                console.log('Companys :', res);
                 if (res.code === 0) {
                     this.companys = res.data;
+                    this.placeholders = [];
                     this.loading = false;
                 }
             }
