@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { emailRegex,phoneRegex } from 'src/app/_data';
+import { emailRegex, phoneRegex } from 'src/app/_data';
+import { CompanyService } from 'src/app/_services';
+import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { staff } from '../../../../_data';
 
 @Component({
     selector: 'app-company-add',
@@ -10,9 +13,15 @@ import { emailRegex,phoneRegex } from 'src/app/_data';
 export class CompanyAddComponent implements OnInit {
 
     submitted = false;
+    isLoading = false;
     companyForm: FormGroup;
+    staff = staff;
+    positonToastr = 'bottom-left';
 
-    constructor() {
+    constructor(
+        private companyService: CompanyService,
+        private toastrService: NbToastrService,
+    ) {
         this.initCompanyForm();
     }
 
@@ -33,12 +42,13 @@ export class CompanyAddComponent implements OnInit {
                 Validators.minLength(10),
                 Validators.maxLength(12),
             ]),
-            job_id: new FormControl('1', []),
-            province_id: new FormControl('1', []),
+            job_id: new FormControl(1, []),
+            province_id: new FormControl(1, []),
             address: new FormControl('', [
+                Validators.required,
                 Validators.maxLength(256)
             ]),
-            member_total: new FormControl('1', []),
+            member_total: new FormControl(1, []),
             website: new FormControl('', [
                 Validators.minLength(12),
                 Validators.maxLength(256)
@@ -53,15 +63,31 @@ export class CompanyAddComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        console.log(this.companyForm);
 
         if (this.companyForm.status === 'VALID') {
+            this.isLoading = true;
             this.addCompany();
         }
     }
 
+    showToast(position, status: NbComponentStatus, message = '') {
+        this.toastrService.show(
+            message,
+            'Success',
+            { position, status });
+    }
+
     addCompany() {
-        console.log('addCompany');
+        const company = this.companyForm.value;
+        this.companyService.createCompany(company).subscribe(
+            res => {
+                if (res.code === 0) {
+                    this.isLoading = false;
+                    this.submitted = false;
+                    this.showToast(this.positonToastr, 'success', res.message);
+                }
+            }
+        )
     }
 
 }

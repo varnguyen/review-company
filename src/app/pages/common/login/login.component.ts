@@ -84,11 +84,11 @@ export class LoginComponent implements OnInit {
                 this.router.navigate([this.returnUrl]);
                 break;
             case 3:
-                this.showToast(res, 'danger');
+                this.showToast('bottom-left', res, 'danger');
                 this.loading = false;
                 break;
             case 5:
-                this.showToast(res, 'danger');
+                this.showToast('bottom-left', res, 'danger');
                 this.loading = false;
                 break;
             default:
@@ -96,10 +96,10 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    showToast(res: any, status: NbComponentStatus) {
+    showToast(position, res: any, status: NbComponentStatus) {
         this.toastrService.show(
             `${res.message}`,
-            `Status: ${res.code}`
-            , { status });
+            `Error: ${res.code}`
+            , { position, status });
     }
 }

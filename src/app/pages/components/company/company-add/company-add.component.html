@@ -1,7 +1,8 @@
 <div class="profile">
     <div class="row">
-        <div class="col-xl-8 col-sm-6 col-md-8">
-            <nb-card>
+        <!-- col-xl-8 col-sm-6 col-md-8  -->
+        <div class="col-xl-8 order-2 order-sm-2 order-xl-1">
+            <nb-card accent="warning">
                 <nb-card-header>Thông tin chung</nb-card-header>
                 <nb-card-body>
                     <form [formGroup]="companyForm">
@@ -28,7 +29,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="inputPhone" class="label">Số điện thoại</label>
-                                    <input type="tel" [status]="(submitted && f.phone.errors) ? 'danger' : 'basic'" nbInput fullWidth id="inputPhone" placeholder="Số điện thoại"
+                                    <input type="tel" [status]="(submitted && f.phone.errors) ? 'danger' : 'basic'"
+                                        nbInput fullWidth id="inputPhone" placeholder="Số điện thoại"
                                         formControlName="phone">
                                     <ng-container *ngIf="f.phone.invalid  && submitted">
                                         <p class="caption status-danger" *ngIf="f.phone.errors?.required">
@@ -47,23 +49,10 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="inputMember" class="label">Số nhân sự</label>
-                                    <nb-select id="inputMember" fullWidth selected="1" formControlName="member_total">
-                                        <nb-option value="1">1 - 50</nb-option>
-                                        <nb-option value="2">50 - 100</nb-option>
-                                        <nb-option value="3">101 - 150</nb-option>
-                                        <nb-option value="31">151 - 200</nb-option>
-                                        <nb-option value="4">201 - 300</nb-option>
-                                        <nb-option value="5">301 - 400</nb-option>
-                                        <nb-option value="6">401 - 500</nb-option>
-                                        <nb-option value="7">501 - 600</nb-option>
-                                        <nb-option value="8">601 - 700</nb-option>
-                                        <nb-option value="9">701 - 800</nb-option>
-                                        <nb-option value="10">801 - 900</nb-option>
-                                        <nb-option value="11">901 - 1000</nb-option>
-                                        <nb-option value="12">1001 - 2000</nb-option>
-                                        <nb-option value="13">2001 - 3000</nb-option>
-                                        <nb-option value="14">3001 - 4000</nb-option>
-                                        <nb-option value="15">4001 - 5000</nb-option>
+                                    <nb-select [selected]="1" id="inputMember" fullWidth formControlName="member_total">
+                                        <nb-option *ngFor="let item of staff;" [value]="item.value">
+                                            {{item.title}}
+                                        </nb-option>
                                     </nb-select>
                                 </div>
                             </div>
@@ -107,6 +96,9 @@
                                         nbInput fullWidth id="inputAddress" placeholder="Địa chỉ"
                                         formControlName="address">
                                     <ng-container *ngIf="f.address.invalid  && submitted">
+                                        <p class="caption status-danger" *ngIf="f.address.errors?.required">
+                                            Địa chỉ không thể để trống.
+                                        </p>
                                         <p class="caption status-danger" *ngIf="f.address.errors?.maxlength">
                                             Địa chỉ tối đa 256 ký tự
                                         </p>
@@ -118,18 +110,19 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="inputProvince" class="label">Tỉnh/Thành phố</label>
-                                    <nb-select id="inputProvince" fullWidth selected="1" formControlName="province_id">
-                                        <nb-option value="1">Hà Nội</nb-option>
-                                        <nb-option value="2">TP Hồ Chí Minh</nb-option>
+                                    <nb-select id="inputProvince" fullWidth [selected]="1"
+                                        formControlName="province_id">
+                                        <nb-option [value]="1">Hà Nội</nb-option>
+                                        <nb-option [value]="2">TP Hồ Chí Minh</nb-option>
                                     </nb-select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="inputJobType" class="label">Lĩnh vực</label>
-                                    <nb-select id="inputJobType" fullWidth selected="1" formControlName="job_id">
-                                        <nb-option value="1">IT Phần mềm</nb-option>
-                                        <nb-option value="2">Giáo dục</nb-option>
+                                    <nb-select id="inputJobType" fullWidth [selected]="1" formControlName="job_id">
+                                        <nb-option [value]="1">IT Phần mềm</nb-option>
+                                        <nb-option [value]="2">Giáo dục</nb-option>
                                     </nb-select>
                                 </div>
                             </div>
@@ -144,19 +137,20 @@
                 </nb-card-body>
             </nb-card>
         </div>
-        <div class="col-xl-4 col-sm-6 col-md-4">
-            <nb-card>
+        <!-- col-xl-4 col-sm-6 col-md-4  -->
+        <div class="col-xl-4 order-1 order-sm-1 order-xl-12">
+            <nb-card accent="warning">
                 <nb-card-header>Logo Công ty</nb-card-header>
                 <nb-card-body>
                     <div class="logo">
                         <label for="fileToUpload" nbTooltip="Chọn ảnh" nbTooltipPlacement="top">
-                            <img [attr.src]="''" alt="logo">
+                            <img [attr.src]="'https://via.placeholder.com/250/4479e7/ffffff?Text=IMG'" alt="logo">
                         </label>
                         <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" hidden>
                     </div>
                 </nb-card-body>
                 <nb-card-footer>
-                    <button nbButton hero status="warning">Chọn ảnh</button>
+                    <button [disabled]="isLoading" nbButton hero status="warning">Chọn ảnh</button>
                 </nb-card-footer>
             </nb-card>
         </div>

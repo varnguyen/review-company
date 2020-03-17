@@ -1,19 +1,20 @@
 <nb-layout container>
 
     <nb-layout-header class="layout-header" fixed>
-        <div class="header-container">
+        <div class="header-container _left">
             <div class="logo-container">
                 <a (click)="toggleSidebar()" class="sidebar-toggle">
                     <nb-icon icon="menu-2-outline"></nb-icon>
                 </a>
                 <a class="logo" (click)="navigateHome()">Re-Com<span></span></a>
             </div>
-            <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+            <nb-select class="select-theme" [selected]="currentTheme" (selectedChange)="changeTheme($event)"
+                status="primary">
                 <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
             </nb-select>
         </div>
 
-        <div class="header-container">
+        <div class="header-container _right">
             <nb-actions size="small">
                 <nb-action>
                     <button nbButton hero status="warning" routerLink="/pages/company/add">Gợi ý</button>

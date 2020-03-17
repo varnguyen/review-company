@@ -62,7 +62,7 @@
                                     </p>
                                     <p class="caption status-danger"
                                         *ngIf="f.nick_name.errors?.minlength || f.nick_name.errors?.maxlength">
-                                        Biệt danh từ 5 - 50 ký tự
+                                        Biệt danh từ 5 - 30 ký tự
                                     </p>
                                 </ng-container>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-xl-6 p-b-10">
                                 <label class="p-r-10">Giới tính</label>
-                                <nb-select formControlName="gender" selected="{{user ? user.gender : '1'}}">
+                                <nb-select formControlName="gender" [selected]="user ? user.gender.toString() : 1">
                                     <nb-option value="1">Nam</nb-option>
                                     <nb-option value="0">Nữ</nb-option>
                                 </nb-select>
@@ -127,8 +127,8 @@
                         </div>
                     </form>
                 </nb-card-body>
-                <nb-card-footer>
-                    <button nbButton hero status="warning" (click)="submit()">Cập nhật</button>
+                <nb-card-footer class="text-right">
+                    <button [disabled]="isLoading" nbButton hero status="warning" (click)="submit()">Cập nhật</button>
                     <!-- <button nbButton hero status="primary">Back</button> -->
                 </nb-card-footer>
             </nb-card>

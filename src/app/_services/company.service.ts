@@ -13,6 +13,10 @@ export class CompanyService {
     constructor(private httpClient: HttpClient) {
     }
 
+    createCompany(company): Observable<any> {
+        return this.httpClient.post<any>(API.COMPANY, company).pipe(catchError(this.handleErrorPromise));
+    }
+
     getCompanyLists(data, pagination): Observable<any> {
         let params = new HttpParams();
         params = params.append('page', pagination.page);
@@ -21,13 +25,11 @@ export class CompanyService {
         if (data.provinceId) { params = params.append('province_id', data.provinceId.toString()); }
         if (data.companyName) { params = params.append('company_name', data.companyName); }
         console.log(data);
-        const url = API.COMPANY;
-        return this.httpClient.get<any>(url, { params }).pipe(catchError(this.handleErrorPromise));
+        return this.httpClient.get<any>(API.COMPANY, { params }).pipe(catchError(this.handleErrorPromise));
     }
 
     getCompanyById(companyId): Observable<any> {
-        const url = API.COMPANY;
-        return this.httpClient.get<any>(`${url}/${companyId}`).pipe(catchError(this.handleErrorPromise));
+        return this.httpClient.get<any>(`${API.COMPANY}/${companyId}`).pipe(catchError(this.handleErrorPromise));
     }
 
     private handleErrorPromise(error: Response | any) {

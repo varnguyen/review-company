@@ -1,0 +1,18 @@
+export const staff = [
+    { value: 1, title: '1 - 50' },
+    { value: 2, title: '50 - 100' },
+    { value: 3, title: '101 - 150' },
+    { value: 4, title: '151 - 200' },
+    { value: 5, title: '201 - 300' },
+    { value: 6, title: '301 - 400' },
+    { value: 7, title: '401 - 500' },
+    { value: 8, title: '501 - 600' },
+    { value: 9, title: '601 - 700' },
+    { value: 10, title: '701 - 800' },
+    { value: 11, title: '801 - 900' },
+    { value: 12, title: '901 - 1000' },
+    { value: 13, title: '1001 - 2000' },
+    { value: 14, title: '2001 - 3000' },
+    { value: 15, title: '3001 - 4000' },
+    { value: 15, title: '4001 - 5000' },
+];

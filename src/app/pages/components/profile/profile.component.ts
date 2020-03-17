@@ -13,10 +13,12 @@ export class ProfileComponent implements OnInit {
 
     profileForm: FormGroup;
     submitted = false;
+    isLoading = false;
     toast: any = {};
     avatarLocalSrc: any = 'https://via.placeholder.com/250/4479e7/ffffff?Text=IMG';
     disable = true;
     user: any;
+    positonToastr = 'bottom-left';
 
     constructor(
         private toastrService: NbToastrService,
@@ -41,9 +43,9 @@ export class ProfileComponent implements OnInit {
             nick_name: new FormControl('', [
                 Validators.required,
                 Validators.minLength(5),
-                Validators.maxLength(50)
+                Validators.maxLength(30)
             ]),
-            gender: new FormControl('1', []),
+            gender: new FormControl(1, []),
             birthday: new FormControl('', []),
             email: new FormControl('', [
                 Validators.required,
@@ -70,35 +72,60 @@ export class ProfileComponent implements OnInit {
         console.log(this.profileForm);
 
         if (this.profileForm.status === 'VALID') {
+            this.isLoading = true;
             this.updateUserInfo();
         }
     }
 
     uploadAvatar() {
         // this.showToast('bottom-left', 'success'); // basic - primary - success - info - warning - danger - control
-        const code = 0;
-        this.handleStatus(code);
+        const res = { code: 401 };
+        this.handleStatus(res);
     }
 
-    handleStatus(code) {
-        switch (code) {
-            case 404:
-                this.toast.title = 'Error 404';
-                this.toast.message = ' Msg Error 404';
-                this.showToast('bottom-left', 'danger', this.toast);
+    handleStatus(res) {
+        switch (res.code) {
+            case 0:
+                this.user = res.data;
+                this.profileForm.patchValue(this.user);
+                this.isLoading = false;
+                this.submitted = false;
+                this.toast.title = 'Success';
+                this.toast.message = res.message;
+                this.showToast(this.positonToastr, 'success', this.toast);
                 break;
             case 401:
                 this.toast.title = 'Error 401';
                 this.toast.message = ' Msg Error 401';
-                this.showToast('bottom-left', 'danger', this.toast);
+                this.showToast(this.positonToastr, 'danger', this.toast);
                 break;
             default:
                 this.toast.title = 'Success';
                 this.toast.message = ' Msg success';
-                this.showToast('bottom-left', 'success', this.toast);
+                this.showToast(this.positonToastr, 'success', this.toast);
                 break;
         }
     }
+
+    // handleCode(res) {
+    //     switch (res.code) {
+    //         case 0:
+    //             this.authService.setStoreTokens(res.data.token);
+    //             this.authService.setCurrentUser(res.data);
+    //             this.router.navigate([this.returnUrl]);
+    //             break;
+    //         case 3:
+    //             this.showToast(res, 'danger');
+    //             this.loading = false;
+    //             break;
+    //         case 5:
+    //             this.showToast(res, 'danger');
+    //             this.loading = false;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
 
     showToast(position, status: NbComponentStatus, toast: any) {
         this.toastrService.show(
@@ -136,16 +163,12 @@ export class ProfileComponent implements OnInit {
     }
 
     updateUserInfo() {
-
         const user = this.profileForm.value;
-        user.user_id = this.user.user_id;
-        return;
+        // user.user_id = this.user.user_id;
         this.userSerice.updateUserInfo(user).subscribe(
             res => {
                 console.log(res);
-                return;
-                this.submitted = false;
-                this.handleStatus(0);
+                this.handleStatus(res);
             }
         );
     }
