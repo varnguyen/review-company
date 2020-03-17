@@ -1,4 +1,16 @@
 import { NgModule } from '@angular/core';
+
+import { PagesComponent } from './pages.component';
+import { PagesRoutingModule } from './pages-routing.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { NotFoundModule } from './common/not-found/not-found.module';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { CommonModule } from '@angular/common';
+import { ProfileModule } from './components/profile/profile.module';
+import { ChatModule } from './components/chat/chat.module';
+import { ChangePasswordModule } from './components/change-password/change-password.modue';
+import { CompanyModule } from './components/company/company.module';
+
 import {
     NbMenuModule,
     NbSidebarModule,
@@ -11,19 +23,9 @@ import {
     NbContextMenuModule,
     NbListModule,
     NbCardModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbButtonModule
 } from '@nebular/theme';
-
-import { PagesComponent } from './pages.component';
-import { PagesRoutingModule } from './pages-routing.module';
-import { DashboardModule } from './components/dashboard/dashboard.module';
-import { NotFoundModule } from './common/not-found/not-found.module';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { CommonModule } from '@angular/common';
-import { CompanyDetailModule } from './components/company-detail/company-detail.module';
-import { ProfileModule } from './components/profile/profile.module';
-import { ChatModule } from './components/chat/chat.module';
-import { ChangePasswordModule } from './components/change-password/change-password.modue';
 
 const NB_MODULE = [
     NbMenuModule,
@@ -33,12 +35,13 @@ const NB_MODULE = [
     NbSidebarModule,
     NbSelectModule,
     NbIconModule,
+    NbButtonModule,
     NbActionsModule,
     NbUserModule,
     NbContextMenuModule,
     NbCardModule,
     NbListModule,
-    NbPopoverModule
+    NbPopoverModule,
 ];
 
 @NgModule({
@@ -46,16 +49,16 @@ const NB_MODULE = [
         PagesRoutingModule,
         CommonModule,
         DashboardModule,
-        CompanyDetailModule,
         ProfileModule,
         ChatModule,
+        CompanyModule,
         ChangePasswordModule,
 
         // Nebular Module
         NB_MODULE
     ],
     declarations: [
-        PagesComponent
+        PagesComponent,
     ],
     providers: [NbSidebarService]
 })

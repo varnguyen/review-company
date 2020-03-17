@@ -454,7 +454,7 @@ export class CustomersService extends ApiService {
 
     private handleErrorPromise(error: Response | any) {
         console.error(error.message || error);
-        return Promise.reject(error.message || error);
+        return Promise.reject(error);
     }
 
     getData() {

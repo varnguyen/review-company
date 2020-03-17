@@ -29,6 +29,8 @@ export class PagesComponent implements OnInit {
     position = 'bottom';
     loading = true;
 
+    errors: any;
+
     constructor(
         private sidebarService: NbSidebarService,
         private menuService: NbMenuService,
@@ -85,7 +87,12 @@ export class PagesComponent implements OnInit {
                     console.log(this.user);
                     this.isContected = true;
                 }
-
+            },
+            error => {
+                this.errors = error;
+                if (this.errors.status === 401) {
+                    console.log('Phiên đăng nhập đã hết hạn.');
+                }
             }
         );
     }
@@ -146,7 +153,4 @@ export class PagesComponent implements OnInit {
         this.authService.logout();
     }
 
-    goToLogin() {
-        this.router.navigate(['./auth/login']);
-    }
 }

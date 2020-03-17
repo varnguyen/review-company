@@ -20,14 +20,14 @@ export class CompanyService {
         if (data.jobId) { params = params.append('job_id', data.jobId.toString()); }
         if (data.provinceId) { params = params.append('province_id', data.provinceId.toString()); }
         if (data.companyName) { params = params.append('company_name', data.companyName); }
-        console.log(data)
+        console.log(data);
         const url = API.COMPANY;
         return this.httpClient.get<any>(url, { params }).pipe(catchError(this.handleErrorPromise));
     }
 
     getCompanyById(companyId): Observable<any> {
         const url = API.COMPANY;
-        return this.httpClient.get<any>(`${url} /${companyId}`).pipe(catchError(this.handleErrorPromise));
+        return this.httpClient.get<any>(`${url}/${companyId}`).pipe(catchError(this.handleErrorPromise));
     }
 
     private handleErrorPromise(error: Response | any) {

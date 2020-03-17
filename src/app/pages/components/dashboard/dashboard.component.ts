@@ -124,6 +124,7 @@ export class DashboardComponent implements OnInit {
     companyName = '';
     page = 1;
     row = 10;
+    timer: any;
 
     constructor(
         private router: Router,
@@ -144,9 +145,16 @@ export class DashboardComponent implements OnInit {
     }
 
     findCompanyByName(event) {
-        console.log(event.target.value)
         this.companyName = event.target.value;
-        this.getCompanyLists();
+        if (event.key === 'Enter') {
+            console.log(this.companyName);
+            this.getCompanyLists();
+        } else {
+            clearTimeout(this.timer);
+            this.timer = setTimeout(() => {
+                this.getCompanyLists();
+            }, 2000);
+        }
     }
 
     loadNext() {
@@ -309,11 +317,11 @@ export class DashboardComponent implements OnInit {
             jobId: this.jobId,
             provinceId: this.provinceId,
             companyName: this.companyName
-        }
+        };
         const pagination = {
             page: this.page,
             row: this.row
-        }
+        };
         this.companyService.getCompanyLists(data, pagination).subscribe(
             res => {
                 console.log('Companys :', res);

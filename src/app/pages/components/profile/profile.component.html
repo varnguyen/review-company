@@ -108,7 +108,7 @@
                                     nbInput fullWidth placeholder="Địa chỉ" formControlName="address">
                                 <ng-container *ngIf="f.address.invalid  && submitted">
                                     <p class="caption status-danger" *ngIf="f.address.errors?.maxlength">
-                                        Biệt danh từ 256 ký tự
+                                        Địa chỉ tối đa 256 ký tự
                                     </p>
                                 </ng-container>
                             </div>
@@ -120,7 +120,7 @@
                                     formControlName="description"></textarea>
                                 <ng-container *ngIf="f.description.invalid  && submitted">
                                     <p class="caption status-danger" *ngIf="f.description.errors?.maxlength">
-                                        Biệt danh từ 500 ký tự
+                                        Mô tả tối đa 500 ký tự
                                     </p>
                                 </ng-container>
                             </div>

@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private toastrService: NbToastrService,
     ) {
-        if (this.authService.currentUser) {
-            this.router.navigate(['/pages']);
-        }
+        // if (this.authService.currentUser) {
+        //     this.router.navigate(['/pages']);
+        // }
         this.createForm();
     }
 

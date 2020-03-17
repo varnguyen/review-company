@@ -15,7 +15,11 @@
 
         <div class="header-container">
             <nb-actions size="small">
-                <nb-action *ngIf="!isContected" class="control-item" (click)="goToLogin()">Đăng nhập</nb-action>
+                <nb-action>
+                    <button nbButton hero status="warning" routerLink="/pages/company/add">Gợi ý</button>
+                </nb-action>
+                <nb-action *ngIf="!isContected" class="control-item" routerLink="/auth/login">Đăng nhập
+                </nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12"
                     badgeStatus="danger" [nbPopover]="message" [nbPopoverPlacement]="position"></nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33"

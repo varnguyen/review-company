@@ -1,0 +1,164 @@
+<div class="profile">
+    <div class="row">
+        <div class="col-xl-8 col-sm-6 col-md-8">
+            <nb-card>
+                <nb-card-header>Thông tin chung</nb-card-header>
+                <nb-card-body>
+                    <form [formGroup]="companyForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="inputCompanyName" class="label">Tên công ty</label>
+                                    <input type="text" [status]="(submitted && f.full_name.errors) ? 'danger' : 'basic'"
+                                        nbInput fullWidth id="inputCompanyName" placeholder="Tên công ty"
+                                        formControlName="full_name">
+                                    <ng-container *ngIf="f.full_name.invalid  && submitted">
+                                        <p class="caption status-danger" *ngIf="f.full_name.errors?.required">
+                                            Tên công ty không thể để trống.
+                                        </p>
+                                        <p class="caption status-danger"
+                                            *ngIf="f.full_name.errors?.minlength || f.full_name.errors?.maxlength">
+                                            Tên công ty từ 10 - 256 ký tự
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputPhone" class="label">Số điện thoại</label>
+                                    <input type="tel" [status]="(submitted && f.phone.errors) ? 'danger' : 'basic'" nbInput fullWidth id="inputPhone" placeholder="Số điện thoại"
+                                        formControlName="phone">
+                                    <ng-container *ngIf="f.phone.invalid  && submitted">
+                                        <p class="caption status-danger" *ngIf="f.phone.errors?.required">
+                                            Số điện thoại không thể để trống.
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="f.phone.errors?.pattern">
+                                            Chỉ được nhập số
+                                        </p>
+                                        <p class="caption status-danger"
+                                            *ngIf="f.phone.errors?.minlength || f.phone.errors?.maxlength">
+                                            Số điện thoại từ 10 - 12 ký tự
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputMember" class="label">Số nhân sự</label>
+                                    <nb-select id="inputMember" fullWidth selected="1" formControlName="member_total">
+                                        <nb-option value="1">1 - 50</nb-option>
+                                        <nb-option value="2">50 - 100</nb-option>
+                                        <nb-option value="3">101 - 150</nb-option>
+                                        <nb-option value="31">151 - 200</nb-option>
+                                        <nb-option value="4">201 - 300</nb-option>
+                                        <nb-option value="5">301 - 400</nb-option>
+                                        <nb-option value="6">401 - 500</nb-option>
+                                        <nb-option value="7">501 - 600</nb-option>
+                                        <nb-option value="8">601 - 700</nb-option>
+                                        <nb-option value="9">701 - 800</nb-option>
+                                        <nb-option value="10">801 - 900</nb-option>
+                                        <nb-option value="11">901 - 1000</nb-option>
+                                        <nb-option value="12">1001 - 2000</nb-option>
+                                        <nb-option value="13">2001 - 3000</nb-option>
+                                        <nb-option value="14">3001 - 4000</nb-option>
+                                        <nb-option value="15">4001 - 5000</nb-option>
+                                    </nb-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputEmail" class="label">Email</label>
+                                    <input type="email" [status]="(submitted && f.email.errors) ? 'danger' : 'basic'"
+                                        nbInput fullWidth id="inputEmail" placeholder="Email" formControlName="email">
+                                    <ng-container *ngIf="f.email.invalid  && submitted">
+                                        <p class="caption status-danger" *ngIf="f.email.errors?.required">
+                                            Email không thể để trống.
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="f.email.errors?.pattern">
+                                            Email phải đúng định dạng
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputWebsite" class="label">Website</label>
+                                    <input type="text" [status]="(submitted && f.website.errors) ? 'danger' : 'basic'"
+                                        nbInput fullWidth id="inputWebsite" placeholder="https://example.com"
+                                        formControlName="website">
+                                    <ng-container *ngIf="f.website.invalid  && submitted">
+                                        <p class="caption status-danger"
+                                            *ngIf="f.website.errors?.minlength || f.website.errors?.maxlength">
+                                            Website ty từ 12 - 256 ký tự
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="inputAddress" class="label">Địa chỉ</label>
+                                    <input type="text" [status]="(submitted && f.address.errors) ? 'danger' : 'basic'"
+                                        nbInput fullWidth id="inputAddress" placeholder="Địa chỉ"
+                                        formControlName="address">
+                                    <ng-container *ngIf="f.address.invalid  && submitted">
+                                        <p class="caption status-danger" *ngIf="f.address.errors?.maxlength">
+                                            Địa chỉ tối đa 256 ký tự
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputProvince" class="label">Tỉnh/Thành phố</label>
+                                    <nb-select id="inputProvince" fullWidth selected="1" formControlName="province_id">
+                                        <nb-option value="1">Hà Nội</nb-option>
+                                        <nb-option value="2">TP Hồ Chí Minh</nb-option>
+                                    </nb-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputJobType" class="label">Lĩnh vực</label>
+                                    <nb-select id="inputJobType" fullWidth selected="1" formControlName="job_id">
+                                        <nb-option value="1">IT Phần mềm</nb-option>
+                                        <nb-option value="2">Giáo dục</nb-option>
+                                    </nb-select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="submit" hero nbButton status="warning" (click)="onSubmit()">Submit</button> -->
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" nbButton status="warning" (click)="onSubmit()">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-xl-4 col-sm-6 col-md-4">
+            <nb-card>
+                <nb-card-header>Logo Công ty</nb-card-header>
+                <nb-card-body>
+                    <div class="logo">
+                        <label for="fileToUpload" nbTooltip="Chọn ảnh" nbTooltipPlacement="top">
+                            <img [attr.src]="''" alt="logo">
+                        </label>
+                        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" hidden>
+                    </div>
+                </nb-card-body>
+                <nb-card-footer>
+                    <button nbButton hero status="warning">Chọn ảnh</button>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+    </div>
+</div>
