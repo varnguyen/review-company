@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { emailRegex, phoneRegex } from 'src/app/_data';
 import { CompanyService } from 'src/app/_services';
-import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { NbComponentStatus, NbToastrService, NbMenuService } from '@nebular/theme';
 import { staff } from '../../../../_data';
 
 @Component({
@@ -21,6 +21,7 @@ export class CompanyAddComponent implements OnInit {
     constructor(
         private companyService: CompanyService,
         private toastrService: NbToastrService,
+        private menuService: NbMenuService
     ) {
         this.initCompanyForm();
     }
@@ -40,7 +41,7 @@ export class CompanyAddComponent implements OnInit {
                 Validators.required,
                 Validators.pattern(phoneRegex),
                 Validators.minLength(10),
-                Validators.maxLength(12),
+                Validators.maxLength(20),
             ]),
             job_id: new FormControl(1, []),
             province_id: new FormControl(1, []),
@@ -85,6 +86,7 @@ export class CompanyAddComponent implements OnInit {
                     this.isLoading = false;
                     this.submitted = false;
                     this.showToast(this.positonToastr, 'success', res.message);
+                    this.menuService.navigateHome();
                 }
             }
         )

@@ -157,6 +157,10 @@ export class DashboardComponent implements OnInit {
         }
     }
 
+    renderTextSubTitle(comp) {
+        return `Nhân viên : ${comp.member_total} - Lĩnh vực : ${comp.job_id} - Tỉnh/Thành Phố : ${comp.province_id}`;
+    }
+
     loadNext() {
         if (this.loading) { return; }
 

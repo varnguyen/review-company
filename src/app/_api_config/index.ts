@@ -10,6 +10,7 @@ const URL = `${SERVER_URL}/${API_VERSION}`;
 
 export const API = {
     LOGIN: `${URL}/auth/login`,
+    REFRESH_TOKEN: `${URL}/auth/refresh-token`,
     REGISTER_USER: `${URL}/auth/register`,
     USER_INFO: `${URL}/me/profile`,
     UPDATE_USER_INFO: `${URL}/me/update`,

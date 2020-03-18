@@ -8,6 +8,7 @@ import { CompanyComponent } from './company.component';
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyAddComponent } from '././company-add/company-add.component';
 import { CompanyDetailComponent } from '././company-detail/company-detail.component';
+import { CompanyReviewDialogComponent } from './company-review-dialog/company-review-dialog.component';
 
 import {
     NbCardModule,
@@ -47,6 +48,7 @@ import {
         CompanyComponent,
         CompanyAddComponent,
         CompanyDetailComponent,
+        CompanyReviewDialogComponent,
     ],
 })
 export class CompanyModule { }

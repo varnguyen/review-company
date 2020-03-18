@@ -31,6 +31,11 @@ export class AuthService {
             }));
     }
 
+    // Login
+    refreshToken(accessToken) {
+        return this.httpClient.post<any>(API.COMPANY, accessToken).pipe(catchError(this.handleErrorPromise));
+    }
+
     // set theme default
     setTheme(theme = 'default') {
         this.themeService.changeTheme(theme);

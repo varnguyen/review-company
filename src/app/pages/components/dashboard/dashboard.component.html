@@ -82,7 +82,7 @@
                     <nb-card-body>
                         <h6 class="company-title" (click)="goToCompayDetail(company)">{{company.full_name}}</h6>
                         <nb-user shape="rectangle" size="giant" [name]="company.address"
-                            [title]="'Nhân viên : '+company.member_total" [picture]="company.picture"></nb-user>
+                            [title]="renderTextSubTitle(company)" [picture]="company.picture"></nb-user>
                         <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon>  -->
                     </nb-card-body>
                 </nb-list-item>
