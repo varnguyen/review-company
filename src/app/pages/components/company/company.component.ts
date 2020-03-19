@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JobTypeService, ProvincesService } from 'src/app/_services';
+import { JobTypeService, ProvincesService, ShareDataService } from 'src/app/_services';
 
 @Component({
     selector: 'app-company',
@@ -9,18 +9,17 @@ import { JobTypeService, ProvincesService } from 'src/app/_services';
 export class CompanyComponent implements OnInit {
 
     provinces = [];
-    provinceId = 0;
     jobs = [];
-    jobId = 0;
+    obj: any = {};
 
     constructor(
         private provincesService: ProvincesService,
         private jobTypeService: JobTypeService,
+        private shareDataService: ShareDataService
     ) { }
 
     ngOnInit() {
         this.getProvinceLists();
-        this.getJobTypeLists();
     }
 
     getProvinceLists() {
@@ -29,7 +28,7 @@ export class CompanyComponent implements OnInit {
                 console.log('Provinces :', res);
                 if (res.code === 0) {
                     this.provinces = res.data;
-                    this.provinceId = this.provinces[0].province_id;
+                    this.getJobTypeLists();
                 }
             }
         );
@@ -41,7 +40,10 @@ export class CompanyComponent implements OnInit {
                 console.log('Jobs :', res);
                 if (res.code === 0) {
                     this.jobs = res.data;
-                    this.jobId = this.jobs[0].job_id;
+
+                    this.obj.jobs = this.jobs;
+                    this.obj.provinces = this.provinces;
+                    this.shareDataService.passData(this.obj);
                 }
             }
         );

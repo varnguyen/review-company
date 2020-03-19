@@ -20,8 +20,10 @@ import {
     NbButtonModule,
     NbSelectModule,
     NbAlertModule,
-    NbInputModule
+    NbInputModule,
+    NbDialogModule,
 } from '@nebular/theme';
+import { PipesModule } from 'src/app/_pipes/pipes.module';
 
 @NgModule({
     imports: [
@@ -30,6 +32,7 @@ import {
         RouterModule,
         CommonModule,
         ReactiveFormsModule,
+        PipesModule,
 
         // Nebular Module
         NbCardModule,
@@ -42,12 +45,16 @@ import {
         NbSelectModule,
         NbAlertModule,
         NbUserModule,
-        NbInputModule
+        NbInputModule,
+        NbDialogModule.forChild(),
     ],
     declarations: [
         CompanyComponent,
         CompanyAddComponent,
         CompanyDetailComponent,
+        CompanyReviewDialogComponent,
+    ],
+    entryComponents: [
         CompanyReviewDialogComponent,
     ],
 })

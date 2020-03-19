@@ -5,4 +5,5 @@ export * from './provinces.service';
 export * from './job-type.service';
 export * from './company.service';
 export * from './user.service';
+export * from './share-data.service';
 

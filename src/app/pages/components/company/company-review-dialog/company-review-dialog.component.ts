@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'app-company-review-dialog',
-  templateUrl: './company-review-dialog.component.html',
-  styleUrls: ['./company-review-dialog.component.scss']
+    selector: 'app-company-review-dialog',
+    templateUrl: './company-review-dialog.component.html',
+    styleUrls: ['./company-review-dialog.component.scss']
 })
-export class CompanyReviewDialogComponent implements OnInit {
+export class CompanyReviewDialogComponent {
 
-  constructor() { }
+    constructor(protected ref: NbDialogRef<CompanyReviewDialogComponent>) { }
 
-  ngOnInit() {
-  }
+    cancel() {
+        this.ref.close();
+    }
+
+    submit() {
+        this.ref.close({});
+    }
 
 }

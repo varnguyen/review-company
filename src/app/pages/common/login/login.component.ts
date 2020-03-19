@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     submitted = false;
     loading = false;
+    duration = 5000; // 5s
+    position = 'bottom-left';
 
     constructor(
         private router: Router,
@@ -84,11 +86,11 @@ export class LoginComponent implements OnInit {
                 this.router.navigate([this.returnUrl]);
                 break;
             case 3:
-                this.showToast('bottom-left', res, 'danger');
+                this.showToast(this.position, this.duration, res, 'danger');
                 this.loading = false;
                 break;
             case 5:
-                this.showToast('bottom-left', res, 'danger');
+                this.showToast(this.position, this.duration, res, 'danger');
                 this.loading = false;
                 break;
             default:
@@ -96,10 +98,10 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    showToast(position, res: any, status: NbComponentStatus) {
+    showToast(position, duration, res: any, status: NbComponentStatus) {
         this.toastrService.show(
             `${res.message}`,
             `Error: ${res.code}`
-            , { position, status });
+            , { position, duration, status });
     }
 }

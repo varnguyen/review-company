@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { emailRegex, phoneRegex } from 'src/app/_data';
-import { CompanyService } from 'src/app/_services';
-import { NbComponentStatus, NbToastrService, NbMenuService } from '@nebular/theme';
-import { staff } from '../../../../_data';
+import { CompanyService, ShareDataService } from 'src/app/_services';
+import { NbComponentStatus, NbToastrService, NbMenuService, NbDialogService } from '@nebular/theme';
+import { STAFFS } from '../../../../_data';
 
 @Component({
     selector: 'app-company-add',
@@ -12,17 +12,33 @@ import { staff } from '../../../../_data';
 })
 export class CompanyAddComponent implements OnInit {
 
+    @ViewChild('dialog') public dialog: TemplateRef<any>;
+
     submitted = false;
     isLoading = false;
     companyForm: FormGroup;
-    staff = staff;
+    staff = STAFFS;
     positonToastr = 'bottom-left';
+
+    provinces = [];
+    provinceId = 0;
+    jobs = [];
+    jobId = 0;
+
 
     constructor(
         private companyService: CompanyService,
         private toastrService: NbToastrService,
-        private menuService: NbMenuService
+        private menuService: NbMenuService,
+        private shareDataService: ShareDataService,
+        private dialogService: NbDialogService,
     ) {
+        this.shareDataService.listenData().subscribe(res => {
+            this.provinces = res.provinces;
+            this.provinceId = this.provinces[0].province_id;
+            this.jobs = res.jobs;
+            this.jobId = this.jobs[0].job_id;
+        });
         this.initCompanyForm();
     }
 
@@ -76,6 +92,10 @@ export class CompanyAddComponent implements OnInit {
             message,
             'Success',
             { position, status });
+    }
+
+    open(dialog: TemplateRef<any>) {
+        this.dialogService.open(this.dialog, { context: 'Cảm ơn đóng góp của bạn.' });
     }
 
     addCompany() {

@@ -110,19 +110,21 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="inputProvince" class="label">Tỉnh/Thành phố</label>
-                                    <nb-select id="inputProvince" fullWidth [selected]="1"
+                                    <nb-select [selected]="provinceId" id="inputMember" fullWidth
                                         formControlName="province_id">
-                                        <nb-option [value]="1">Hà Nội</nb-option>
-                                        <nb-option [value]="2">TP Hồ Chí Minh</nb-option>
+                                        <nb-option *ngFor="let provin of provinces;" [value]="provin.province_id">
+                                            {{provin.province_name}}
+                                        </nb-option>
                                     </nb-select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="inputJobType" class="label">Lĩnh vực</label>
-                                    <nb-select id="inputJobType" fullWidth [selected]="1" formControlName="job_id">
-                                        <nb-option [value]="1">IT Phần mềm</nb-option>
-                                        <nb-option [value]="2">Giáo dục</nb-option>
+                                    <nb-select [selected]="jobId" id="inputJobType" fullWidth formControlName="job_id">
+                                        <nb-option *ngFor="let job of jobs;" [value]="job.job_id">
+                                            {{job.job_name}}
+                                        </nb-option>
                                     </nb-select>
                                 </div>
                             </div>
@@ -156,3 +158,13 @@
         </div>
     </div>
 </div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+        <nb-card-header>Template Dialog</nb-card-header>
+        <nb-card-body>{{ data }}</nb-card-body>
+        <nb-card-footer>
+            <button nbButton (click)="ref.close()">Close</button>
+        </nb-card-footer>
+    </nb-card>
+</ng-template>

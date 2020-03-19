@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
     messages = [];
     user: any = {};
     registerForm: FormGroup;
+    duration = 5000; // 5s
+    position = 'bottom-left';
 
     constructor(
         private router: Router,
@@ -78,7 +80,7 @@ export class RegisterComponent implements OnInit {
                 this.router.navigate(['/']);
                 break;
             case 2:
-                this.showToast(res, 'danger');
+                this.showToast(this.position, this.duration, res, 'danger');
                 this.loading = false;
                 break;
             default:
@@ -86,11 +88,11 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    showToast(res: any, status: NbComponentStatus) {
+    showToast(position, duration, res: any, status: NbComponentStatus) {
         this.toastrService.show(
             `${res.message}`,
             `Status: ${res.code}`
-            , { status });
+            , { position, duration, status });
     }
 
     register() {

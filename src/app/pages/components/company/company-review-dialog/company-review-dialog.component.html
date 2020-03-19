@@ -1,1 +1,35 @@
-<p>company-review-dialog works!</p>
+<div class="dialog-review">
+    <nb-card size="giant">
+        <nb-card-header>Horizontal form</nb-card-header>
+        <nb-card-body>
+            <form class="form-horizontal">
+                <h6>XXX</h6>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" nbInput fullWidth id="inputEmail3" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="label col-sm-3 form-control-label">Password</label>
+                    <div class="col-sm-9">
+                        <textarea type="text" rows="5" nbInput id="inputPassword3" fullWidth
+                            placeholder="Nhận xét ..."></textarea>
+                    </div>
+                </div>
+                <h6>Đánh giá</h6>
+                <!-- <div class="form-group row">
+                    <div class="offset-sm-3 col-sm-9">
+                        <div class="checkbox">
+                            <nb-checkbox>Remember me</nb-checkbox>
+                        </div>
+                    </div>
+                </div> -->
+            </form>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+            <button class="cancel" nbButton (click)="cancel()">Đóng</button>
+            <button nbButton hero status="warning" (click)="submit()">Xong</button>
+        </nb-card-footer>
+    </nb-card>
+</div>

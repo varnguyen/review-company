@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { REVIEWS_LIST } from './data-review';
 import { CompanyService } from 'src/app/_services';
+import { NbDialogService } from '@nebular/theme';
+import { CompanyReviewDialogComponent } from '../company-review-dialog/company-review-dialog.component';
 
 @Component({
     selector: 'app-company-detail',
@@ -22,26 +24,33 @@ export class CompanyDetailComponent implements OnInit {
     // };
     private time: Date = new Date();
     displayReviewForm = false;
-    reviews_list = REVIEWS_LIST;
+    reviewsList = REVIEWS_LIST;
 
+    names: string[] = [];
     constructor(
         private route: ActivatedRoute,
-        private companyService: CompanyService
+        private companyService: CompanyService,
+        private dialogService: NbDialogService,
     ) {
         this.companyId = this.route.snapshot.params.company_id;
         this.getCompanyDetail(this.companyId);
     }
 
     ngOnInit() {
-        console.log(this.reviews_list);
+        console.log(this.reviewsList);
     }
 
     openReviewForm() {
-        this.displayReviewForm = true;
+        this.dialogService.open(CompanyReviewDialogComponent)
+            .onClose.subscribe(
+                data => {
+                    console.log(data);
+                }
+            );
     }
 
     onSubmitComment(id) {
-        // const review_obj = this.reviews_list.find(e => e.review_id === id);
+        // const review_obj = this.reviewsList.find(e => e.review_id === id);
         // console.log(review_obj);
         // const newComment = {
         //     fake_name: 'Fake Name',

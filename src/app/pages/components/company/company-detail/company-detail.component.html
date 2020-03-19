@@ -26,7 +26,7 @@
                         This alert needs your attention, but it's not super important.
                     </nb-alert>
                 </nb-card-body>
-                <nb-card-footer>
+                <!-- <nb-card-footer>
                     <div class="p-b-1r">
                         <label for="">Price</label>
                         <nb-select selected="1">
@@ -49,7 +49,7 @@
                         </nb-select>
                     </div>
                     <button nbButton hero status="warning">Post</button>
-                </nb-card-footer>
+                </nb-card-footer> -->
             </nb-card>
         </div>
         <!-- /Danh Gia -->
@@ -83,12 +83,12 @@
                                         <p>
                                             <nb-icon nbTooltip="Số nhân sự" nbTooltipPlacement="top"
                                                 icon="people-outline" pack="eva">
-                                            </nb-icon> : {{company.member_total ? company.member_total : 0}}
+                                            </nb-icon> : {{company.member_total | staff}}
                                         </p>
                                         <p>
                                             <nb-icon nbTooltip="Lĩnh vực" nbTooltipPlacement="top"
                                                 icon="settings-outline" pack="eva">
-                                            </nb-icon> : {{company.job_id ? company.job_id : 'Chưa xác định'}}
+                                            </nb-icon> : {{company.job_id}}
                                         </p>
                                         <p>
                                             <nb-icon nbTooltip="Email" nbTooltipPlacement="top" icon="email-outline"
@@ -97,8 +97,8 @@
                                         </p>
                                     </div>
                                     <div class="col-xl-2 mr-auto text-right">
-                                        <button nbButton hero status="warning"
-                                            (click)="openReviewForm()">Review</button>
+                                        <button nbButton hero status="warning" (click)="openReviewForm()">Nhận
+                                            xét</button>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                 <!-- /Thong Tin Cong Ty -->
                 <!-- Binh Luan -->
                 <div class="col-xl-12">
-                    <nb-card accent="info" *ngFor="let review of reviews_list">
+                    <nb-card accent="info" *ngFor="let review of reviewsList">
                         <nb-card-header>
                             <div class="review-header">
                                 <nb-user size="large" [name]="review.fake_name" [title]="review.position"

@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompanyComponent } from './company.component';
 import { CompanyAddComponent } from './company-add/company-add.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
-import { CompanyReviewDialogComponent } from './company-review-dialog/company-review-dialog.component';
 
 const routes: Routes = [{
     path: '',
@@ -12,7 +11,6 @@ const routes: Routes = [{
     children: [
         { path: '', redirectTo: 'add', pathMatch: 'full' },
         { path: 'add', component: CompanyAddComponent },
-        { path: 'review', component: CompanyReviewDialogComponent },
         { path: ':company_id', component: CompanyDetailComponent },
     ],
 }];
