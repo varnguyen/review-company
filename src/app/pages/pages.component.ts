@@ -27,6 +27,7 @@ export class PagesComponent implements OnInit {
     user: any;
     isContected = false;
     loading = true;
+    positionPopover = 'bottom';
 
     constructor(
         private sidebarService: NbSidebarService,

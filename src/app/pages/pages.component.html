@@ -22,9 +22,9 @@
                 <nb-action *ngIf="!isContected" class="control-item" routerLink="/auth/login">Đăng nhập
                 </nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12"
-                    badgeStatus="danger" [nbPopover]="message" [nbPopoverPlacement]="position"></nb-action>
+                    badgeStatus="danger" [nbPopover]="message" [nbPopoverPlacement]="positionPopover"></nb-action>
                 <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33"
-                    badgeStatus="warning" [nbPopover]="notification" [nbPopoverPlacement]="position"></nb-action>
+                    badgeStatus="warning" [nbPopover]="notification" [nbPopoverPlacement]="positionPopover"></nb-action>
                 <nb-action *ngIf="isContected" class="user-action">
                     <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="my-context-menu"
                         [onlyPicture]="userPictureOnly" [name]="user ? user.nick_name : 'Nguyen Minh'"
