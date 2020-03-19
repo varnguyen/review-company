@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { emailRegex } from 'src/app/_data';
+import { CONFIG } from 'src/app/_data';
 import { UserService, AuthService } from 'src/app/_services';
 import { Router } from '@angular/router';
 
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
             ]),
             email: new FormControl('', [
                 Validators.required,
-                Validators.pattern(emailRegex)
+                Validators.pattern(CONFIG.REGEX_EMAIL)
             ]),
             gender: new FormControl('1', []),
             password: new FormControl('', [
@@ -80,6 +80,7 @@ export class RegisterComponent implements OnInit {
                 this.router.navigate(['/']);
                 break;
             case 2:
+            case 4:
                 this.showToast(this.position, this.duration, res, 'danger');
                 this.loading = false;
                 break;
@@ -91,7 +92,7 @@ export class RegisterComponent implements OnInit {
     showToast(position, duration, res: any, status: NbComponentStatus) {
         this.toastrService.show(
             `${res.message}`,
-            `Status: ${res.code}`
+            `Lỗi: ${res.code}`
             , { position, duration, status });
     }
 

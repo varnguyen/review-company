@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NbSidebarService, NbMenuService, NB_WINDOW } from '@nebular/theme';
+import { NbSidebarService, NbMenuService, NB_WINDOW, NbComponentStatus, NbToastrService } from '@nebular/theme';
 import { MENU_ITEMS } from './pages-menu';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../_services/auth/auth.service';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { CustomersService } from '../_services';
-import { themes } from '../_data';
+import { CONFIG } from '../_data';
 
 @Component({
     selector: 'app-pages',
@@ -18,7 +18,7 @@ export class PagesComponent implements OnInit {
     token: string;
     currentUser: any;
     sidebarMenu = MENU_ITEMS;
-    themes = themes;
+    themes = CONFIG.THEMES;
     currentTheme: string;
     userPictureOnly = false;
     userMenu = [
@@ -26,10 +26,7 @@ export class PagesComponent implements OnInit {
         { title: 'Đăng xuất', icon: 'unlock-outline', }];
     user: any;
     isContected = false;
-    position = 'bottom';
     loading = true;
-
-    errors: any;
 
     constructor(
         private sidebarService: NbSidebarService,
@@ -38,6 +35,7 @@ export class PagesComponent implements OnInit {
         private authService: AuthService,
         private router: Router,
         private customersService: CustomersService,
+        private toastrService: NbToastrService,
     ) {
         // Get current theme
         this.currentTheme = this.authService.getTheme();
@@ -78,6 +76,13 @@ export class PagesComponent implements OnInit {
 
     }
 
+    showToast(position, duration, status: NbComponentStatus) {
+        this.toastrService.show(
+            'Phiên đăng nhập đã hết hạn.',
+            'Cảnh báo',
+            { position, duration, status });
+    }
+
     getUserInfo() {
         this.customersService.getUserInfo().subscribe(
             res => {
@@ -89,9 +94,9 @@ export class PagesComponent implements OnInit {
                 }
             },
             error => {
-                this.errors = error;
-                if (this.errors.status === 401) {
+                if (error.status === 401) {
                     console.log('Phiên đăng nhập đã hết hạn.');
+                    this.showToast('bottom-left', 5000, 'warning');
                 }
             }
         );

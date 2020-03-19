@@ -80,9 +80,9 @@
             <nb-list nbInfiniteList listenWindowScroll [threshold]="500" (bottomThreshold)="loadNext()">
                 <nb-list-item class="company" *ngFor="let company of companys">
                     <nb-card-body>
-                        <h6 class="company-title" (click)="goToCompayDetail(company)">{{company.full_name}}</h6>
+                        <h6 class="company-title text-uppercase" (click)="goToCompayDetail(company)">{{company.full_name}}</h6>
                         <nb-user shape="rectangle" size="giant" [name]="company.address"
-                            title="{{company.member_total | staff}}" [picture]="company.picture"></nb-user>
+                            title="Nhân sự : {{company.member_total | staff}} người" [picture]="company.picture"></nb-user>
 
                         <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon>  -->
                     </nb-card-body>

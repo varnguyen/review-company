@@ -3,17 +3,19 @@
         <nb-card-header>Horizontal form</nb-card-header>
         <nb-card-body>
             <form class="form-horizontal">
-                <h6>XXX</h6>
+                <h6>Nội dung</h6>
                 <div class="form-group row">
-                    <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
+                    <label for="inputYoure" class="label col-sm-3 form-control-label">Bạn là</label>
                     <div class="col-sm-9">
-                        <input type="email" nbInput fullWidth id="inputEmail3" placeholder="Email">
+                        <nb-select fullWidth id="inputYoure" [selected]="1">
+                            <nb-option *ngFor="let e of who" [value]="e.value">{{e.name}}</nb-option>
+                        </nb-select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword3" class="label col-sm-3 form-control-label">Password</label>
+                    <label for="inputReview" class="label col-sm-3 form-control-label">Nhận xét</label>
                     <div class="col-sm-9">
-                        <textarea type="text" rows="5" nbInput id="inputPassword3" fullWidth
+                        <textarea type="text" rows="5" nbInput id="inputReview" fullWidth
                             placeholder="Nhận xét ..."></textarea>
                     </div>
                 </div>

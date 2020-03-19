@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
-import { emailRegex } from 'src/app/_data';
+import { CONFIG } from 'src/app/_data';
 
 @Component({
     selector: 'app-login',
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.loginForm = new FormGroup({
             email: new FormControl('', [
                 Validators.required,
-                Validators.pattern(emailRegex),
+                Validators.pattern(CONFIG.REGEX_EMAIL),
             ]),
             password: new FormControl('', [
                 Validators.required,
@@ -81,14 +81,12 @@ export class LoginComponent implements OnInit {
     handleCode(res) {
         switch (res.code) {
             case 0:
+                // this.showToast(this.position, this.duration, res, 'success');
                 this.authService.setStoreTokens(res.data.token);
                 this.authService.setCurrentUser(res.data);
                 this.router.navigate([this.returnUrl]);
                 break;
             case 3:
-                this.showToast(this.position, this.duration, res, 'danger');
-                this.loading = false;
-                break;
             case 5:
                 this.showToast(this.position, this.duration, res, 'danger');
                 this.loading = false;
@@ -101,7 +99,7 @@ export class LoginComponent implements OnInit {
     showToast(position, duration, res: any, status: NbComponentStatus) {
         this.toastrService.show(
             `${res.message}`,
-            `Error: ${res.code}`
-            , { position, duration, status });
+            `Lỗi: ${res.code}`
+            , { position, duration, status, limit: 3 });
     }
 }

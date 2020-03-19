@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { StaffsPiPe } from './staffs.pipe';
 
 import { RegionPiPe } from './region.pipe';
-import { HolidayPiPe } from './holiday.pipe';
+import { HolidayPiPe } from './job-type.pipe';
 
 const PIPE_MODULES = [
     RegionPiPe,

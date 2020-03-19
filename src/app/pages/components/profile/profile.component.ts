@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { UserService, AuthService } from 'src/app/_services';
-import { emailRegex } from '../../../_data';
+import { CONFIG } from '../../../_data';
 
 @Component({
     selector: 'app-profile',
@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     disable = true;
     user: any;
     positonToastr = 'bottom-left';
+    gender = CONFIG.GENDER;
 
     constructor(
         private toastrService: NbToastrService,
@@ -49,7 +50,7 @@ export class ProfileComponent implements OnInit {
             birthday: new FormControl('', []),
             email: new FormControl('', [
                 Validators.required,
-                Validators.pattern(emailRegex)
+                Validators.pattern(CONFIG.REGEX_EMAIL)
             ]),
             phone: new FormControl('', []),
             address: new FormControl('', [

@@ -50,8 +50,8 @@
                                 <div class="form-group">
                                     <label for="inputMember" class="label">Số nhân sự</label>
                                     <nb-select [selected]="1" id="inputMember" fullWidth formControlName="member_total">
-                                        <nb-option *ngFor="let item of staff;" [value]="item.value">
-                                            {{item.title}}
+                                        <nb-option *ngFor="let item of staffs;" [value]="item.value">
+                                            {{item.name}}
                                         </nb-option>
                                     </nb-select>
                                 </div>

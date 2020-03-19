@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
+import { CONFIG } from 'src/app/_data';
 
 @Component({
     selector: 'app-company-review-dialog',
@@ -7,6 +8,8 @@ import { NbDialogRef } from '@nebular/theme';
     styleUrls: ['./company-review-dialog.component.scss']
 })
 export class CompanyReviewDialogComponent {
+
+    who = CONFIG.WHO;
 
     constructor(protected ref: NbDialogRef<CompanyReviewDialogComponent>) { }
 

@@ -1,17 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { STAFFS } from '../_data';
+import { CONFIG } from '../_data';
 
 @Pipe({
     name: 'staff'
 })
 
 export class StaffsPiPe implements PipeTransform {
-    transform(jobId: number): string {
-        if (jobId === undefined || jobId === null) {
+    transform(memberTotal: number): string {
+        if (memberTotal === undefined || memberTotal === null) {
             return 'Chưa có';
         }
-
-        const staff = STAFFS.find(e => e.value === jobId);
-        return staff ? staff.title : 'DATA ERROR';
+        const staff = CONFIG.STAFFS.find(e => e.value == memberTotal);
+        return staff ? staff.name : 'DATA ERROR';
     }
 }

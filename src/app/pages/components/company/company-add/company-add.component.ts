@@ -1,9 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { emailRegex, phoneRegex } from 'src/app/_data';
 import { CompanyService, ShareDataService } from 'src/app/_services';
 import { NbComponentStatus, NbToastrService, NbMenuService, NbDialogService } from '@nebular/theme';
-import { STAFFS } from '../../../../_data';
+import { CONFIG } from '../../../../_data';
 
 @Component({
     selector: 'app-company-add',
@@ -17,7 +16,7 @@ export class CompanyAddComponent implements OnInit {
     submitted = false;
     isLoading = false;
     companyForm: FormGroup;
-    staff = STAFFS;
+    staffs = CONFIG.STAFFS;
     positonToastr = 'bottom-left';
 
     provinces = [];
@@ -34,6 +33,7 @@ export class CompanyAddComponent implements OnInit {
         private dialogService: NbDialogService,
     ) {
         this.shareDataService.listenData().subscribe(res => {
+            console.log('Nhận từ Share Data Service:', res);
             this.provinces = res.provinces;
             this.provinceId = this.provinces[0].province_id;
             this.jobs = res.jobs;
@@ -51,11 +51,11 @@ export class CompanyAddComponent implements OnInit {
             ]),
             email: new FormControl('', [
                 Validators.required,
-                Validators.pattern(emailRegex)
+                Validators.pattern(CONFIG.REGEX_EMAIL)
             ]),
             phone: new FormControl('', [
                 Validators.required,
-                Validators.pattern(phoneRegex),
+                Validators.pattern(CONFIG.REGEX_PHONE),
                 Validators.minLength(10),
                 Validators.maxLength(20),
             ]),
