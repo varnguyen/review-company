@@ -58,7 +58,13 @@
             <div class="row">
                 <!-- Thong Tin Cong Ty -->
                 <div class="col-xl-12">
-                    <nb-card>
+                    <nb-card *ngIf="isLoading">
+                        <nb-card-body>
+                            <app-company-detail-placeholder></app-company-detail-placeholder>
+                        </nb-card-body>
+                    </nb-card>
+
+                    <nb-card *ngIf="!isLoading">
                         <nb-card-header>
                             Thông tin
                         </nb-card-header>

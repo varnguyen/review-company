@@ -137,12 +137,14 @@ export class PagesComponent implements OnInit {
     }
 
     toggleSidebar() {
-        this.sidebarService.toggle(true);
+        this.sidebarService.toggle(true, 'menu-sidebar');
         return false;
     }
 
     changeTheme(themeName: string) {
         this.authService.setTheme(themeName);
+        // this.layoutService.changeLayoutSize();
+        return false;
     }
 
     navigateHome() {

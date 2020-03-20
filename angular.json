@@ -30,6 +30,8 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "node_modules/@nebular/theme/styles/prebuilt/cosmic.css",
+              "node_modules/@nebular/theme/styles/prebuilt/corporate.css",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "src/styles.scss"
             ],

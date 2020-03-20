@@ -1,0 +1,42 @@
+// @import '../../../../@theme/styles/themes';
+
+:host .company-detail-placeholder {
+  display: block;
+
+  .title-placeholder {
+    height: 1.8rem;
+    margin-bottom: 0.5rem;
+    width: 80%;
+  }
+
+  .content-placeholder {
+    width: 100%;
+    display: flex;
+
+    .img-placeholder {
+      width: 9rem;
+      height: 9rem;
+    }
+
+    .content-placeholder_subtitle {
+      margin-left: 0.5rem;
+      width: 80%;
+      height: 10rem;
+
+      .subtitle-placeholder {
+        width: 100%;
+        height: 1.25rem;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  // .placeholder-dark-th {
+  //   background: #151a31;
+  // }
+
+  // .placeholder-default-th {
+  //   background: #edf1f7;
+  // }
+
+}

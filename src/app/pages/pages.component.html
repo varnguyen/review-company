@@ -17,7 +17,7 @@
         <div class="header-container _right">
             <nb-actions size="small">
                 <nb-action>
-                    <button nbButton hero status="warning" routerLink="/pages/company/add">Gợi ý</button>
+                    <button nbButton hero status="warning" routerLink="/pages/company">Gợi ý</button>
                 </nb-action>
                 <nb-action *ngIf="!isContected" class="control-item" routerLink="/auth/login">Đăng nhập
                 </nb-action>
@@ -36,7 +36,7 @@
         </div>
         <!-- Popover Message List -->
         <ng-template #message>
-            <nb-card class="margin-bottom-0" size="medium">
+            <nb-card class="margin-bottom-0 mj-card-size" size="medium">
                 <nb-card-header>Message list</nb-card-header>
                 <nb-list>
                     <nb-list-item>Message 1</nb-list-item>
@@ -56,7 +56,7 @@
         <!-- /Popover Message List -->
         <!-- Popover Notification List -->
         <ng-template #notification>
-            <nb-card class="margin-bottom-0" size="medium">
+            <nb-card class="margin-bottom-0 mj-card-size" size="medium">
                 <nb-card-header>Notification list</nb-card-header>
                 <nb-list>
                     <nb-list-item>Notification Msg 1</nb-list-item>

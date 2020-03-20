@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,10 @@ import { AuthService } from './_services/auth/auth.service';
 import { LoginModule } from './pages/common/login/login.module';
 import { RegisterModule } from './pages/common/register/register.module';
 import { RequestPasswordModule } from './pages/common/request-password/request-password.module';
+
+import { registerLocaleData } from '@angular/common';
+import localeVi from '@angular/common/locales/vi';
+registerLocaleData(localeVi);
 
 import {
     NbThemeModule,
@@ -78,6 +82,7 @@ import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
     ],
     bootstrap: [AppComponent],
     providers: [
+        { provide: LOCALE_ID, useValue: 'vi-VN' }, // ja-JP
         AuthGuard,
         AuthService,
         {

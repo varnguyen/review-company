@@ -9,6 +9,7 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyAddComponent } from '././company-add/company-add.component';
 import { CompanyDetailComponent } from '././company-detail/company-detail.component';
 import { CompanyReviewDialogComponent } from './company-review-dialog/company-review-dialog.component';
+import { CompanyDetailPlaceholderComponent } from './company-detail/company-detail-placeholder/company-detail-placeholder.component';
 
 import {
     NbCardModule,
@@ -53,6 +54,7 @@ import { PipesModule } from 'src/app/_pipes/pipes.module';
         CompanyAddComponent,
         CompanyDetailComponent,
         CompanyReviewDialogComponent,
+        CompanyDetailPlaceholderComponent
     ],
     entryComponents: [
         CompanyReviewDialogComponent,

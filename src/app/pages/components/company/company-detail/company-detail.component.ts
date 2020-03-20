@@ -25,8 +25,9 @@ export class CompanyDetailComponent implements OnInit {
     private time: Date = new Date();
     displayReviewForm = false;
     reviewsList = REVIEWS_LIST;
-
+    isLoading = true;
     names: string[] = [];
+
     constructor(
         private route: ActivatedRoute,
         private companyService: CompanyService,
@@ -67,6 +68,7 @@ export class CompanyDetailComponent implements OnInit {
                 if (res.code === 0) {
                     console.log(res);
                     this.company = res.data;
+                    this.isLoading = false;
                 }
             }
         );

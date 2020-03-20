@@ -1,18 +1,15 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/dark';
 
-$nb-themes: nb-register-theme((
+$nb-themes: nb-register-theme(( // add your variables here like:
+    // color-primary-100: #faf7ff,
+    // color-primary-200: #ece3ff,
+    // color-primary-300: #d5bfff,
+    // color-primary-400: #b18aff,
+    // color-primary-500: #a16eff,
+    // color-primary-600: #7b51db,
+    // color-primary-700: #5a37b8,
+    // color-primary-800: #3e2494,
+    // color-primary-900: #29157a,
 
-  // add your variables here like:
-
-  // color-primary-100: #f2f6ff,
-  // color-primary-200: #d9e4ff,
-  // color-primary-300: #a6c1ff,
-  // color-primary-400: #598bff,
-  // color-primary-500: #3366ff,
-  // color-primary-600: #274bdb,
-  // color-primary-700: #1a34b8,
-  // color-primary-800: #102694,
-  // color-primary-900: #091c7a,
-
-), dark, dark);
+  ), dark, dark);

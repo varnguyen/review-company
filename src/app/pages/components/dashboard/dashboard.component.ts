@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit {
 
     provinces: any;
     jobs: any;
-    companys: any;
+    companys: [] = [];
     provinceId = 0;
     jobId = 0;
     companyName = '';
@@ -139,6 +139,9 @@ export class DashboardComponent implements OnInit {
     }
 
     onChangeFilter(jobId: any, provinceId: any) {
+        this.companys = [];
+        this.loading = true;
+        this.placeholders = new Array(5);
         if (jobId) { this.jobId = jobId; }
         if (provinceId) { this.provinceId = provinceId; }
         this.getCompanyLists();
@@ -153,7 +156,7 @@ export class DashboardComponent implements OnInit {
             clearTimeout(this.timer);
             this.timer = setTimeout(() => {
                 this.getCompanyLists();
-            }, 2000);
+            }, 3000);
         }
     }
 
@@ -162,6 +165,7 @@ export class DashboardComponent implements OnInit {
     }
 
     loadNext() {
+        return;
         if (this.loading) { return; }
 
 
@@ -316,7 +320,8 @@ export class DashboardComponent implements OnInit {
     }
 
     getCompanyLists() {
-        this.placeholders = new Array(10);
+
+        this.placeholders = new Array(5);
         const data = {
             jobId: this.jobId,
             provinceId: this.provinceId,
@@ -330,9 +335,11 @@ export class DashboardComponent implements OnInit {
             res => {
                 console.log('Companys :', res);
                 if (res.code === 0) {
+                    // setTimeout(() => {
                     this.companys = res.data;
                     this.placeholders = [];
                     this.loading = false;
+                    // }, 3000);
                 }
             }
         );

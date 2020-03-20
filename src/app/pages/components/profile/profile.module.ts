@@ -10,8 +10,10 @@ import {
     NbInputModule,
     NbSelectModule,
     NbDatepickerModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbIconModule
 } from '@nebular/theme';
+// import { NbDateFnsDateModule } from '@nebular/date-fns';
 
 @NgModule({
     imports: [
@@ -24,7 +26,9 @@ import {
         NbInputModule,
         NbSelectModule,
         NbDatepickerModule,
-        NbTooltipModule
+        NbTooltipModule,
+        NbIconModule,
+        // NbDateFnsDateModule
     ],
     declarations: [
         ProfileComponent

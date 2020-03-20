@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NbToastrService, NbComponentStatus } from '@nebular/theme';
+import { NbToastrService, NbComponentStatus, NbDateService } from '@nebular/theme';
 import { UserService, AuthService } from 'src/app/_services';
 import { CONFIG } from '../../../_data';
 
@@ -25,9 +25,11 @@ export class ProfileComponent implements OnInit {
         private toastrService: NbToastrService,
         private authService: AuthService,
         private userSerice: UserService,
+        protected dateService: NbDateService<Date>
     ) {
         // const token = this.authService.getJwtToken();
         // if(token) { }
+        this.dateService.setLocale('vi');
         this.initProfileForm();
     }
 
@@ -47,7 +49,7 @@ export class ProfileComponent implements OnInit {
                 Validators.maxLength(30)
             ]),
             gender: new FormControl(1, []),
-            birthday: new FormControl('', []),
+            birthday: new FormControl(new Date(), []),
             email: new FormControl('', [
                 Validators.required,
                 Validators.pattern(CONFIG.REGEX_EMAIL)
@@ -88,6 +90,7 @@ export class ProfileComponent implements OnInit {
         switch (res.code) {
             case 0:
                 this.user = res.data;
+                this.user.birthday = new Date(res.data.birthday);
                 this.profileForm.patchValue(this.user);
                 this.isLoading = false;
                 this.submitted = false;
@@ -156,6 +159,7 @@ export class ProfileComponent implements OnInit {
                 console.log(res);
                 if (res.code === 0) {
                     this.user = res.data;
+                    this.user.birthday = new Date(this.user.birthday);
                     this.profileForm.patchValue(this.user);
                 }
             },
@@ -168,7 +172,6 @@ export class ProfileComponent implements OnInit {
         // user.user_id = this.user.user_id;
         this.userSerice.updateUserInfo(user).subscribe(
             res => {
-                console.log(res);
                 this.handleStatus(res);
             }
         );

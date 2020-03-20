@@ -76,13 +76,21 @@
 
 <div class="row">
     <div class="col-xl-8">
+        <nb-card *ngIf="companys.length === 0 && !loading">
+            <nb-card-body>
+                <div>Không có dữ liệu</div>
+            </nb-card-body>
+        </nb-card>
+
         <nb-card>
             <nb-list nbInfiniteList listenWindowScroll [threshold]="500" (bottomThreshold)="loadNext()">
                 <nb-list-item class="company" *ngFor="let company of companys">
                     <nb-card-body>
-                        <h6 class="company-title text-uppercase" (click)="goToCompayDetail(company)">{{company.full_name}}</h6>
+                        <h6 class="company-title text-uppercase" (click)="goToCompayDetail(company)">
+                            {{company.full_name}}</h6>
                         <nb-user shape="rectangle" size="giant" [name]="company.address"
-                            title="Nhân sự : {{company.member_total | staff}} người" [picture]="company.picture"></nb-user>
+                            title="Nhân sự : {{company.member_total | staff}} người" [picture]="company.picture">
+                        </nb-user>
 
                         <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon>  -->
                     </nb-card-body>

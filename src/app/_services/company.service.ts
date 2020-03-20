@@ -24,7 +24,6 @@ export class CompanyService {
         if (data.jobId) { params = params.append('job_id', data.jobId.toString()); }
         if (data.provinceId) { params = params.append('province_id', data.provinceId.toString()); }
         if (data.companyName) { params = params.append('company_name', data.companyName); }
-        console.log(data);
         return this.httpClient.get<any>(API.COMPANY, { params }).pipe(catchError(this.handleErrorPromise));
     }
 

@@ -78,9 +78,14 @@
                             </div>
                             <div class="col-xl-6 p-b-10">
                                 <label class="p-r-10">Ngày sinh</label>
-                                <input nbInput placeholder="Chọn ngày sinh" [nbDatepicker]="formpicker"
-                                    formControlName="birthday">
-                                <nb-datepicker #formpicker></nb-datepicker>
+                                <input [status]="(submitted && f.birthday.errors) ? 'danger' : 'basic'" nbInput
+                                    placeholder="MM.DD.YYYY" [nbDatepicker]="formpicker" formControlName="birthday">
+                                <nb-datepicker #formpicker format="dd.MM.yyyy"></nb-datepicker>
+                                <ng-container *ngIf="f.birthday.invalid  && submitted">
+                                    <p class="caption status-danger" *ngIf="f.birthday.errors">
+                                        Ngày sinh phải đúng định dạng
+                                    </p>
+                                </ng-container>
                             </div>
                         </div>
                         <div class="row">
