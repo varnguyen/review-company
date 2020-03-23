@@ -54,9 +54,8 @@ export class AuthService {
         const user = localStorage.getItem('currentUser');
         if (user !== null && user !== '' && user !== undefined) {
             return JSON.parse(localStorage.getItem('currentUser'));
-        } else {
-            return null;
         }
+        return null;
     }
 
     // Set user info in local storage
@@ -65,7 +64,11 @@ export class AuthService {
     }
 
     getJwtToken() {
-        return localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        if (token !== null && token !== '' && token !== undefined) {
+            return localStorage.getItem('token');
+        }
+        return null;
     }
 
     logout() {

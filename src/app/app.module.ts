@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
@@ -33,6 +34,8 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { ThemeModule } from './@theme/theme.module';
+import { CoreModule } from './@core/core.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -41,17 +44,19 @@ import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        RouterModule,
         LoginModule,
         RegisterModule,
         RequestPasswordModule,
 
         // Nebular Module
+        ThemeModule.forRoot(),
         NbThemeModule.forRoot({ name: 'dark' }), // dark - default
         NbMenuModule.forRoot(),
         NbToastrModule.forRoot(),
         NbLayoutModule,
         NbEvaIconsModule,
-        NbSidebarModule,
+        NbSidebarModule.forRoot(),
         NbDatepickerModule.forRoot(),
         NbChatModule.forRoot({ messageGoogleMapKey: 'MAP_KEY' }),
         NbWindowModule.forRoot(),
@@ -79,6 +84,8 @@ import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
             ],
             forms: {},
         }),
+        CoreModule.forRoot(),
+
     ],
     bootstrap: [AppComponent],
     providers: [

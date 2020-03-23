@@ -1,96 +1,18 @@
-:host .layout-header {
-  ::ng-deep nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-}
+@import '../@theme/styles/themes';
 
-.header-container {
-  display: flex;
-  align-items: center;
-  width: auto;
+@include nb-install-component() {
+  ::ng-deep router-outlet+* {
+    display: block;
+    animation: fade 1s;
 
-  .logo-container {
-    display: flex;
-    align-items: center;
-    width: calc(16rem - 1.25rem);
-  }
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
 
-  .sidebar-toggle {
-    padding-right: 1.25rem;
-    text-decoration: none;
-    color: nb-theme(text-hint-color);
-
-    nb-icon {
-      font-size: 1.75rem;
+      to {
+        opacity: 1;
+      }
     }
-  }
-
-  .logo {
-    padding: 0 1.25rem;
-    font-size: 1.75rem;
-    border-left: 1px solid nb-theme(divider-color);
-    border-right: 1px solid nb-theme(divider-color);
-    white-space: nowrap;
-    text-decoration: none;
-  }
-
-  nb-action {
-    height: auto;
-    display: flex;
-    align-content: center;
-  }
-
-  nb-user {
-    cursor: pointer;
-  }
-
-  a,
-  .control-item {
-    cursor: pointer;
-  }
-
-
-}
-
-.lds-ripple {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-ripple div {
-  position: absolute;
-  border: 4px solid #fff;
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-
-.lds-ripple div:nth-child(2) {
-  animation-delay: -0.5s;
-}
-
-.mj-card-size {
-  min-width: 300px;
-}
-
-@keyframes lds-ripple {
-  0% {
-    top: 36px;
-    left: 36px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-
-  100% {
-    top: 0px;
-    left: 0px;
-    width: 72px;
-    height: 72px;
-    opacity: 0;
   }
 }
