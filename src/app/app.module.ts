@@ -36,6 +36,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
 import { ThemeModule } from './@theme/theme.module';
 import { CoreModule } from './@core/core.module';
+// import { NbDateFnsDateModule } from '@nebular/date-fns';
 
 @NgModule({
     declarations: [AppComponent],
@@ -61,6 +62,10 @@ import { CoreModule } from './@core/core.module';
         NbChatModule.forRoot({ messageGoogleMapKey: 'MAP_KEY' }),
         NbWindowModule.forRoot(),
         NbDialogModule.forRoot(),
+        // NbDateFnsDateModule.forRoot({
+        //     parseOptions: { useAdditionalWeekYearTokens: true, useAdditionalDayOfYearTokens: true },
+        //     formatOptions: { useAdditionalWeekYearTokens: true, useAdditionalDayOfYearTokens: true },
+        // }),
         NbAuthModule.forRoot({
             strategies: [
                 NbPasswordAuthStrategy.setup({

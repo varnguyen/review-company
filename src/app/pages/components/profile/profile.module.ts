@@ -14,6 +14,7 @@ import {
     NbIconModule
 } from '@nebular/theme';
 // import { NbDateFnsDateModule } from '@nebular/date-fns';
+// import { NbMomentDateModule } from '@nebular/moment';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import {
         NbDatepickerModule,
         NbTooltipModule,
         NbIconModule,
-        // NbDateFnsDateModule
+        // NbDateFnsDateModule,
+        // NbMomentDateModule
     ],
     declarations: [
         ProfileComponent

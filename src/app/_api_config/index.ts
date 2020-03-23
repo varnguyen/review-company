@@ -17,6 +17,8 @@ export const API = {
     PROVINCE: `${URL}/province`,
     COMPANY: `${URL}/company`,
     JOB_TYPE: `${URL}/job-type`,
+    COMMENT: `${URL}/comment`,
+    STATISTIC_COMMENT: `${URL}/statistic-comment`,
 
 
     LOGOUT: `${URL}/logout`,

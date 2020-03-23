@@ -50,11 +50,13 @@
                 <nb-card accent="success" status="success">
                     <nb-card-header>Người lao động</nb-card-header>
                     <nb-card-body>
-                        A nebula is an interstellar cloud of dust, hydrogen,
-                        helium and other ionized gases.
-                        Originally, nebula was a name for
-                        any diffuse astronomical object,
-                        including galaxies beyond the Milky Way.
+                        <ul class="mb-2">
+                            <li>Far far away, behind the word mountains</li>
+                            <li>Far from the countries Vokalia and Consonantia</li>
+                            <li>There live the blind texts.</li>
+                            <li>Right at the coast of the Semantics.</li>
+                            <li>A small river named Duden flows</li>
+                        </ul>
                     </nb-card-body>
                 </nb-card>
             </nb-card-front>
@@ -120,10 +122,10 @@
                 <nb-tab class="pd-0" tabTitle="Bình luận">
                     <nb-list>
                         <nb-list-item class="contact" *ngFor="let comment of comments">
-                            <nb-user [picture]="comment.user_name.picture" [name]="comment.user_name"
-                                [title]="'review về '+comment.company.short_name" size="large">
+                            <nb-user [picture]="''" [name]="comment.user_id.toString()"
+                                [title]="'review về '+comment.company_id" size="large">
                             </nb-user>
-                            <span class="caption">{{ comment.time | date: 'shortTime' }}</span>
+                            <span class="caption">{{ comment.date_add | date: 'short' }}</span>
                         </nb-list-item>
                     </nb-list>
                 </nb-tab>

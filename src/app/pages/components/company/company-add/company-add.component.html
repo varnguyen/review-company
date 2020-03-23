@@ -80,10 +80,10 @@
                                         nbInput fullWidth id="inputWebsite" placeholder="https://example.com"
                                         formControlName="website">
                                     <ng-container *ngIf="f.website.invalid  && submitted">
-                                        <p class="caption status-danger"
+                                        <!-- <p class="caption status-danger"
                                             *ngIf="f.website.errors?.minlength || f.website.errors?.maxlength">
                                             Website ty từ 12 - 256 ký tự
-                                        </p>
+                                        </p> -->
                                         <p class="caption status-danger" *ngIf="f.website.errors?.pattern">
                                             Website phải đúng định dạng
                                         </p>
@@ -135,7 +135,8 @@
                         <!-- <button type="submit" hero nbButton status="warning" (click)="onSubmit()">Submit</button> -->
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <button type="submit" nbButton status="warning" (click)="onSubmit()">Submit</button>
+                                <button [nbSpinner]="isLoading" nbSpinnerStatus="warning" type="submit" nbButton
+                                    status="warning" (click)="onSubmit()" nbSpinnerMessage="">Submit</button>
                             </div>
                         </div>
                     </form>

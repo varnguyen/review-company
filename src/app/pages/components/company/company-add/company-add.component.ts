@@ -23,7 +23,7 @@ export class CompanyAddComponent implements OnInit {
     provinceId = 0;
     jobs = [];
     jobId = 0;
-
+    loadingSpinner = false;
 
     constructor(
         private companyService: CompanyService,
@@ -67,8 +67,8 @@ export class CompanyAddComponent implements OnInit {
             ]),
             member_total: new FormControl(1, []),
             website: new FormControl('', [
-                Validators.minLength(12),
-                Validators.maxLength(256),
+                // Validators.minLength(12),
+                // Validators.maxLength(256),
                 Validators.pattern(CONFIG.REGEX_URL)
             ]),
         });
@@ -82,7 +82,7 @@ export class CompanyAddComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        if (this.companyForm.status === 'VALID') {
+        if (this.companyForm.status === 'VALID' && !this.isLoading) {
             this.isLoading = true;
             this.addCompany();
         }

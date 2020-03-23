@@ -23,6 +23,7 @@ import {
     NbAlertModule,
     NbInputModule,
     NbDialogModule,
+    NbSpinnerModule,
 } from '@nebular/theme';
 import { PipesModule } from 'src/app/_pipes/pipes.module';
 
@@ -47,6 +48,7 @@ import { PipesModule } from 'src/app/_pipes/pipes.module';
         NbAlertModule,
         NbUserModule,
         NbInputModule,
+        NbSpinnerModule,
         NbDialogModule.forChild(),
     ],
     declarations: [

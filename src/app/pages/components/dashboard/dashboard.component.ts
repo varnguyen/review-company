@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbListItemComponent } from '@nebular/theme';
-import { ProvincesService, JobTypeService, CompanyService } from 'src/app/_services';
+import { ProvincesService, JobTypeService, CompanyService, CommentsService } from 'src/app/_services';
 
 @Component({
     selector: 'app-dashboard',
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
         { status: 'basic', name: 'Kate Martinez', total: 50, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
         { status: 'controlÏ', name: 'Williams Moor', total: 40, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
     ];
-    comments: any[] = [
+    commentss: any[] = [
         {
             user_name: 'Nick Jones', type: this.types.home, time: this.time.setHours(21, 12),
             company: {
@@ -125,14 +125,17 @@ export class DashboardComponent implements OnInit {
     page = 1;
     row = 10;
     timer: any;
+    comments: [] = [];
 
     constructor(
         private router: Router,
         private provincesService: ProvincesService,
         private jobTypeService: JobTypeService,
         private companyService: CompanyService,
+        private commentsService: CommentsService
     ) {
         this.getProvinceLists();
+        this.getComments();
     }
 
     ngOnInit() {
@@ -320,7 +323,6 @@ export class DashboardComponent implements OnInit {
     }
 
     getCompanyLists() {
-
         this.placeholders = new Array(5);
         const data = {
             jobId: this.jobId,
@@ -340,6 +342,17 @@ export class DashboardComponent implements OnInit {
                     this.placeholders = [];
                     this.loading = false;
                     // }, 3000);
+                }
+            }
+        );
+    }
+
+    getComments() {
+        this.commentsService.getCommentsLists().subscribe(
+            res => {
+                console.log('Comments :', res);
+                if (res.code === 0) {
+                    this.comments = res.data;
                 }
             }
         );
