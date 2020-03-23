@@ -1,0 +1,69 @@
+<div class="header-container">
+    <div class="logo-container">
+        <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+            <nb-icon icon="menu-2-outline"></nb-icon>
+        </a>
+        <a class="logo" href="#" (click)="navigateHome()">Re-Com</a>
+    </div>
+    <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+        <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+    </nb-select>
+</div>
+
+<div class="header-container">
+    <nb-actions size="small">
+        <nb-action routerLink="/pages/company">
+            <button nbButton hero status="warning">Gợi ý</button>
+        </nb-action>
+        <nb-action *ngIf="!isContected" class="control-item" routerLink="/auth/login">Đăng nhập
+        </nb-action>
+        <nb-action *ngIf="isContected" class="control-item" icon="email-outline" badgeText="12" badgeStatus="danger"
+            [nbPopover]="message" [nbPopoverPlacement]="positionPopover"></nb-action>
+        <nb-action *ngIf="isContected" class="control-item" icon="bell-outline" badgeText="33" badgeStatus="warning"
+            [nbPopover]="notification" [nbPopoverPlacement]="positionPopover"></nb-action>
+        <nb-action *ngIf="isContected" class="user-action">
+            <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="my-context-menu" [onlyPicture]="userPictureOnly"
+                [name]="user ? user.nick_name : 'Nguyen Minh'" [title]="!user ? user.job : 'Developer'"
+                [picture]="!user ? user.picture : 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'">
+            </nb-user>
+        </nb-action>
+    </nb-actions>
+</div>
+
+<ng-template #message>
+    <nb-card class="margin-bottom-0 mj-card-size" size="medium">
+        <nb-card-header>Message list</nb-card-header>
+        <nb-list>
+            <nb-list-item>Message 1</nb-list-item>
+            <nb-list-item>Message 2</nb-list-item>
+            <nb-list-item>Message 3</nb-list-item>
+            <nb-list-item>Message 4</nb-list-item>
+            <nb-list-item>Message 5</nb-list-item>
+            <nb-list-item>Message 6</nb-list-item>
+            <nb-list-item>Message 7</nb-list-item>
+            <nb-list-item>Message 8</nb-list-item>
+            <nb-list-item>Message 9</nb-list-item>
+            <nb-list-item>Message 10</nb-list-item>
+        </nb-list>
+        <nb-card-footer>See all</nb-card-footer>
+    </nb-card>
+</ng-template>
+
+<ng-template #notification>
+    <nb-card class="margin-bottom-0 mj-card-size" size="medium">
+        <nb-card-header>Notification list</nb-card-header>
+        <nb-list>
+            <nb-list-item>Notification Msg 1</nb-list-item>
+            <nb-list-item>Notification Msg 2</nb-list-item>
+            <nb-list-item>Notification Msg 3</nb-list-item>
+            <nb-list-item>Notification Msg 4</nb-list-item>
+            <nb-list-item>Notification Msg 5</nb-list-item>
+            <nb-list-item>Notification Msg 6</nb-list-item>
+            <nb-list-item>Notification Msg 7</nb-list-item>
+            <nb-list-item>Notification Msg 8</nb-list-item>
+            <nb-list-item>Notification Msg 9</nb-list-item>
+            <nb-list-item>Notification Msg 10</nb-list-item>
+        </nb-list>
+        <nb-card-footer>See all</nb-card-footer>
+    </nb-card>
+</ng-template>

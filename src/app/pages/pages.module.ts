@@ -26,6 +26,7 @@ import {
     NbPopoverModule,
     NbButtonModule
 } from '@nebular/theme';
+import { ThemeModule } from '../@theme/theme.module';
 
 const NB_MODULE = [
     NbMenuModule,
@@ -55,6 +56,7 @@ const NB_MODULE = [
         ChangePasswordModule,
 
         // Nebular Module
+        ThemeModule,
         NB_MODULE
     ],
     declarations: [

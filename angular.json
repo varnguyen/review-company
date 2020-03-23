@@ -33,7 +33,7 @@
               "node_modules/@nebular/theme/styles/prebuilt/cosmic.css",
               "node_modules/@nebular/theme/styles/prebuilt/corporate.css",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
-              "src/styles.scss"
+              "src/app/@theme/styles/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
@@ -100,7 +100,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/nebular-icons/scss/nebular-icons.scss",
+              "src/app/@theme/styles/styles.scss"
             ],
             "scripts": []
           }
