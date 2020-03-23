@@ -84,6 +84,9 @@
                                             *ngIf="f.website.errors?.minlength || f.website.errors?.maxlength">
                                             Website ty từ 12 - 256 ký tự
                                         </p>
+                                        <p class="caption status-danger" *ngIf="f.website.errors?.pattern">
+                                            Website phải đúng định dạng
+                                        </p>
                                     </ng-container>
                                 </div>
                             </div>

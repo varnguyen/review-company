@@ -25,10 +25,7 @@ export class AuthService {
 
     // Login
     login(params) {
-        return this.httpClient.post<any>(API.LOGIN, params)
-            .pipe(map(res => {
-                return res;
-            }));
+        return this.httpClient.post<any>(API.LOGIN, params).pipe(catchError(this.handleErrorPromise));
     }
 
     // Login

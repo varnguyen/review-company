@@ -1,5 +1,5 @@
 <nb-layout container>
-
+    <!-- windowMode -->
     <nb-layout-header class="layout-header" fixed>
         <div class="header-container _left">
             <div class="logo-container">
@@ -75,8 +75,8 @@
         </ng-template>
         <!-- /Popover Notification List -->
     </nb-layout-header>
-
-    <nb-sidebar>
+    <!-- responsive -->
+    <nb-sidebar class="menu-sidebar" tag="menu-sidebar">
         <nb-menu [items]="sidebarMenu">
         </nb-menu>
     </nb-sidebar>

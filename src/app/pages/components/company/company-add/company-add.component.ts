@@ -68,7 +68,8 @@ export class CompanyAddComponent implements OnInit {
             member_total: new FormControl(1, []),
             website: new FormControl('', [
                 Validators.minLength(12),
-                Validators.maxLength(256)
+                Validators.maxLength(256),
+                Validators.pattern(CONFIG.REGEX_URL)
             ]),
         });
     }

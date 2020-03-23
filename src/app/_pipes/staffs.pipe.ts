@@ -11,6 +11,6 @@ export class StaffsPiPe implements PipeTransform {
             return 'Chưa có';
         }
         const staff = CONFIG.STAFFS.find(e => e.value == memberTotal);
-        return staff ? staff.name : 'DATA ERROR';
+        return staff ? staff.name : 'Dữ liệu lỗi';
     }
 }
