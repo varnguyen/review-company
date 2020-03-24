@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { REVIEWS_LIST } from './data-review';
-import { CompanyService } from 'src/app/_services';
+import { CompanyService, CommentsService } from 'src/app/_services';
 import { NbDialogService } from '@nebular/theme';
 import { CompanyReviewDialogComponent } from '../company-review-dialog/company-review-dialog.component';
 
@@ -24,14 +24,41 @@ export class CompanyDetailComponent implements OnInit {
     // };
     private time: Date = new Date();
     displayReviewForm = false;
-    reviewsList = REVIEWS_LIST;
+    // reviewsList = REVIEWS_LIST;
     isLoading = true;
     names: string[] = [];
+    reviewsList: [] = [];
+    replyReviews = [
+        {
+            reply_review_id: 1,
+            fake_name: 'Minh Nguyen',
+            cmt: 'I usually finish my talks with the philosophical phrase that nothing stays the same.',
+            avatar: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG',
+            created: '9:12 PM',
+        },
+        {
+            reply_review_id: 2,
+            fake_name: 'Linh Ka',
+            cmt: 'The current rendering engine is being rewritten with the new much enhanced version called Ivy.',
+            avatar: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG',
+            created: '9:12 PM',
+        },
+        {
+            reply_review_id: 3,
+            fake_name: 'Ngoc Hoang',
+            cmt: 'I usually finish my talks with the philosophical phrase that nothing stays the same. And as you probably know it’s more then true with Angular. The current rendering engine is being rewritten with the new much enhanced version called Ivy.',
+            avatar: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG',
+            created: '9:12 PM',
+        },
+    ];
+    page = 1;
+    row = 10;
 
     constructor(
         private route: ActivatedRoute,
-        private companyService: CompanyService,
         private dialogService: NbDialogService,
+        private companyService: CompanyService,
+        private commentsService: CommentsService,
     ) {
         this.companyId = this.route.snapshot.params.company_id;
         this.getCompanyDetail(this.companyId);
@@ -69,6 +96,22 @@ export class CompanyDetailComponent implements OnInit {
                     console.log(res);
                     this.company = res.data;
                     this.isLoading = false;
+                    this.getCommentsByCompany();
+                }
+            }
+        );
+    }
+
+    getCommentsByCompany() {
+        const pagination = {
+            page: this.page,
+            row: this.row
+        };
+        this.commentsService.getCommentsByCompanyId(this.companyId,pagination).subscribe(
+            res => {
+                console.log('Comments :', res);
+                if (res.code === 0) {
+                    this.reviewsList = res.data;
                 }
             }
         );

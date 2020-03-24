@@ -8,6 +8,12 @@ export const CONFIG = {
         { value: 'cosmic', name: 'Cosmic' },
         { value: 'corporate', name: 'Corporate' },
     ],
+    OPTIONS_PROVINCE_DEFAULT: [
+        { province_id: -1, province_name: 'Vui lòng chọn' },
+    ],
+    OPTIONS_JOB_DEFAULT: [
+        { job_id: -1, job_name: 'Vui lòng chọn' },
+    ],
     GENDER: [
         { value: 1, name: 'Nam' },
         { value: 0, name: 'Nữ' },

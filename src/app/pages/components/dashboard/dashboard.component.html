@@ -18,7 +18,7 @@
                             <div class="col-sm-8">
                                 <nb-select [selected]="provinceId" fullWidth>
                                     <nb-option *ngFor="let province of provinces;" [value]="province.province_id"
-                                        (click)="onChangeFilter('',province.province_id)">
+                                        (click)="onChangeFilter(province.province_id,'')">
                                         {{province.province_name}}
                                     </nb-option>
                                 </nb-select>
@@ -32,7 +32,7 @@
                             <div class="col-sm-9">
                                 <nb-select [selected]="jobId" fullWidth>
                                     <nb-option *ngFor="let job of jobs;" [value]="job.job_id"
-                                        (click)="onChangeFilter(job.job_id,'')">
+                                        (click)="onChangeFilter('',job.job_id)">
                                         {{job.job_name}}
                                     </nb-option>
                                 </nb-select>

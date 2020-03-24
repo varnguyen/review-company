@@ -117,19 +117,18 @@
                     <nb-card accent="info" *ngFor="let review of reviewsList">
                         <nb-card-header>
                             <div class="review-header">
-                                <nb-user size="large" [name]="review.fake_name" [title]="review.position"
-                                    color="#cccccc">
+                                <nb-user size="large" [name]="'FAKE NAME'" [title]="'POSITION'" color="#cccccc">
                                 </nb-user>
-                                <span class="caption">{{review.created}}</span>
+                                <span class="caption">{{review.date_add | date : 'short'}}</span>
                             </div>
                         </nb-card-header>
                         <nb-card-body>
-                            {{review.cmt}}
+                            {{review.comment}}
                         </nb-card-body>
                         <nb-card-footer>
                             <div class="review-list">
                                 <div class="colors">
-                                    <div class="review-item" *ngFor="let replyReview of review.reply_reviews">
+                                    <div class="review-item" *ngFor="let replyReview of replyReviews">
                                         <div class="avatar bg-body"></div>
                                         <div class="content ">
                                             <h6 class="">{{replyReview.fake_name}}</h6>
@@ -149,6 +148,8 @@
                             </form>
                         </nb-card-footer>
                     </nb-card>
+                    <button type="submit" nbButton status="primary">Xem thêm</button>
+
                 </div>
                 <!-- /Binh Luan -->
             </div>

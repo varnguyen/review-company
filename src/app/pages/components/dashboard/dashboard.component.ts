@@ -1,3 +1,4 @@
+import { CONFIG } from 'src/app/_data';
 import { Component, OnInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbListItemComponent } from '@nebular/theme';
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
         { status: 'info', name: 'Lee Wong', total: 70, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
         { status: 'primary', name: 'Alan Thompson', total: 60, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
         { status: 'basic', name: 'Kate Martinez', total: 50, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'controlÏ', name: 'Williams Moor', total: 40, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
+        { status: 'control', name: 'Williams Moor', total: 40, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
     ];
     commentss: any[] = [
         {
@@ -116,11 +117,11 @@ export class DashboardComponent implements OnInit {
 
     @ViewChildren(NbListItemComponent, { read: ElementRef }) listItems: QueryList<ElementRef<Element>>;
 
-    provinces: any;
-    jobs: any;
+    provinces = CONFIG.OPTIONS_PROVINCE_DEFAULT;
+    jobs = CONFIG.OPTIONS_JOB_DEFAULT;
     companys: [] = [];
-    provinceId = 0;
-    jobId = 0;
+    provinceId = -1;
+    jobId = -1;
     companyName = '';
     page = 1;
     row = 10;
@@ -139,14 +140,15 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getCompanyLists();
     }
 
-    onChangeFilter(jobId: any, provinceId: any) {
+    onChangeFilter(provinceId: any, jobId: any) {
         this.companys = [];
         this.loading = true;
         this.placeholders = new Array(5);
-        if (jobId) { this.jobId = jobId; }
         if (provinceId) { this.provinceId = provinceId; }
+        if (jobId) { this.jobId = jobId; }
         this.getCompanyLists();
     }
 
@@ -301,8 +303,7 @@ export class DashboardComponent implements OnInit {
             res => {
                 console.log('Provinces :', res);
                 if (res.code === 0) {
-                    this.provinces = res.data;
-                    this.provinceId = this.provinces[0].province_id;
+                    this.provinces = this.provinces.concat(res.data);
                     this.getJobTypeLists();
                 }
             }
@@ -314,9 +315,8 @@ export class DashboardComponent implements OnInit {
             res => {
                 console.log('Jobs :', res);
                 if (res.code === 0) {
-                    this.jobs = res.data;
-                    this.jobId = this.jobs[0].job_id;
-                    this.getCompanyLists();
+                    this.jobs = this.jobs.concat(res.data);
+
                 }
             }
         );

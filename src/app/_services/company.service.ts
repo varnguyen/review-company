@@ -21,9 +21,9 @@ export class CompanyService {
         let params = new HttpParams();
         params = params.append('page', pagination.page);
         params = params.append('row', pagination.row);
-        if (data.jobId) { params = params.append('job_id', data.jobId.toString()); }
-        if (data.provinceId) { params = params.append('province_id', data.provinceId.toString()); }
-        if (data.companyName) { params = params.append('company_name', data.companyName); }
+        if (data.jobId > 0) { params = params.append('job_id', data.jobId); }
+        if (data.provinceId > 0) { params = params.append('province_id', data.provinceId); }
+        if (data.companyName) { params = params.append('name', data.companyName); }
         return this.httpClient.get<any>(API.COMPANY, { params }).pipe(catchError(this.handleErrorPromise));
     }
 

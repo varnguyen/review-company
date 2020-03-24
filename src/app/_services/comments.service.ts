@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { API } from 'src/app/_api_config';
@@ -15,8 +15,11 @@ export class CommentsService {
         return this.httpClient.get<any>(API.STATISTIC_COMMENT).pipe(catchError(this.handleErrorPromise));
     }
 
-    getCommentsById(companyId = 0): Observable<any> {
-        return this.httpClient.get<any>(`${API.COMMENT}/${companyId}`).pipe(catchError(this.handleErrorPromise));
+    getCommentsByCompanyId(companyId = 0, pagination): Observable<any> {
+        let params = new HttpParams();
+        params = params.append('page', pagination.page);
+        params = params.append('row', pagination.row);
+        return this.httpClient.get<any>(`${API.COMPANY}/${companyId}/comment`, { params }).pipe(catchError(this.handleErrorPromise));
     }
 
     private handleErrorPromise(error: Response | any) {
