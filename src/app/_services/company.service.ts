@@ -17,6 +17,10 @@ export class CompanyService {
         return this.httpClient.post<any>(API.COMPANY, company).pipe(catchError(this.handleErrorPromise));
     }
 
+    createReviewCompany(review): Observable<any> {
+        return this.httpClient.post<any>(API.COMMENT_COMPANY, review).pipe(catchError(this.handleErrorPromise));
+    }
+
     getCompanyLists(data, pagination): Observable<any> {
         let params = new HttpParams();
         params = params.append('page', pagination.page);

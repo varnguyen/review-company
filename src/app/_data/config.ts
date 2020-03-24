@@ -34,8 +34,8 @@ export const CONFIG = {
         { value: 1, name: 'Nhân viên' },
         { value: 2, name: 'Người dưng' },
         { value: 3, name: 'Luffy' },
-        { value: 3, name: 'Saitama' },
-        { value: 3, name: 'Naruto' },
-        { value: 3, name: 'Tanjiro' },
+        { value: 4, name: 'Saitama' },
+        { value: 5, name: 'Naruto' },
+        { value: 6, name: 'Tanjiro' },
     ],
 }

@@ -2,12 +2,12 @@
     <nb-card size="giant">
         <nb-card-header>Horizontal form</nb-card-header>
         <nb-card-body>
-            <form class="form-horizontal">
-                <h6>Nội dung</h6>
+            <form class="form-horizontal" [formGroup]="reviewForm">
+                <h6>Nội dung <span class="text-danger">*</span></h6>
                 <div class="form-group row">
                     <label for="inputYoure" class="label col-sm-3 form-control-label">Bạn là</label>
                     <div class="col-sm-9">
-                        <nb-select fullWidth id="inputYoure" [selected]="1">
+                        <nb-select fullWidth id="inputYoure" [selected]="1" formControlName="who_id">
                             <nb-option *ngFor="let e of who" [value]="e.value">{{e.name}}</nb-option>
                         </nb-select>
                     </div>
@@ -15,8 +15,18 @@
                 <div class="form-group row">
                     <label for="inputReview" class="label col-sm-3 form-control-label">Nhận xét</label>
                     <div class="col-sm-9">
-                        <textarea type="text" rows="5" nbInput id="inputReview" fullWidth
-                            placeholder="Nhận xét ..."></textarea>
+                        <textarea [status]="(submitted && f.comment.errors) ? 'danger' : 'basic'" type="text" rows="5"
+                            nbInput id="inputReview" fullWidth placeholder="Nhận xét ..."
+                            formControlName="comment"></textarea>
+                        <ng-container *ngIf="f.comment.invalid  && submitted">
+                            <p class="caption status-danger" *ngIf="f.comment.errors?.required">
+                                Bình luận không thể để trống.
+                            </p>
+                            <p class="caption status-danger"
+                                *ngIf="f.comment.errors?.minlength || f.comment.errors?.maxlength">
+                                Tên công ty từ 5 - 500 ký tự
+                            </p>
+                        </ng-container>
                     </div>
                 </div>
                 <h6>Đánh giá</h6>

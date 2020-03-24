@@ -117,12 +117,13 @@
                     <nb-card accent="info" *ngFor="let review of reviewsList">
                         <nb-card-header>
                             <div class="review-header">
-                                <nb-user size="large" [name]="'FAKE NAME'" [title]="'POSITION'" color="#cccccc">
+                                <nb-user size="large" [name]="review.user_id.toString()"
+                                    [title]="review.who_id.toString()" color="#cccccc">
                                 </nb-user>
                                 <span class="caption">{{review.date_add | date : 'short'}}</span>
                             </div>
                         </nb-card-header>
-                        <nb-card-body>
+                        <nb-card-body class="review-content">
                             {{review.comment}}
                         </nb-card-body>
                         <nb-card-footer>
@@ -148,7 +149,8 @@
                             </form>
                         </nb-card-footer>
                     </nb-card>
-                    <button type="submit" nbButton status="primary">Xem thêm</button>
+                    <button *ngIf="showLoadMoreReview" type="submit" nbButton status="primary"
+                        (click)="loadMoreReiviewCompany()">Xem thêm</button>
 
                 </div>
                 <!-- /Binh Luan -->

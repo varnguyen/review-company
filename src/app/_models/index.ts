@@ -1,1 +1,2 @@
-export * from './params.models';
+export * from './params.model';
+export * from './pagination.model';

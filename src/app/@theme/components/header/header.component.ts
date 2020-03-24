@@ -11,7 +11,7 @@ import {
 import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CONFIG } from 'src/app/_data';
-import { AuthService, CustomersService } from 'src/app/_services';
+import { AuthService, UserService } from 'src/app/_services';
 
 @Component({
     selector: 'app-header',
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
         private menuService: NbMenuService,
         private themeService: NbThemeService,
         private breakpointService: NbMediaBreakpointsService,
-        private customersService: CustomersService,
+        private userService: UserService,
         private toastrService: NbToastrService,
     ) {
         // Get current theme
@@ -105,7 +105,7 @@ export class HeaderComponent implements OnInit {
     }
 
     getUserInfo() {
-        this.customersService.getUserInfo().subscribe(
+        this.userService.getUserInfo().subscribe(
             res => {
                 console.log(res);
                 if (res.code === 0) {

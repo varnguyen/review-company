@@ -16,6 +16,7 @@ export const API = {
     UPDATE_USER_INFO: `${URL}/me/update`,
     PROVINCE: `${URL}/province`,
     COMPANY: `${URL}/company`,
+    COMMENT_COMPANY: `${URL}/company/comment`,
     JOB_TYPE: `${URL}/job-type`,
     COMMENT: `${URL}/comment`,
     STATISTIC_COMMENT: `${URL}/statistic-comment`,

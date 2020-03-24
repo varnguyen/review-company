@@ -4,6 +4,7 @@ import { REVIEWS_LIST } from './data-review';
 import { CompanyService, CommentsService } from 'src/app/_services';
 import { NbDialogService } from '@nebular/theme';
 import { CompanyReviewDialogComponent } from '../company-review-dialog/company-review-dialog.component';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-company-detail',
@@ -27,7 +28,7 @@ export class CompanyDetailComponent implements OnInit {
     // reviewsList = REVIEWS_LIST;
     isLoading = true;
     names: string[] = [];
-    reviewsList: [] = [];
+    reviewsList: any = [];
     replyReviews = [
         {
             reply_review_id: 1,
@@ -53,6 +54,7 @@ export class CompanyDetailComponent implements OnInit {
     ];
     page = 1;
     row = 10;
+    showLoadMoreReview = true;
 
     constructor(
         private route: ActivatedRoute,
@@ -68,11 +70,24 @@ export class CompanyDetailComponent implements OnInit {
         console.log(this.reviewsList);
     }
 
+    loadMoreReiviewCompany() {
+        const pagination = {
+            page: this.page,
+            row: this.row
+        };
+        console.log(pagination);
+        this.getCommentsByCompany();
+    }
+
     openReviewForm() {
         this.dialogService.open(CompanyReviewDialogComponent)
             .onClose.subscribe(
                 data => {
                     console.log(data);
+                    if (!data || data === undefined) {
+                        return;
+                    }
+                    this.postReviewCompany(data);
                 }
             );
     }
@@ -87,6 +102,18 @@ export class CompanyDetailComponent implements OnInit {
         //     created: this.time.setHours(15, 29),
         // };
         // this.comments.push(newComment);
+    }
+
+    postReviewCompany(reivew) {
+        reivew.company_id = this.companyId;
+        this.companyService.createReviewCompany(reivew).subscribe(
+            res => {
+                if (res.code === 0) {
+                    console.log(res);
+                    this.reviewsList = _.concat(res.data, this.reviewsList);
+                }
+            }
+        );
     }
 
     getCompanyDetail(companyId) {
@@ -107,11 +134,28 @@ export class CompanyDetailComponent implements OnInit {
             page: this.page,
             row: this.row
         };
-        this.commentsService.getCommentsByCompanyId(this.companyId,pagination).subscribe(
+        this.commentsService.getCommentsByCompanyId(this.companyId, pagination).subscribe(
             res => {
                 console.log('Comments :', res);
                 if (res.code === 0) {
-                    this.reviewsList = res.data;
+
+                    if (this.page === 1) {
+                        this.reviewsList = res.data;
+                    } else {
+                        this.reviewsList = _.concat(this.reviewsList, res.data);
+                    }
+
+                    if (res.data.length === 0) {
+
+                        this.showLoadMoreReview = false;
+                    } else {
+                        if (res.data.length < 10) {
+                            this.showLoadMoreReview = false;
+                        } else {
+                            this.page += 1;
+                            this.showLoadMoreReview = true;
+                        }
+                    }
                 }
             }
         );
