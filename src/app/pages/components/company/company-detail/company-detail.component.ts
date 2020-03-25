@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { REVIEWS_LIST } from './data-review';
-import { CompanyService, CommentsService } from 'src/app/_services';
+import { CompanyService, CommentsService, AuthService } from 'src/app/_services';
 import { NbDialogService } from '@nebular/theme';
 import { CompanyReviewDialogComponent } from '../company-review-dialog/company-review-dialog.component';
 import * as _ from 'lodash';
@@ -55,14 +55,17 @@ export class CompanyDetailComponent implements OnInit {
     page = 1;
     row = 10;
     showLoadMoreReview = true;
+    currentUser: any;
 
     constructor(
         private route: ActivatedRoute,
         private dialogService: NbDialogService,
         private companyService: CompanyService,
         private commentsService: CommentsService,
+        private authService: AuthService,
     ) {
         this.companyId = this.route.snapshot.params.company_id;
+        this.currentUser = this.authService.getCurrentUser();
         this.getCompanyDetail(this.companyId);
     }
 
@@ -87,14 +90,27 @@ export class CompanyDetailComponent implements OnInit {
                     if (!data || data === undefined) {
                         return;
                     }
+
+                    data.user_id = this.currentUser.user_id;
+                    data.is_review = 1;
                     this.postReviewCompany(data);
                 }
             );
     }
 
-    onSubmitComment(id) {
+    onSubmitComment(review, value) {
+        const obj = {
+            review_id: review.cmt_id,
+            who_id: 0,
+            comment: value.trim(),
+            user_id: this.currentUser.user_id,
+            is_review: 0, // reply review : 0  -  review : 1
+            company_id: this.companyId,
+        };
         // const review_obj = this.reviewsList.find(e => e.review_id === id);
-        // console.log(review_obj);
+        console.log(obj);
+        return;
+        this.postCommentCompany(obj);
         // const newComment = {
         //     fake_name: 'Fake Name',
         //     cmt: 'A asda  askdjasd aslkdlkqwoppov xzvklasdfklas',
@@ -102,6 +118,17 @@ export class CompanyDetailComponent implements OnInit {
         //     created: this.time.setHours(15, 29),
         // };
         // this.comments.push(newComment);
+    }
+
+    postCommentCompany(reivew) {
+        this.companyService.createReviewCompany(reivew).subscribe(
+            res => {
+                if (res.code === 0) {
+                    console.log(res);
+                    // this.reviewsList = _.concat(res.data, this.reviewsList);
+                }
+            }
+        );
     }
 
     postReviewCompany(reivew) {

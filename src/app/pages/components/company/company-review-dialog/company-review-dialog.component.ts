@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { CONFIG } from 'src/app/_data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/_services';
 
 @Component({
     selector: 'app-company-review-dialog',
@@ -14,14 +13,11 @@ export class CompanyReviewDialogComponent implements OnInit {
     reviewForm: FormGroup;
     who = CONFIG.WHO;
     submitted = false;
-    currentUser: any;
 
     constructor(
-        private authService: AuthService,
         protected ref: NbDialogRef<CompanyReviewDialogComponent>,
     ) {
         this.initReviewForm();
-        this.currentUser = this.authService.getCurrentUser();
     }
 
     initReviewForm() {
@@ -49,9 +45,6 @@ export class CompanyReviewDialogComponent implements OnInit {
 
         if (this.reviewForm.status === 'VALID') {
             const data = this.reviewForm.value;
-            data.user_id = this.currentUser.user_id;
-            data.is_review = 1;
-            console.log(data);
             this.ref.close(data);
         }
     }

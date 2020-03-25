@@ -114,6 +114,12 @@
                 <!-- /Thong Tin Cong Ty -->
                 <!-- Binh Luan -->
                 <div class="col-xl-12">
+                    <!-- <nb-card *ngIf="reviewsList.length === 0">
+                        <nb-card-body>
+                            Không có bình luận.
+                        </nb-card-body>
+                    </nb-card> -->
+
                     <nb-card accent="info" *ngFor="let review of reviewsList">
                         <nb-card-header>
                             <div class="review-header">
@@ -130,10 +136,12 @@
                             <div class="review-list">
                                 <div class="colors">
                                     <div class="review-item" *ngFor="let replyReview of replyReviews">
-                                        <div class="avatar bg-body"></div>
+                                        <div class="avatar">
+                                            <img src="./assets/images/avatar-default-1.png" alt="avatar">
+                                        </div>
                                         <div class="content ">
-                                            <h6 class="">{{replyReview.fake_name}}</h6>
-                                            {{replyReview.cmt}}
+                                            <div class="username">{{replyReview.fake_name}}</div>
+                                            <div class="comment">{{replyReview.cmt}}</div>
                                         </div>
                                         <div class="date caption text-right">{{replyReview.created}}
                                         </div>
@@ -143,9 +151,9 @@
                             </div>
                             <form class="form-inline">
                                 <input class="form-input-comment" type="text" status="primary" nbInput fullWidth
-                                    placeholder="Comment">
+                                    placeholder="Comment" #comment>
                                 <button type="submit" nbButton status="primary"
-                                    (click)="onSubmitComment(review.review_id)">Submit</button>
+                                    (click)="onSubmitComment(review,comment.value)">Submit</button>
                             </form>
                         </nb-card-footer>
                     </nb-card>
