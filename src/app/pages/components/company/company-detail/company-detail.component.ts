@@ -100,7 +100,6 @@ export class CompanyDetailComponent implements OnInit {
 
     onSubmitComment(review, value) {
         const obj = {
-            review_id: review.cmt_id,
             who_id: 0,
             comment: value.trim(),
             user_id: this.currentUser.user_id,
