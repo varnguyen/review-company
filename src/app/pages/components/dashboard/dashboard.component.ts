@@ -3,6 +3,7 @@ import { Component, OnInit, ElementRef, QueryList, ViewChildren } from '@angular
 import { Router } from '@angular/router';
 import { NbListItemComponent } from '@nebular/theme';
 import { ProvincesService, JobTypeService, CompanyService, CommentsService } from 'src/app/_services';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-dashboard',
@@ -39,6 +40,7 @@ export class DashboardComponent implements OnInit {
         private commentsService: CommentsService
     ) {
         this.getProvinceLists();
+        this.getJobTypeLists();
         this.getComments();
         this.getCompanyListByTotalReview();
     }
@@ -57,7 +59,7 @@ export class DashboardComponent implements OnInit {
     }
 
     findCompanyByName(event) {
-        this.companyName = event.target.value;
+        this.companyName = _.trim(event.target.value);
         if (event.key === 'Enter') {
             console.log(this.companyName);
             this.getCompanyLists();
@@ -65,7 +67,7 @@ export class DashboardComponent implements OnInit {
             clearTimeout(this.timer);
             this.timer = setTimeout(() => {
                 this.getCompanyLists();
-            }, 3000);
+            }, 1000);
         }
     }
 
@@ -232,10 +234,9 @@ export class DashboardComponent implements OnInit {
     getProvinceLists() {
         this.provincesService.getProvinceLists().subscribe(
             res => {
-                console.log('Provinces :', res);
                 if (res.code === 0) {
                     this.provinces = this.provinces.concat(res.data);
-                    this.getJobTypeLists();
+
                 }
             }
         );
@@ -244,10 +245,8 @@ export class DashboardComponent implements OnInit {
     getJobTypeLists() {
         this.jobTypeService.getJobTypeLists().subscribe(
             res => {
-                console.log('Jobs :', res);
                 if (res.code === 0) {
                     this.jobs = this.jobs.concat(res.data);
-
                 }
             }
         );

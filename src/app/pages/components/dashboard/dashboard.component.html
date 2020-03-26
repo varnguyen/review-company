@@ -91,9 +91,8 @@
                         <h6 class="company-title text-uppercase" (click)="goToCompayDetail(company)">
                             {{company.full_name}}</h6>
                         <nb-user shape="rectangle" size="giant" [name]="company.address"
-                            title="Nhân sự : {{company.member_total | staff}} người" [picture]="company.picture">
+                            title="Nhân sự : {{company.member_total | staff }} người" [picture]="company.picture">
                         </nb-user>
-
                         <!-- <nb-icon icon="search-outline" pack="eva"></nb-icon>  -->
                     </nb-card-body>
                 </nb-list-item>
@@ -113,7 +112,7 @@
                             <nb-badge [text]="idx+1" [status]="getStatus(idx)" position="left"></nb-badge>
                             <nb-user
                                 [picture]="top.picture ? top.picture : 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'"
-                                [name]="top.full_name" [title]="'Tổng số lượt review :'+top.total_review" size="large">
+                                [name]="top.full_name" [title]="'Tổng số lượt review : '+top.total_review" size="large">
                             </nb-user>
                             <nb-icon class="icon-search" icon="search-outline" pack="eva"
                                 routerLink="/pages/company/{{top.company_id}}"></nb-icon>
@@ -135,9 +134,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <nb-user [picture]="''" [name]="comment.nick_name" [title]="'review về '+comment.full_name"
-                                size="large">
-                            </nb-user> -->
                             <span class="caption">{{ comment.date_add | date: 'short' }}</span>
                         </nb-list-item>
                     </nb-list>
