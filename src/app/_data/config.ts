@@ -3,10 +3,10 @@ export const CONFIG = {
     REGEX_PHONE: '(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})',
     REGEX_URL: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
     THEMES: [
-        { value: 'default', name: 'Sáng' },
-        { value: 'dark', name: 'Tối' },
-        { value: 'cosmic', name: 'Cosmic' },
-        { value: 'corporate', name: 'Corporate' },
+        { value: 'default', name: 'Sáng', color: '#edf1f7' },
+        { value: 'dark', name: 'Tối', color: '#151a31' },
+        { value: 'cosmic', name: 'Cosmic', color: '#1b1a38' },
+        { value: 'corporate', name: 'Corporate', color: '#edf1f7' },
     ],
     OPTIONS_PROVINCE_DEFAULT: [
         { province_id: -1, province_name: 'Vui lòng chọn' },

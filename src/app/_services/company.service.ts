@@ -31,6 +31,11 @@ export class CompanyService {
         return this.httpClient.get<any>(API.COMPANY, { params }).pipe(catchError(this.handleErrorPromise));
     }
 
+
+    getCompanyListByTotalReview(): Observable<any> {
+        return this.httpClient.get<any>(API.STATISTIC_REVIEW).pipe(catchError(this.handleErrorPromise));
+    }
+
     getCompanyById(companyId): Observable<any> {
         return this.httpClient.get<any>(`${API.COMPANY}/${companyId}`).pipe(catchError(this.handleErrorPromise));
     }

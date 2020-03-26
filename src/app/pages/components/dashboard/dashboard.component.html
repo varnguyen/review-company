@@ -107,24 +107,37 @@
         <nb-card size="giant">
             <nb-tabset fullWidth>
                 <!-- Tab Top Review -->
-                <nb-tab class="pd-0" tabTitle="Top Review">
+                <nb-tab class="pd-0 tab-statistic-review-total" tabTitle="Top Review">
                     <nb-list>
                         <nb-list-item class="contact" *ngFor="let top of topCompanyReviews;let idx = index;">
-                            <nb-badge [text]="idx+1" [status]="top.status" position="left"></nb-badge>
-                            <nb-user [picture]="top.picture" [name]="top.name" [title]="'Lượt :'+top.total"
-                                size="large">
+                            <nb-badge [text]="idx+1" [status]="getStatus(idx)" position="left"></nb-badge>
+                            <nb-user
+                                [picture]="top.picture ? top.picture : 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'"
+                                [name]="top.full_name" [title]="'Tổng số lượt review :'+top.total_review" size="large">
                             </nb-user>
-                            <nb-icon class="icon-search" icon="search-outline" pack="eva"></nb-icon>
+                            <nb-icon class="icon-search" icon="search-outline" pack="eva"
+                                routerLink="/pages/company/{{top.company_id}}"></nb-icon>
                         </nb-list-item>
                     </nb-list>
                 </nb-tab>
                 <!-- Tab Comment -->
-                <nb-tab class="pd-0" tabTitle="Bình luận">
+                <nb-tab class="pd-0 tab-statistic-comment" tabTitle="Bình luận">
                     <nb-list>
                         <nb-list-item class="contact" *ngFor="let comment of comments">
-                            <nb-user [picture]="''" [name]="comment.user_id.toString()"
-                                [title]="'review về '+comment.company_id" size="large">
-                            </nb-user>
+                            <div class="user-container">
+                                <div class="user-picture initials">
+                                    <img src="./assets/images/avatar-default-1.png" alt="avatar">
+                                </div>
+                                <div class="info-container">
+                                    <div class="user-name">{{comment.nick_name}}</div>
+                                    <div class="user-title">review về
+                                        <a routerLink="/pages/company/{{comment.company_id}}">{{comment.full_name}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <nb-user [picture]="''" [name]="comment.nick_name" [title]="'review về '+comment.full_name"
+                                size="large">
+                            </nb-user> -->
                             <span class="caption">{{ comment.date_add | date: 'short' }}</span>
                         </nb-list-item>
                     </nb-list>

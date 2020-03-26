@@ -20,6 +20,7 @@ export const API = {
     JOB_TYPE: `${URL}/job-type`,
     COMMENT: `${URL}/comment`,
     STATISTIC_COMMENT: `${URL}/statistic-comment`,
+    STATISTIC_REVIEW: `${URL}/statistic-review`,
 
 
     LOGOUT: `${URL}/logout`,

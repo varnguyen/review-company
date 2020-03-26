@@ -1,4 +1,4 @@
-// @import '../../../../@theme/styles/themes';
+@import '../../../../@theme/styles/themes';
 
 :host {
   display: block;
@@ -18,10 +18,10 @@
     height: 1.25rem;
     width: 5rem;
   }
+}
 
-  .placeholder {
-    // background: #edf1f7;
-    background: #151a31;
+@include nb-install-component() {
+  [class$='placeholder'] {
+    background: nb-theme(background-basic-color-2);
   }
-
 }

@@ -11,111 +11,13 @@ import { ProvincesService, JobTypeService, CompanyService, CommentsService } fro
 })
 export class DashboardComponent implements OnInit {
 
-    private time: Date = new Date();
-    users = {
-        nick: { name: 'Nick Jones', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        eva: { name: 'Eva Moor', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        jack: { name: 'Jack Williams', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        lee: { name: 'Lee Wong', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        alan: { name: 'Alan Thompson', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        kate: { name: 'Kate Martinez', picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-    };
-
-    private types = {
-        mobile: 'mobile',
-        home: 'home',
-        work: 'work',
-    };
-    topCompanyReviews: any[] = [
-        { status: 'danger', name: 'Nick Jones', total: 100, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'warning', name: 'Eva Moor', total: 90, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'success', name: 'Jack Williams', total: 80, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'info', name: 'Lee Wong', total: 70, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'primary', name: 'Alan Thompson', total: 60, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'basic', name: 'Kate Martinez', total: 50, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-        { status: 'control', name: 'Williams Moor', total: 40, picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG' },
-    ];
-    commentss: any[] = [
-        {
-            user_name: 'Nick Jones', type: this.types.home, time: this.time.setHours(21, 12),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'VNEXT',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-        {
-            user_name: 'Nick Jones', type: this.types.home, time: this.time.setHours(17, 45),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'Angular',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-        {
-            user_name: 'Nick Jones', type: this.types.mobile, time: this.time.setHours(5, 29),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'Applications',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-        {
-            user_name: 'Nick Jones', type: this.types.mobile, time: this.time.setHours(11, 24),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'detection',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-        {
-            user_name: 'Nick Jones', type: this.types.mobile, time: this.time.setHours(10, 45),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'Manual',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-        {
-            user_name: 'Nick Jones', type: this.types.work, time: this.time.setHours(9, 42),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'Performance',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-        {
-            user_name: 'Nick Jones', type: this.types.work, time: this.time.setHours(9, 31),
-            company: {
-                name: 'Boosting performance of Angular applications with manual change detection', company_id: 1,
-                short_name: 'Boosting',
-                address: 'Nick Jones',
-                member_total: '100',
-                picture: 'https://via.placeholder.com/50/4479e7/ffffff?Text=IMG'
-            }
-        },
-    ];
-
+    @ViewChildren(NbListItemComponent, { read: ElementRef }) listItems: QueryList<ElementRef<Element>>;
 
     // infinity list
     placeholders = [];
     pageSize = 10;
     pageToLoadNext = 1;
     loading = false;
-
-    @ViewChildren(NbListItemComponent, { read: ElementRef }) listItems: QueryList<ElementRef<Element>>;
 
     provinces = CONFIG.OPTIONS_PROVINCE_DEFAULT;
     jobs = CONFIG.OPTIONS_JOB_DEFAULT;
@@ -127,6 +29,7 @@ export class DashboardComponent implements OnInit {
     row = 10;
     timer: any;
     comments: [] = [];
+    topCompanyReviews: any[] = [];
 
     constructor(
         private router: Router,
@@ -137,6 +40,7 @@ export class DashboardComponent implements OnInit {
     ) {
         this.getProvinceLists();
         this.getComments();
+        this.getCompanyListByTotalReview();
     }
 
     ngOnInit() {
@@ -167,6 +71,33 @@ export class DashboardComponent implements OnInit {
 
     renderTextSubTitle(comp) {
         return `Nhân viên : ${comp.member_total} - Lĩnh vực : ${comp.job_id} - Tỉnh/Thành Phố : ${comp.province_id}`;
+    }
+
+    getStatus(index) {
+        let status = 'control';
+        switch (index) {
+            case 0:
+                status = 'danger';
+                break;
+            case 1:
+                status = 'warning';
+                break;
+            case 2:
+                status = 'success';
+                break;
+            case 3:
+                status = 'info';
+                break;
+            case 4:
+                status = 'primary';
+                break;
+            case 5:
+                status = 'basic';
+                break;
+            default:
+                break;
+        }
+        return status;
     }
 
     loadNext() {
@@ -353,6 +284,17 @@ export class DashboardComponent implements OnInit {
                 console.log('Comments :', res);
                 if (res.code === 0) {
                     this.comments = res.data;
+                }
+            }
+        );
+    }
+
+    getCompanyListByTotalReview() {
+        this.companyService.getCompanyListByTotalReview().subscribe(
+            res => {
+                console.log('topCompanyReviews :', res);
+                if (res.code === 0) {
+                    this.topCompanyReviews = res.data;
                 }
             }
         );

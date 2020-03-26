@@ -59,9 +59,8 @@ export class HeaderComponent implements OnInit {
                 takeUntil(this.destroy$),
             )
             .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+        this.initMenu();
     }
-
-
 
     toggleSidebar(): boolean {
         this.sidebarService.toggle(true, 'menu-sidebar');

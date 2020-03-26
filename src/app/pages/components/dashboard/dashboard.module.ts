@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { DashboardComponent } from './dashboard.component';
@@ -25,6 +26,7 @@ import {
         CommonModule,
         FormsModule,
         PipesModule,
+        RouterModule,
         // Nebular Module
         NbCardModule,
         NbListModule,

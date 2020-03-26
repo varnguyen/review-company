@@ -71,3 +71,54 @@ app-company-placeholder {
 .p-r-10 {
   padding-right: 10px;
 }
+
+::ng-deep .tab-statistic-comment {
+  .user-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .user-picture.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nb-theme-cosmic .shape-round .user-picture {
+      border-radius: 50%;
+    }
+
+    .info-container {
+      margin-left: .5rem;
+    }
+
+    .user-picture {
+      height: 3.25rem;
+      width: 3.25rem;
+      border-radius: 50%;
+      // border: 1px solid transparent;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .user-name {
+    font-size: 0.9375rem;
+    line-height: 1.25rem;
+  }
+
+  .user-title {
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
