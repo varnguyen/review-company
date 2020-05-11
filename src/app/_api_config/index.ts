@@ -21,7 +21,7 @@ export const API = {
     COMMENT: `${URL}/comment`,
     STATISTIC_COMMENT: `${URL}/statistic-comment`,
     STATISTIC_REVIEW: `${URL}/statistic-review`,
-
+    UPLOAD: `${URL}/upload`,
 
     LOGOUT: `${URL}/logout`,
     CUSTOMER: `${URL}/customer`,

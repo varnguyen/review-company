@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbToastrService, NbComponentStatus, NbDateService } from '@nebular/theme';
-import { UserService, AuthService } from 'src/app/_services';
+import { UserService, AuthService, UploadService } from 'src/app/_services';
 import { CONFIG } from '../../../_data';
 
 @Component({
@@ -20,12 +20,14 @@ export class ProfileComponent implements OnInit {
     user: any;
     positonToastr = 'bottom-left';
     gender = CONFIG.GENDER;
+    files: any;
 
     constructor(
         private toastrService: NbToastrService,
         private authService: AuthService,
         private userSerice: UserService,
-        protected dateService: NbDateService<Date>
+        protected dateService: NbDateService<Date>,
+        private uploadService: UploadService
     ) {
         // const token = this.authService.getJwtToken();
         // if(token) { }
@@ -82,8 +84,14 @@ export class ProfileComponent implements OnInit {
 
     uploadAvatar() {
         // this.showToast('bottom-left', 'success'); // basic - primary - success - info - warning - danger - control
-        const res = { code: 401 };
-        this.handleStatus(res);
+        // const res = { code: 401 };
+        // this.handleStatus(res);
+        console.log(this.files);
+        this.uploadService.upload(this.files).subscribe(
+            res => {
+                console.log(res);
+            }
+        );
     }
 
     handleStatus(res) {
@@ -142,11 +150,13 @@ export class ProfileComponent implements OnInit {
         console.log(file);
         if (file) {
             // this.avatar = file;
+            this.files = file;
             const reader = new FileReader();
             reader.onload = () => {
                 console.log(reader);
                 console.log(reader.result);
                 this.avatarLocalSrc = reader.result;
+
                 this.disable = false;
             };
             reader.readAsDataURL(file);

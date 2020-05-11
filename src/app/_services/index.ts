@@ -6,4 +6,5 @@ export * from './company.service';
 export * from './user.service';
 export * from './share-data.service';
 export * from './comments.service';
+export * from './upload.service';
 
