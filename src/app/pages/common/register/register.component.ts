@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { CONFIG } from 'src/app/_data';
 import { UserService, AuthService } from 'src/app/_services';
 import { Router } from '@angular/router';
@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     duration = 5000; // 5s
     position = 'bottom-left';
+    gender = CONFIG.GENDER;
 
     constructor(
         private router: Router,
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit {
                 Validators.required,
                 Validators.pattern(CONFIG.REGEX_EMAIL)
             ]),
-            gender: new FormControl('1', []),
+            gender: new FormControl(1, []),
             password: new FormControl('', [
                 Validators.required,
                 Validators.minLength(6),
@@ -54,8 +55,30 @@ export class RegisterComponent implements OnInit {
                 Validators.minLength(6),
                 Validators.maxLength(12)
             ]),
-        });
+        }, { validators: this.passwordConfirming });
     }
+
+    passwordConfirming(c: AbstractControl): { mustMatch: boolean } {
+        console.log(c);
+        const passwordControl = c.get('password');
+        const RepPasswordControl = c.get('rep_password');
+
+        if (passwordControl.pristine || RepPasswordControl.pristine) {
+            return null;
+        }
+
+        if (passwordControl.value === RepPasswordControl.value) {
+            return null;
+        }
+        return { mustMatch: true };
+    }
+
+    // passwordConfirming(c: AbstractControl): { mustMatch: boolean } {
+    //     if (c.get('password').value !== c.get('confirm_password').value) {
+    //         c.get('confirm_password').setErrors({ 'noMatch': true });
+    //         return { mustMatch: true };
+    //     }
+    // }
 
     ngOnInit() {
     }

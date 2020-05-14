@@ -62,7 +62,7 @@
                     Xác nhận mật khẩu từ 6 - 12 ký tự
                 </p>
                 <p class="caption status-danger"
-                    *ngIf="f.password.value !== f.rep_password.value && !f.rep_password.errors?.required">
+                    *ngIf="f.rep_password.errors?.mustMatch && !f.rep_password.errors?.required">
                     Password does not match the confirm password.
                 </p>
             </ng-container>
@@ -71,17 +71,10 @@
         <div class="form-control-group">
             <label class="label" for="input-gender">Giới tính</label>
             <nb-select id="input-gender" name="gender" size="large" fieldsize="large" formControlName="gender" fullWidth
-                selected="1">
-                <nb-option value="1">Nam</nb-option>
-                <nb-option value="0">Nữ</nb-option>
+                [selected]="1">
+                <nb-option *ngFor="let item of gender" [value]="item.value">{{item.name}}</nb-option>
             </nb-select>
         </div>
-
-        <!-- <div class="form-control-group accept-group">
-            <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="">
-                Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
-            </nb-checkbox>
-        </div> -->
 
         <button [disabled]="loading" fullwidth nbbutton size="large" status="primary"
             class="appearance-filled full-width size-large status-primary shape-rectangle btn-disabled transitions"
