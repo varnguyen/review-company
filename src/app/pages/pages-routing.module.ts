@@ -16,6 +16,7 @@ const routes: Routes = [{
         { path: 'dashboard', component: DashboardComponent },
         { path: 'profile', component: ProfileComponent, },
         { path: 'change-password', component: ChangePasswordComponent, },
+
         {
             path: 'company',
             loadChildren: () => import('./components/company/company.module').then(m => m.CompanyModule)

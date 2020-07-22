@@ -54,7 +54,6 @@ const NB_MODULE = [
         ChatModule,
         CompanyModule,
         ChangePasswordModule,
-
         // Nebular Module
         ThemeModule,
         NB_MODULE

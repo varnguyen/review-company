@@ -87,7 +87,9 @@ export class ProfileComponent implements OnInit {
         // const res = { code: 401 };
         // this.handleStatus(res);
         console.log(this.files);
-        this.uploadService.upload(this.files).subscribe(
+        const formData = new FormData();
+        formData.append('file', this.files);
+        this.uploadService.upload(formData).subscribe(
             res => {
                 console.log(res);
             }
@@ -153,10 +155,7 @@ export class ProfileComponent implements OnInit {
             this.files = file;
             const reader = new FileReader();
             reader.onload = () => {
-                console.log(reader);
-                console.log(reader.result);
                 this.avatarLocalSrc = reader.result;
-
                 this.disable = false;
             };
             reader.readAsDataURL(file);

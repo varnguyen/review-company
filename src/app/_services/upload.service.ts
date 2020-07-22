@@ -14,7 +14,7 @@ export class UploadService {
     }
 
     upload(file): Observable<any> {
-        return this.httpClient.post<any>(API.UPLOAD, { file }).pipe(catchError(this.handleErrorPromise));
+        return this.httpClient.post<any>(API.UPLOAD, file).pipe(catchError(this.handleErrorPromise));
     }
 
     private handleErrorPromise(error: Response | any) {
